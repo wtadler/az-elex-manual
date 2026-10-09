@@ -26,3 +26,6 @@ dist-ssr
 # Agent worktrees
 .claude/worktrees/
 __pycache__/
+
+# Statute fetcher cache (scripts/fetch_statutes.py)
+.cache/
