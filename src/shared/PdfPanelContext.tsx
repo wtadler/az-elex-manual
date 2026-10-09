@@ -1,17 +1,18 @@
-import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
-import { getHashParam, setHashParam } from './hashQuery'
+import { useCallback, useMemo, useState, type ReactNode } from 'react'
+import { getHashParam } from './hashQuery'
 import { parsePdfParam, pdfToPrintedPage, printedToPdfPage } from './pdfPages'
+import { useHashParamSync } from './useHashParamSync'
 import { PDF_HASH_PARAM, PdfPanelContext, type PdfPanelApi } from './usePdfPanel'
-
-function replaceHash(hash: string) {
-  if (hash === window.location.hash) return
-  // replaceState doesn't fire hashchange, so the route doesn't re-render and no history entry piles up.
-  history.replaceState(history.state, '', hash)
-}
 
 /** The pdf= hash value for a PDF page: its printed page number, or nothing for front matter. */
 function pdfParamFor(pdfPage: number): string | null {
   const printed = pdfToPrintedPage(pdfPage)
+  return printed == null ? null : String(printed)
+}
+
+/** Canonical pdf= value ("0211" -> "211"), or null when it isn't a page number. */
+function canonicalPdfParam(raw: string | null): string | null {
+  const printed = parsePdfParam(raw)
   return printed == null ? null : String(printed)
 }
 
@@ -40,32 +41,21 @@ export function PdfPanelProvider({ children }: { children: ReactNode }) {
     [],
   )
 
-  // State -> hash: keep pdf=<printed page> while open, drop it on close. Other params are preserved.
-  const stateRef = useRef(state)
-  useEffect(() => {
-    stateRef.current = state
-    const hash = window.location.hash
-    if (!state.isOpen && getHashParam(hash, PDF_HASH_PARAM) == null) return
-    replaceHash(setHashParam(hash, PDF_HASH_PARAM, state.isOpen ? pdfParamFor(state.current) : null))
-  }, [state])
-
-  // Hash -> state: a pasted link or Back to a different page opens the panel there. Navigating to a
-  // tab (whose link has no pdf param) keeps the panel open and re-adds the param.
-  useEffect(() => {
-    const onChange = () => {
-      const hash = window.location.hash
-      const printed = parsePdfParam(getHashParam(hash, PDF_HASH_PARAM))
-      const s = stateRef.current
-      if (printed == null) {
-        if (s.isOpen) replaceHash(setHashParam(hash, PDF_HASH_PARAM, pdfParamFor(s.current)))
-        return
-      }
-      const pdfPage = printedToPdfPage(printed)
-      if (!s.isOpen || pdfPage !== s.current) goTo(pdfPage)
-    }
-    window.addEventListener('hashchange', onChange)
-    return () => window.removeEventListener('hashchange', onChange)
-  }, [goTo])
+  // Keep pdf=<printed page> in the hash while open. A pasted link or Back to a different page opens
+  // the panel there; navigating to a tab (whose link has no pdf param) keeps it open and re-adds it.
+  // Out-of-range values clamp, so a different string can still mean the page already shown.
+  const onExternalChange = useCallback((printed: string) => {
+    const pdfPage = printedToPdfPage(Number(printed))
+    setState((s) =>
+      s.isOpen && s.current === pdfPage ? s : { isOpen: true, current: pdfPage, target: { pdfPage, nonce: s.target.nonce + 1 } },
+    )
+  }, [])
+  useHashParamSync(
+    PDF_HASH_PARAM,
+    state.isOpen ? pdfParamFor(state.current) : null,
+    onExternalChange,
+    canonicalPdfParam,
+  )
 
   const api = useMemo<PdfPanelApi>(
     () => ({ isOpen: state.isOpen, target: state.target, openAt, open, close, reportPage }),
