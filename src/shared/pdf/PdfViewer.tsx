@@ -216,7 +216,7 @@ export default function PdfViewer({ target, onPageChange, onClose }: PdfViewerPr
                 style={{ top: layout.tops[n - 1], width: layout.widths[n - 1], height: layout.heights[n - 1] }}
                 data-page={n}
               >
-                <PdfPageView doc={epm.doc} pageNumber={n} scale={scale} />
+                <PdfPageView doc={epm.doc} pageNumber={n} scale={scale} onGoToPage={scrollToPage} />
               </div>
             ))}
           </div>
