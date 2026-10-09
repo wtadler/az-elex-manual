@@ -14,6 +14,7 @@ export type Office =
   | 'BOS' // Board of Supervisors
   | 'ELEC' // Officer in charge of elections
   | 'SOS' // Secretary of State
+  | 'GOV' // Governor
 
 /** One row of the Chapter 15 election calendar (printed pages 304–320). */
 export interface CalendarEntry {
