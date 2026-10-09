@@ -46,7 +46,7 @@ export function upcoming(entries: CalendarEntry[], today: string, days: number):
   return entries.filter((e) => e.date >= today && e.date <= end)
 }
 
-export type View = 'upcoming' | 'all'
+export type View = 'upcoming' | 'all' | 'month'
 
 /** The upcoming view if it has rows, otherwise everything. */
 export function defaultView(entries: CalendarEntry[], today: string, days: number): View {

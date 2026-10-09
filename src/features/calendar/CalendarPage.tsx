@@ -1,21 +1,13 @@
 import { useEffect, useMemo, useState } from 'react'
 import calendar from '../../data/calendar.json'
-import { Cite } from '../../shared/Cite'
 import type { CalendarEntry, Office } from '../../shared/types'
 import './calendar.css'
 import { ALL_ELECTIONS, CYCLE_WIDE, defaultView, filterEntries, groupByMonth, upcoming, type View } from './filter'
+import { EntryCard } from './EntryCard'
 import { buildIcs } from './ics'
-import {
-  CYCLE_WIDE_LABEL,
-  electionLabel,
-  electionOptions,
-  formatLongDate,
-  localIsoDate,
-  OFFICE_NAMES,
-  OFFICES,
-  offsetDescription,
-  offsetLabel,
-} from './labels'
+import { defaultMonth, monthOf } from './month'
+import { MonthView } from './MonthView'
+import { CYCLE_WIDE_LABEL, electionOptions, formatMonth, localIsoDate, OFFICE_NAMES, OFFICES } from './labels'
 import { calendarHash, parseCalendarHash, WINDOW_OPTIONS, type CalendarState } from './query'
 
 // Owner: Person C. Data comes from src/data/calendar.json (owned by Person B).
@@ -57,7 +49,13 @@ export function CalendarPage() {
 
   const filtered = useMemo(() => filterEntries(entries, state), [state])
   const view: View = state.view ?? defaultView(filtered, today, state.days)
-  const rows = view === 'upcoming' ? upcoming(filtered, today, state.days) : filtered
+  const month = state.month ?? defaultMonth(filtered, today)
+  const rows =
+    view === 'upcoming'
+      ? upcoming(filtered, today, state.days)
+      : view === 'month'
+        ? filtered.filter((e) => monthOf(e.date) === month)
+        : filtered
   const groups = groupByMonth(rows)
 
   const set = (patch: Partial<CalendarState>) => setState({ ...state, ...patch })
@@ -119,6 +117,9 @@ export function CalendarPage() {
           <button type="button" aria-pressed={view === 'upcoming'} onClick={() => set({ view: 'upcoming' })}>
             Upcoming
           </button>
+          <button type="button" aria-pressed={view === 'month'} onClick={() => set({ view: 'month' })}>
+            Month
+          </button>
           <button type="button" aria-pressed={view === 'all'} onClick={() => set({ view: 'all' })}>
             All dates
           </button>
@@ -142,9 +143,15 @@ export function CalendarPage() {
 
       <p className="help" aria-live="polite">
         {rows.length === 0
-          ? 'No dates match.'
+          ? view === 'month'
+            ? `No dates match in ${formatMonth(`${month}-01`)}.`
+            : 'No dates match.'
           : `Showing ${rows.length} ${rows.length === 1 ? 'date' : 'dates'}${
-              view === 'upcoming' ? ` from today through the next ${state.days} days` : ''
+              view === 'upcoming'
+                ? ` from today through the next ${state.days} days`
+                : view === 'month'
+                  ? ` in ${formatMonth(`${month}-01`)}`
+                  : ''
             }.`}
         {rows.length === 0 && view === 'upcoming' && filtered.length > 0 && (
           <>
@@ -156,58 +163,30 @@ export function CalendarPage() {
         )}
       </p>
 
-      {groups.map((g) => (
+      {view === 'month' ? (
+        <MonthView
+          rows={rows}
+          month={month}
+          day={state.day}
+          today={today}
+          electionLabels={electionLabels}
+          onMonth={(m) => set({ month: m, day: null })}
+          onDay={(d) => set({ day: d })}
+        />
+      ) : (
+        groups.map((g) => (
         <section key={g.key} aria-labelledby={`cal-${g.key}`}>
           <h3 id={`cal-${g.key}`} className="cal-month">
             {g.label}
           </h3>
           <ul className="rows">
             {g.entries.map((e, i) => (
-              <EntryCard key={`${e.date}-${i}`} entry={e} />
+              <EntryCard key={`${e.date}-${i}`} entry={e} electionLabels={electionLabels} />
             ))}
           </ul>
         </section>
-      ))}
-    </section>
-  )
-}
-
-function EntryCard({ entry: e }: { entry: CalendarEntry }) {
-  return (
-    <li className="card cal-entry">
-      <div className="row-head">
-        <time dateTime={e.date}>
-          <strong>{formatLongDate(e.date)}</strong>
-        </time>
-        <span className="cal-election">
-          {electionLabel(e.election, electionLabels)}
-          {e.election != null && ' election'}
-        </span>
-        {e.daysFromElection != null && (
-          <span className="cal-offset" title={offsetDescription(e.daysFromElection)}>
-            <span aria-hidden="true">{offsetLabel(e.daysFromElection)}</span>
-            <span className="sr-only">{offsetDescription(e.daysFromElection)}</span>
-          </span>
-        )}
-      </div>
-      {e.offices.length > 0 && (
-        <ul className="cal-tags" aria-label="Offices">
-          {e.offices.map((o) => (
-            <li key={o} className="tag" title={OFFICE_NAMES[o]}>
-              <span aria-hidden="true">{o}</span>
-              <span className="sr-only">{OFFICE_NAMES[o]}</span>
-            </li>
-          ))}
-        </ul>
+        ))
       )}
-      <p className="cal-event">{e.event}</p>
-      {e.weekendNote && <p className="help cal-note">{e.weekendNote}</p>}
-      <p className="cites">
-        <Cite epmPage={e.epmPage} />
-        {e.statutes.map((s) => (
-          <Cite key={s} statute={s} />
-        ))}
-      </p>
-    </li>
+    </section>
   )
 }

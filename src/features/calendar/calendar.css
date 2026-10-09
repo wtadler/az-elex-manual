@@ -103,3 +103,44 @@
 @media (max-width: 480px) {
   .cal-download { margin-left: 0; }
 }
+
+/* Month view */
+.cal-monthnav { display: flex; align-items: center; gap: 8px; margin: 20px 0 8px; }
+.cal-monthnav button { padding: 4px 12px; }
+.cal-monthtitle { font-size: 1.15rem; margin: 0 4px; min-width: 9.5em; text-align: center; }
+.cal-grid { width: 100%; border-collapse: collapse; table-layout: fixed; }
+.cal-grid th { font-size: 0.8rem; font-weight: 600; color: var(--muted); padding: 4px 0; }
+.cal-grid abbr { text-decoration: none; }
+.cal-day { border: 1px solid var(--line); vertical-align: top; height: 92px; padding: 0; }
+.cal-day > .cal-daynum { display: block; padding: 4px 6px; }
+.cal-day-out { background: var(--card); }
+.cal-day-out .cal-daynum { color: var(--muted); opacity: 0.6; }
+.cal-day-today .cal-daynum { color: var(--accent); font-weight: 700; }
+.cal-daybtn {
+  display: flex; flex-direction: column; align-items: stretch; gap: 2px;
+  width: 100%; height: 100%; min-height: 92px; padding: 4px 6px;
+  border: 0; border-radius: 0; background: none; text-align: left; font-size: 0.75rem;
+  position: relative;
+}
+.cal-daybtn .cal-daynum { font-size: 0.9rem; font-weight: 600; }
+.cal-daybtn:hover { background: var(--card); }
+.cal-day-selected { outline: 2px solid var(--accent); outline-offset: -2px; }
+.cal-day-selected .cal-daybtn { background: var(--card); }
+.cal-count {
+  position: absolute; top: 4px; right: 6px;
+  min-width: 1.4em; padding: 0 4px; border-radius: 999px;
+  background: var(--accent); color: var(--bg); font-size: 0.72rem; font-weight: 700; text-align: center;
+}
+.cal-previews { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.cal-preview {
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+  line-height: 1.25; color: var(--fg);
+}
+.cal-more { color: var(--muted); }
+
+@media (max-width: 600px) {
+  .cal-day, .cal-daybtn { height: 52px; min-height: 52px; }
+  .cal-previews { display: none; }
+  .cal-count { position: static; align-self: flex-start; }
+  .cal-monthtitle { min-width: 0; flex: 1; }
+}

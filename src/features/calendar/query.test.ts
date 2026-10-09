@@ -18,9 +18,20 @@ describe('calendar hash query', () => {
     ['search with spaces and symbols', { ...DEFAULT_STATE, query: 'early & 16-542(C), "ballot"?#' }],
     ['view and window', { ...DEFAULT_STATE, view: 'upcoming', days: 90 }],
     ['view all', { ...DEFAULT_STATE, view: 'all' }],
+    ['month view', { ...DEFAULT_STATE, view: 'month' }],
+    ['month view at a month', { ...DEFAULT_STATE, view: 'month', month: '2026-10' }],
+    ['month view with a selected day', { ...DEFAULT_STATE, view: 'month', month: '2026-10', day: '2026-10-20' }],
     [
       'everything',
-      { election: 'MAR_NEXT', offices: ['REC', 'BOS', 'ELEC', 'SOS', 'GOV'], query: 'canvass', view: 'all', days: 7 },
+      {
+        election: 'MAR_NEXT',
+        offices: ['REC', 'BOS', 'ELEC', 'SOS', 'GOV'],
+        query: 'canvass',
+        view: 'all',
+        days: 7,
+        month: '2027-03',
+        day: '2027-03-09',
+      },
     ],
   ])('round-trips %s', (_, state) => {
     const hash = calendarHash(state)
@@ -45,5 +56,19 @@ describe('calendar hash query', () => {
     expect(s.offices).toEqual(['REC'])
     expect(s.view).toBeNull()
     expect(s.days).toBe(14)
+  })
+
+  it('writes a readable month link', () => {
+    expect(calendarHash({ ...DEFAULT_STATE, view: 'month', month: '2026-10', day: '2026-10-20' })).toBe(
+      '#/calendar?view=month&month=2026-10&day=2026-10-20',
+    )
+  })
+
+  it.each(['2026-13', '2026-1', 'October', '2026-10-01', ''])('drops an invalid month %j', (m) => {
+    expect(parseCalendarHash(`#/calendar?view=month&month=${m}`).month).toBeNull()
+  })
+
+  it.each(['2026-10', '2026-13-01', '20261020', 'today', ''])('drops an invalid day %j', (d) => {
+    expect(parseCalendarHash(`#/calendar?view=month&day=${d}`).day).toBeNull()
   })
 })
