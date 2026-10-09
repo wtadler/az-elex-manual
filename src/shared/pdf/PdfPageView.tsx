@@ -7,7 +7,7 @@ import {
 } from 'pdfjs-dist'
 import { useEffect, useRef, useState } from 'react'
 import { PDF_URL } from '../citation'
-import { isPlainClick } from '../clicks'
+import { PanelLink } from '../PanelLink'
 import { statuteLabel } from '../statutes/ref'
 import { useStatutePanel } from '../useStatutePanel'
 import { classifyLink, destPageRef, linkBox, type LinkTarget, type PercentBox } from './pdfLinks'
@@ -140,33 +140,23 @@ export function PdfPageView({ doc, pageNumber, scale, onGoToPage }: Props) {
           if (t.kind === 'dest') {
             const n = l.pdfPage ?? 1
             return (
-              <a
+              <PanelLink
                 key={i}
                 href={`${PDF_URL}#page=${n}`}
                 style={style}
                 aria-label={`Go to PDF page ${n}`}
-                onClick={(e) => {
-                  if (!isPlainClick(e)) return
-                  e.preventDefault()
-                  onGoToPage(n)
-                }}
+                onOpen={() => onGoToPage(n)}
               />
             )
           }
           return (
-            <a
+            <PanelLink
               key={i}
               href={t.url}
-              target="_blank"
-              rel="noreferrer"
               style={style}
               aria-label={t.kind === 'statute' ? statuteLabel(t.id) : t.url}
               title={t.kind === 'statute' ? statuteLabel(t.id) : t.url}
-              onClick={(e) => {
-                if (t.kind !== 'statute' || !statutes || !isPlainClick(e)) return
-                e.preventDefault()
-                statutes.openStatute(t.id)
-              }}
+              onOpen={t.kind === 'statute' && statutes ? () => statutes.openStatute(t.id) : undefined}
             />
           )
         })}

@@ -1,5 +1,5 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
-import { isPlainClick } from '../clicks'
+import { PanelLink } from '../PanelLink'
 import type { StatutePanelApi } from '../useStatutePanel'
 import { linkifySections } from './crossRefs'
 import { formatRetrieved } from './format'
@@ -18,20 +18,14 @@ function StatuteText({ text, index, onOpen }: { text: string; index: StatuteInde
         if (part.id == null) return part.text
         const inPanel = index?.sections[part.id] != null
         return (
-          <a
+          <PanelLink
             key={i}
             href={azlegUrl(part.id)}
-            target="_blank"
-            rel="noreferrer"
             title={inPanel ? undefined : 'Opens azleg.gov in a new tab'}
-            onClick={(e) => {
-              if (!inPanel || !isPlainClick(e)) return
-              e.preventDefault()
-              onOpen(part.id)
-            }}
+            onOpen={inPanel ? () => onOpen(part.id) : undefined}
           >
             {part.text}
-          </a>
+          </PanelLink>
         )
       })}
     </>

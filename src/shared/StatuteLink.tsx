@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 import { statuteUrl } from './citation'
-import { isPlainClick } from './clicks'
+import { PanelLink } from './PanelLink'
 import { useStatutePanel } from './useStatutePanel'
 
 /**
@@ -13,17 +13,8 @@ export function StatuteLink({ statute, children }: { statute: string; children: 
   const href = statuteUrl(statute)
   if (!href) return <>{children}</>
   return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noreferrer"
-      onClick={(e) => {
-        if (!panel || !isPlainClick(e)) return
-        e.preventDefault()
-        panel.openStatute(statute)
-      }}
-    >
+    <PanelLink href={href} onOpen={panel ? () => panel.openStatute(statute) : undefined}>
       {children}
-    </a>
+    </PanelLink>
   )
 }
