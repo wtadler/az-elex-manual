@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 import { epmPdfUrl } from './citation'
-import { isPlainClick } from './clicks'
+import { PanelLink } from './PanelLink'
 import { usePdfPanel } from './usePdfPanel'
 
 /**
@@ -10,17 +10,8 @@ import { usePdfPanel } from './usePdfPanel'
 export function PdfPageLink({ printedPage, children }: { printedPage: number; children: ReactNode }) {
   const panel = usePdfPanel()
   return (
-    <a
-      href={epmPdfUrl(printedPage)}
-      target="_blank"
-      rel="noreferrer"
-      onClick={(e) => {
-        if (!panel || !isPlainClick(e)) return
-        e.preventDefault()
-        panel.openAt(printedPage)
-      }}
-    >
+    <PanelLink href={epmPdfUrl(printedPage)} onOpen={panel ? () => panel.openAt(printedPage) : undefined}>
       {children}
-    </a>
+    </PanelLink>
   )
 }

@@ -5,21 +5,79 @@ import {
   type PDFPageProxy,
   type RenderTask,
 } from 'pdfjs-dist'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { PDF_URL } from '../citation'
+import { PanelLink } from '../PanelLink'
+import { statuteLabel } from '../statutes/ref'
+import { useStatutePanel } from '../useStatutePanel'
+import { classifyLink, destPageRef, linkBox, type LinkTarget, type PercentBox } from './pdfLinks'
 
 interface Props {
   doc: PDFDocumentProxy
   pageNumber: number
   scale: number
+  /** Jumps the viewer to a PDF page (for the manual's internal links, like the table of contents). */
+  onGoToPage: (pdfPage: number) => void
+}
+
+interface PageLink {
+  box: PercentBox
+  target: LinkTarget
+  /** Resolved PDF page for internal links. */
+  pdfPage?: number
+}
+
+/** 1-based PDF page an internal link's destination points to, or null if it can't be resolved. */
+async function resolveDest(doc: PDFDocumentProxy, dest: string | unknown[]): Promise<number | null> {
+  try {
+    const explicit = typeof dest === 'string' ? await doc.getDestination(dest) : dest
+    const ref = explicit ? destPageRef(explicit) : null
+    if (ref == null) return null
+    return (typeof ref === 'number' ? ref : await doc.getPageIndex(ref)) + 1
+  } catch {
+    return null
+  }
+}
+
+/** The page's link annotations, placed as percentages of the page so they hold at any zoom. */
+async function loadLinks(doc: PDFDocumentProxy, pageNumber: number): Promise<PageLink[]> {
+  const page = await doc.getPage(pageNumber)
+  const viewport = page.getViewport({ scale: 1 })
+  const annotations = (await page.getAnnotations({ intent: 'display' })) as Parameters<typeof classifyLink>[0][]
+  const links = await Promise.all(
+    annotations.map(async (a): Promise<PageLink | null> => {
+      const target = classifyLink(a)
+      const box = target && a.rect ? linkBox(a.rect, (x, y) => viewport.convertToViewportPoint(x, y), viewport) : null
+      if (!target || !box) return null
+      if (target.kind !== 'dest') return { box, target }
+      const pdfPage = await resolveDest(doc, target.dest)
+      return pdfPage == null ? null : { box, target, pdfPage }
+    }),
+  )
+  return links.filter((l): l is PageLink => l != null)
 }
 
 /**
  * Draws one page (canvas plus selectable text layer) into its sized box. Each render gets a fresh
  * canvas that replaces the old one only when it's done, so zooming never flashes a blank page.
  */
-export function PdfPageView({ doc, pageNumber, scale }: Props) {
+export function PdfPageView({ doc, pageNumber, scale, onGoToPage }: Props) {
   const canvasHost = useRef<HTMLDivElement>(null)
   const textHost = useRef<HTMLDivElement>(null)
+  const statutes = useStatutePanel()
+  const [links, setLinks] = useState<PageLink[]>([])
+
+  // Links don't depend on zoom (boxes are percentages), so load them once per page.
+  useEffect(() => {
+    let alive = true
+    loadLinks(doc, pageNumber).then(
+      (l) => alive && setLinks(l),
+      (err: unknown) => console.error(err),
+    )
+    return () => {
+      alive = false
+    }
+  }, [doc, pageNumber])
 
   useEffect(() => {
     let cancelled = false
@@ -75,6 +133,40 @@ export function PdfPageView({ doc, pageNumber, scale }: Props) {
     <>
       <div ref={canvasHost} className="pdf-canvas" />
       <div ref={textHost} className="textLayer" />
+      {/* Links aren't draggable, so a drag that starts on one selects the text beneath it. They're out
+          of the tab order because each covers text already shown on the page, and a page can have dozens. */}
+      <div className="pdf-links">
+        {links.map((l, i) => {
+          const style = { left: `${l.box.left}%`, top: `${l.box.top}%`, width: `${l.box.width}%`, height: `${l.box.height}%` }
+          const t = l.target
+          if (t.kind === 'dest') {
+            const n = l.pdfPage ?? 1
+            return (
+              <PanelLink
+                key={i}
+                href={`${PDF_URL}#page=${n}`}
+                style={style}
+                draggable={false}
+                tabIndex={-1}
+                aria-label={`Go to PDF page ${n}`}
+                onOpen={() => onGoToPage(n)}
+              />
+            )
+          }
+          return (
+            <PanelLink
+              key={i}
+              href={t.url}
+              style={style}
+              draggable={false}
+              tabIndex={-1}
+              aria-label={t.kind === 'statute' ? statuteLabel(t.id) : t.url}
+              title={t.kind === 'statute' ? statuteLabel(t.id) : t.url}
+              onOpen={t.kind === 'statute' && statutes ? () => statutes.openStatute(t.id) : undefined}
+            />
+          )
+        })}
+      </div>
     </>
   )
 }

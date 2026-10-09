@@ -4,6 +4,7 @@ import { parseGoToPage, pdfToPrintedPage, printedPageLabel, printedToPdfPage } f
 import { loadEpmDocument, type EpmDocument } from './epmDocument'
 import { clampScale, computeLayout, fitWidthScale, pageAtOffset, type PdfLayout } from './pdfLayout'
 import { PdfPageView } from './PdfPageView'
+import { PanelCloseButton } from '../PanelCloseButton'
 
 export interface PdfViewerProps {
   /** PDF page to scroll to; a new nonce scrolls again even if the page is the same. */
@@ -153,9 +154,7 @@ export default function PdfViewer({ target, onPageChange, onClose }: PdfViewerPr
           >
             ›
           </button>
-          <button type="button" className="pdf-close" onClick={onClose} aria-label="Close PDF panel">
-            ✕<span className="pdf-close-label"> Close</span>
-          </button>
+          <PanelCloseButton onClose={onClose} label="Close PDF panel" />
         </div>
         <div className="pdf-toolbar-row">
           <form className="pdf-goto" onSubmit={onGoTo}>
@@ -216,7 +215,7 @@ export default function PdfViewer({ target, onPageChange, onClose }: PdfViewerPr
                 style={{ top: layout.tops[n - 1], width: layout.widths[n - 1], height: layout.heights[n - 1] }}
                 data-page={n}
               >
-                <PdfPageView doc={epm.doc} pageNumber={n} scale={scale} />
+                <PdfPageView doc={epm.doc} pageNumber={n} scale={scale} onGoToPage={scrollToPage} />
               </div>
             ))}
           </div>

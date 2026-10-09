@@ -18,7 +18,8 @@ export function splitHash(hash: string): HashParts {
 
 /** Joins route path and params back into a hash string: "#/calendar?x=1", or "#/" for home. */
 export function joinHash({ path, params }: HashParts): string {
-  const query = params.toString()
+  // Parentheses are legal in a fragment; leave them readable in statute refs ("ars=16-579(A)(1)").
+  const query = params.toString().replaceAll('%28', '(').replaceAll('%29', ')')
   return `#/${path}${query ? `?${query}` : ''}`
 }
 
