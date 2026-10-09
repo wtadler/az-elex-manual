@@ -14,12 +14,12 @@ const CHAPTERS: [string, number][] = [
   ['Presidential Preference Election', 137],
   ['Pre-Election Procedures', 141],
   ['Conduct of Elections/Election Day Operations', 196],
-  ['Central Counting Place Procedures', 226],
-  ['Hand Count Audit', 249],
-  ['Post-Election Day Procedures', 272],
-  ['Certifying Election Results', 276],
-  ['Campaign Finance', 292],
-  ['Election Calendar and Sample Forms', 302],
+  ['Central Counting Place Procedures', 225],
+  ['Hand Count Audit', 248],
+  ['Post-Election Day Procedures', 271],
+  ['Certifying Election Results', 275],
+  ['Campaign Finance', 291],
+  ['Election Calendar and Sample Forms', 301],
 ]
 
 export function ManualPage() {
