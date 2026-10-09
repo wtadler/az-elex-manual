@@ -14,12 +14,13 @@ describe('calendar hash query', () => {
     ['election only', { ...DEFAULT_STATE, election: 'NOV_EV' }],
     ['cycle-wide', { ...DEFAULT_STATE, election: CYCLE_WIDE }],
     ['offices', { ...DEFAULT_STATE, offices: ['REC', 'SOS'] }],
+    ['GOV office', { ...DEFAULT_STATE, offices: ['GOV'] }],
     ['search with spaces and symbols', { ...DEFAULT_STATE, query: 'early & 16-542(C), "ballot"?#' }],
     ['view and window', { ...DEFAULT_STATE, view: 'upcoming', days: 90 }],
     ['view all', { ...DEFAULT_STATE, view: 'all' }],
     [
       'everything',
-      { election: 'MAR_NEXT', offices: ['REC', 'BOS', 'ELEC', 'SOS'], query: 'canvass', view: 'all', days: 7 },
+      { election: 'MAR_NEXT', offices: ['REC', 'BOS', 'ELEC', 'SOS', 'GOV'], query: 'canvass', view: 'all', days: 7 },
     ],
   ])('round-trips %s', (_, state) => {
     const hash = calendarHash(state)
@@ -36,6 +37,7 @@ describe('calendar hash query', () => {
   it('normalizes office order', () => {
     expect(calendarHash({ ...DEFAULT_STATE, offices: ['SOS', 'REC'] })).toBe('#/calendar?office=REC,SOS')
     expect(parseCalendarHash('#/calendar?office=SOS,REC').offices).toEqual(['REC', 'SOS'])
+    expect(parseCalendarHash('#/calendar?office=GOV,REC').offices).toEqual(['REC', 'GOV'])
   })
 
   it('drops invalid values', () => {

@@ -1,6 +1,5 @@
-import type { Office } from '../../shared/types'
 import { ALL_ELECTIONS, type Filters, type View } from './filter'
-import { OFFICES } from './labels'
+import { OFFICES, type CalendarOffice } from './labels'
 
 // Calendar state <-> hash query, so a filtered view is a shareable link:
 // #/calendar?election=NOV_EV&office=REC,BOS&q=early&view=all&days=30
@@ -29,7 +28,7 @@ export function parseCalendarHash(hash: string): CalendarState {
   const params = new URLSearchParams(i < 0 ? '' : hash.slice(i + 1))
   const offices = (params.get('office') ?? '')
     .split(',')
-    .filter((o): o is Office => (OFFICES as string[]).includes(o))
+    .filter((o): o is CalendarOffice => (OFFICES as string[]).includes(o))
   const view = params.get('view')
   const days = Number(params.get('days'))
   return {

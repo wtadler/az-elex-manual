@@ -144,6 +144,7 @@ describe('row labels', () => {
       BOS: 'Board of Supervisors',
       ELEC: 'Officer in charge of elections',
       SOS: 'Secretary of State',
+      GOV: 'Governor',
     })
   })
 })

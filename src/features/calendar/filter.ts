@@ -1,5 +1,5 @@
-import type { CalendarEntry, Office } from '../../shared/types'
-import { addDays, formatMonth } from './labels'
+import type { CalendarEntry } from '../../shared/types'
+import { addDays, formatMonth, type CalendarOffice } from './labels'
 
 /** Election filter value that selects rows with no election code. */
 export const CYCLE_WIDE = 'cycle'
@@ -10,7 +10,7 @@ export interface Filters {
   /** ALL_ELECTIONS, CYCLE_WIDE, or an election code. */
   election: string
   /** Rows matching any of these offices. Empty means no office filter. */
-  offices: Office[]
+  offices: CalendarOffice[]
   /** Free text. Every word must appear in the event or a statute (case-insensitive). */
   query: string
 }
@@ -23,7 +23,7 @@ function matchesElection(e: CalendarEntry, election: string): boolean {
   return e.election === election
 }
 
-function matchesOffices(e: CalendarEntry, offices: Office[]): boolean {
+function matchesOffices(e: CalendarEntry, offices: CalendarOffice[]): boolean {
   return offices.length === 0 || e.offices.some((o) => offices.includes(o))
 }
 

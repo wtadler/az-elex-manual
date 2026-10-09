@@ -3,14 +3,21 @@ import type { CalendarEntry, Office } from '../../shared/types'
 // Display labels and date math for the calendar. All dates are ISO "YYYY-MM-DD"
 // calendar dates with no time zone; math is done in UTC so DST never shifts a day.
 
-export const OFFICE_NAMES: Record<Office, string> = {
+/**
+ * Office codes the calendar uses. Includes GOV (Governor), which is being added to the shared
+ * `Office` type; once it is, this is identical to `Office`.
+ */
+export type CalendarOffice = Office | 'GOV'
+
+export const OFFICE_NAMES: Record<CalendarOffice, string> = {
   REC: 'County Recorder',
   BOS: 'Board of Supervisors',
   ELEC: 'Officer in charge of elections',
   SOS: 'Secretary of State',
+  GOV: 'Governor',
 }
 
-export const OFFICES: Office[] = ['REC', 'BOS', 'ELEC', 'SOS']
+export const OFFICES: CalendarOffice[] = ['REC', 'BOS', 'ELEC', 'SOS', 'GOV']
 
 /** Label for rows with no election code. */
 export const CYCLE_WIDE_LABEL = 'All elections/cycle-wide'

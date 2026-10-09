@@ -165,6 +165,11 @@ describe('buildIcs', () => {
     expect(desc).toContain('\\n')
   })
 
+  it('names the Governor', () => {
+    const [desc] = prop(buildIcs([row({ offices: ['GOV'] })], opts), 'DESCRIPTION')
+    expect(desc).toContain('Offices: Governor')
+  })
+
   it('omits empty description parts and labels cycle-wide rows', () => {
     const [desc] = prop(buildIcs([row({ election: null, offices: [], statutes: [], weekendNote: null })], opts), 'DESCRIPTION')
     expect(desc).not.toContain('Offices:')

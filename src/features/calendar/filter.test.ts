@@ -56,8 +56,23 @@ describe('filterEntries', () => {
       expect(filterEntries(all, { ...NO_FILTERS, offices: ['ELEC'] })).toEqual([b])
     })
 
+    it('filters on GOV (Governor)', () => {
+      const gov = row({ date: '2026-05-01', election: 'A', offices: ['GOV'], event: 'Proclamation' })
+      expect(filterEntries([...all, gov], { ...NO_FILTERS, offices: ['GOV'] })).toEqual([gov])
+      expect(filterEntries([...all, gov], { ...NO_FILTERS, offices: ['GOV', 'REC'] })).toEqual([a, gov])
+      expect(filterEntries(all, { ...NO_FILTERS, offices: ['GOV'] })).toEqual([])
+    })
+
+    it('matches an "ALL" row (all four county/state offices) on any one of them', () => {
+      const every = row({ offices: ['REC', 'BOS', 'ELEC', 'SOS'], event: 'Everyone' })
+      for (const o of ['REC', 'BOS', 'ELEC', 'SOS'] as const) {
+        expect(filterEntries([every], { ...NO_FILTERS, offices: [o] })).toEqual([every])
+      }
+      expect(filterEntries([every], { ...NO_FILTERS, offices: ['GOV'] })).toEqual([])
+    })
+
     it('drops rows with no office when an office filter is on', () => {
-      expect(filterEntries(all, { ...NO_FILTERS, offices: ['REC', 'BOS', 'ELEC', 'SOS'] })).toEqual([a, b, c])
+      expect(filterEntries(all, { ...NO_FILTERS, offices: ['REC', 'BOS', 'ELEC', 'SOS', 'GOV'] })).toEqual([a, b, c])
     })
   })
 
