@@ -75,6 +75,11 @@ button:hover { border-color: var(--accent); }
 /* ---- PDF panel ---------------------------------------------------------- */
 header .header-pdf { margin-left: auto; padding: 4px 12px; align-self: center; }
 header .header-pdf[aria-pressed='true'] { border-color: var(--accent); color: var(--accent); }
+@media (max-width: 599.98px) {
+  /* Keep the PDF button on the title row; tabs wrap below. */
+  header .header-pdf { order: 1; }
+  header nav { order: 2; flex-basis: 100%; }
+}
 
 .layout { display: flex; align-items: stretch; }
 .content { flex: 1; min-width: 0; }

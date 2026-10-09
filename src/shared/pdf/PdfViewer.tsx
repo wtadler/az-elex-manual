@@ -116,6 +116,12 @@ export default function PdfViewer({ target, onPageChange, onClose }: PdfViewerPr
     ? [pageAtOffset(layout, view.top - view.height), pageAtOffset(layout, view.top + view.height * 2)]
     : [1, 0]
 
+  // Prev/next step from the live scroll position, so quick repeated clicks don't reuse a stale page.
+  const step = (delta: number) => {
+    const el = scroller.current
+    if (!el || !layout) return
+    scrollToPage(pageAtOffset(layout, el.scrollTop + el.clientHeight * 0.25) + delta)
+  }
   const changeZoom = (next: 'fit' | number) => setZoom(next === 'fit' ? 'fit' : clampScale(next))
   const onGoTo = (e: FormEvent) => {
     e.preventDefault()
@@ -129,7 +135,7 @@ export default function PdfViewer({ target, onPageChange, onClose }: PdfViewerPr
     <div className="pdf-viewer">
       <div className="pdf-toolbar">
         <div className="pdf-toolbar-row">
-          <button type="button" onClick={() => scrollToPage(current - 1)} disabled={!layout || current <= 1} aria-label="Previous page">
+          <button type="button" onClick={() => step(-1)} disabled={!layout || current <= 1} aria-label="Previous page">
             ‹
           </button>
           <span className="pdf-position" aria-live="polite">
@@ -141,7 +147,7 @@ export default function PdfViewer({ target, onPageChange, onClose }: PdfViewerPr
           </span>
           <button
             type="button"
-            onClick={() => scrollToPage(current + 1)}
+            onClick={() => step(1)}
             disabled={!layout || current >= pageCount}
             aria-label="Next page"
           >
