@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 
 // Hash routing (#/calendar) because GitHub Pages has no index.html fallback for paths.
 function current(): string {
-  return window.location.hash.replace(/^#\/?/, '').split('/')[0] ?? ''
+  return window.location.hash.replace(/^#\/?/, '').split('?')[0].split('/')[0] ?? ''
 }
 
 export function useHashRoute(): string {
