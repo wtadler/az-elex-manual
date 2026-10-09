@@ -1,0 +1,62 @@
+[
+  {
+    "date": "2025-01-07",
+    "election": "AUG_ODD",
+    "daysFromElection": -210,
+    "offices": ["BOS", "ELEC"],
+    "event": "Deadline for 210 day notice by Board of Supervisors for August 5, 2025 election.",
+    "statutes": ["16-205(A)"],
+    "weekendNote": null,
+    "epmPage": 304
+  },
+  {
+    "date": "2025-01-25",
+    "election": "MAR_ODD",
+    "daysFromElection": -45,
+    "offices": ["REC"],
+    "event": "Deadline for active early voters to notify county that an early ballot not be sent for March 11, 2025 election.",
+    "statutes": ["16-544(F)"],
+    "weekendNote": "Saturday. Moves to next business day.",
+    "epmPage": 304
+  },
+  {
+    "date": "2025-02-10",
+    "election": "MAR_ODD",
+    "daysFromElection": -29,
+    "offices": ["REC"],
+    "event": "Last day register to vote for March 11, 2025 Election (11:59 p.m.).",
+    "statutes": ["16-120(A)"],
+    "weekendNote": null,
+    "epmPage": 304
+  },
+  {
+    "date": "2025-02-12",
+    "election": "MAR_ODD",
+    "daysFromElection": -27,
+    "offices": ["REC"],
+    "event": "Early Voting begins for March 11, 2025 election.",
+    "statutes": ["16-542(C)"],
+    "weekendNote": null,
+    "epmPage": 304
+  },
+  {
+    "date": "2025-03-11",
+    "election": "MAR_ODD",
+    "daysFromElection": 0,
+    "offices": [],
+    "event": "March Odd Year Election",
+    "statutes": ["16-204", "16-204.01"],
+    "weekendNote": null,
+    "epmPage": 304
+  },
+  {
+    "date": "2025-03-14",
+    "election": "MAR_ODD",
+    "daysFromElection": 3,
+    "offices": ["REC"],
+    "event": "Last day for identification verification for Conditional Provisional Ballots and curing of early ballot affidavit signatures.",
+    "statutes": ["16-579(A)(2)", "16-550(A)", "Procedures Manual"],
+    "weekendNote": null,
+    "epmPage": 304
+  }
+]

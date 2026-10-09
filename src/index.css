@@ -1,0 +1,73 @@
+:root {
+  --bg: #ffffff;
+  --fg: #1a1d21;
+  --muted: #5b6470;
+  --line: #dde1e6;
+  --card: #f6f7f9;
+  --accent: #1f5fa8;
+  --warn-bg: #fff6e0;
+  --warn-fg: #6b4a00;
+  --ok: #1e7a46;
+  --caution: #a35a00;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  line-height: 1.5;
+  color: var(--fg);
+  background: var(--bg);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #14171b;
+    --fg: #e6e8eb;
+    --muted: #9aa3ad;
+    --line: #2c3239;
+    --card: #1c2026;
+    --accent: #7fb2ee;
+    --warn-bg: #3a2f14;
+    --warn-fg: #f3d58a;
+    --ok: #5fcf8e;
+    --caution: #f0a64a;
+  }
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); }
+a { color: var(--accent); }
+
+header {
+  border-bottom: 1px solid var(--line);
+  padding: 12px 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  align-items: baseline;
+}
+header h1 { font-size: 1.1rem; margin: 0; }
+header h1 a { color: var(--fg); text-decoration: none; }
+nav { display: flex; flex-wrap: wrap; gap: 4px 16px; }
+nav a { text-decoration: none; color: var(--muted); }
+nav a[aria-current='page'] { color: var(--fg); font-weight: 600; }
+
+main { max-width: 760px; margin: 0 auto; padding: 16px; }
+h2 { font-size: 1.4rem; margin-top: 8px; }
+
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 12px 16px; margin: 12px 0; }
+.notice { background: var(--warn-bg); color: var(--warn-fg); padding: 8px 12px; border-radius: 6px; }
+.help { color: var(--muted); font-size: 0.92rem; }
+.question { font-size: 1.15rem; font-weight: 600; }
+.options { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0; }
+button {
+  font: inherit; padding: 8px 16px; border-radius: 6px; cursor: pointer;
+  border: 1px solid var(--line); background: var(--bg); color: var(--fg);
+}
+button:hover { border-color: var(--accent); }
+.cites { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 0.88rem; margin-bottom: 0; }
+.outcome-label { font-weight: 700; font-size: 1.15rem; margin-top: 0; }
+.outcome-regular .outcome-label { color: var(--ok); }
+.outcome-provisional .outcome-label,
+.outcome-conditional-provisional .outcome-label { color: var(--caution); }
+.rows { list-style: none; padding: 0; }
+.row-head { display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: baseline; }
+.tag { font-size: 0.8rem; border: 1px solid var(--line); border-radius: 4px; padding: 0 6px; }
+.chapters li { margin: 4px 0; }
+.chapters .cite { margin-left: 8px; font-size: 0.88rem; }
