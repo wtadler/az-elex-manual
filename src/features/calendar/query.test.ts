@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { routeFromHash } from '../../shared/useHashRoute'
 import { CYCLE_WIDE } from './filter'
-import { calendarHash, DEFAULT_STATE, nextCalendarHash, parseCalendarHash, type CalendarState } from './query'
+import { CALENDAR_PARAMS, calendarHash, DEFAULT_STATE, nextCalendarHash, parseCalendarHash, type CalendarState } from './query'
 
 describe('calendar hash query', () => {
   it('omits defaults', () => {
@@ -99,5 +99,15 @@ describe('nextCalendarHash', () => {
   it('round-trips the calendar state with a pdf param present', () => {
     const full: CalendarState = { ...DEFAULT_STATE, view: 'month', month: '2026-10', day: '2026-10-20', offices: ['REC'] }
     expect(parseCalendarHash(nextCalendarHash(full, '#/calendar?pdf=304'))).toEqual(full)
+  })
+})
+
+describe('CALENDAR_PARAMS', () => {
+  it('lists exactly the params calendarHash writes', () => {
+    const full: CalendarState = {
+      election: 'NOV_EV', offices: ['REC'], query: 'x', view: 'month', days: 7, month: '2026-10', day: '2026-10-20',
+    }
+    const written = [...new URLSearchParams(calendarHash(full).split('?')[1]).keys()]
+    expect(written.sort()).toEqual([...CALENDAR_PARAMS].sort())
   })
 })

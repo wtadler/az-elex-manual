@@ -1,5 +1,6 @@
 import { ALL_ELECTIONS, type Filters, type View } from './filter'
 import type { Office } from '../../shared/types'
+import { joinHash, splitHash } from '../../shared/hashQuery'
 import { OFFICES } from './labels'
 import { isMonthKey } from './month'
 
@@ -67,19 +68,17 @@ export function calendarHash(s: CalendarState): string {
   return q ? `#/calendar?${q}` : '#/calendar'
 }
 
-const CALENDAR_PARAMS = ['election', 'office', 'q', 'view', 'days', 'month', 'day']
+/** Every hash param calendarHash can write. */
+export const CALENDAR_PARAMS = ['election', 'office', 'q', 'view', 'days', 'month', 'day']
 
 /**
  * The hash to write for a new calendar state, keeping any params the calendar doesn't own
  * (such as the PDF panel's pdf=<page>) from the current hash.
  */
 export function nextCalendarHash(s: CalendarState, currentHash: string): string {
-  const i = currentHash.indexOf('?')
-  const others = [...new URLSearchParams(i < 0 ? '' : currentHash.slice(i + 1))].filter(
-    ([k]) => !CALENDAR_PARAMS.includes(k),
-  )
-  if (others.length === 0) return calendarHash(s)
-  const base = calendarHash(s)
-  const extra = new URLSearchParams(others).toString()
-  return base.includes('?') ? `${base}&${extra}` : `${base}?${extra}`
+  const next = splitHash(calendarHash(s))
+  for (const [k, v] of splitHash(currentHash).params) {
+    if (!CALENDAR_PARAMS.includes(k)) next.params.append(k, v)
+  }
+  return joinHash(next).replaceAll('%2C', ',')
 }

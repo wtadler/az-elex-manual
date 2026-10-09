@@ -1,4 +1,10 @@
-import { RenderingCancelledException, TextLayer, type PDFDocumentProxy, type RenderTask } from 'pdfjs-dist'
+import {
+  RenderingCancelledException,
+  TextLayer,
+  type PDFDocumentProxy,
+  type PDFPageProxy,
+  type RenderTask,
+} from 'pdfjs-dist'
 import { useEffect, useRef } from 'react'
 
 interface Props {
@@ -19,22 +25,30 @@ export function PdfPageView({ doc, pageNumber, scale }: Props) {
     let cancelled = false
     let task: RenderTask | null = null
     let textLayer: TextLayer | null = null
+    let page: PDFPageProxy | null = null
+    let pending: HTMLCanvasElement | null = null
 
-    doc.getPage(pageNumber).then((page) => {
+    doc.getPage(pageNumber).then((p) => {
+      page = p
       if (cancelled || !canvasHost.current || !textHost.current) return
-      const viewport = page.getViewport({ scale })
+      const viewport = p.getViewport({ scale })
       const ratio = Math.min(window.devicePixelRatio || 1, 2)
       const canvas = document.createElement('canvas')
+      pending = canvas
       canvas.width = Math.floor(viewport.width * ratio)
       canvas.height = Math.floor(viewport.height * ratio)
-      task = page.render({
+      task = p.render({
         canvas,
         viewport,
         transform: ratio !== 1 ? [ratio, 0, 0, ratio, 0, 0] : undefined,
       })
       task.promise.then(
         () => {
-          if (!cancelled) canvasHost.current?.replaceChildren(canvas)
+          if (cancelled) return
+          pending = null
+          const old = canvasHost.current?.querySelector('canvas')
+          canvasHost.current?.replaceChildren(canvas)
+          if (old) old.width = old.height = 0 // release the replaced bitmap now (iOS caps canvas memory)
         },
         (err: unknown) => {
           if (!(err instanceof RenderingCancelledException)) console.error(err)
@@ -44,7 +58,7 @@ export function PdfPageView({ doc, pageNumber, scale }: Props) {
       const host = textHost.current
       host.replaceChildren()
       host.style.setProperty('--total-scale-factor', String(scale))
-      textLayer = new TextLayer({ textContentSource: page.streamTextContent(), container: host, viewport })
+      textLayer = new TextLayer({ textContentSource: p.streamTextContent(), container: host, viewport })
       textLayer.render().catch(() => {}) // cancelled on unmount or zoom
     })
 
@@ -52,6 +66,8 @@ export function PdfPageView({ doc, pageNumber, scale }: Props) {
       cancelled = true
       task?.cancel()
       textLayer?.cancel()
+      if (pending) pending.width = pending.height = 0
+      page?.cleanup() // drop pdf.js's cached drawing data for pages scrolled away from
     }
   }, [doc, pageNumber, scale])
 

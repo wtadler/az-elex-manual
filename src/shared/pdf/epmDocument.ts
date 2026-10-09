@@ -7,7 +7,7 @@ GlobalWorkerOptions.workerSrc = workerUrl
 
 export interface EpmDocument {
   doc: PDFDocumentProxy
-  /** Viewport size of every page at scale 1, so placeholders keep the scroll position stable. */
+  /** Viewport size of every page at scale 1 (all US Letter), so placeholders keep scroll stable. */
   sizes: PageSize[]
 }
 
@@ -24,11 +24,8 @@ export function loadEpmDocument(): Promise<EpmDocument> {
 
 async function load(): Promise<EpmDocument> {
   const doc = await getDocument({ url: PDF_URL }).promise
-  const sizes = await Promise.all(
-    Array.from({ length: doc.numPages }, async (_, i) => {
-      const { width, height } = (await doc.getPage(i + 1)).getViewport({ scale: 1 })
-      return { width, height }
-    }),
-  )
-  return { doc, sizes }
+  // Every page of the EPM is US Letter (one is off by under a point), so measure page 1 and
+  // size every placeholder from it instead of fetching all 479 pages before the first jump.
+  const { width, height } = (await doc.getPage(1)).getViewport({ scale: 1 })
+  return { doc, sizes: Array.from({ length: doc.numPages }, () => ({ width, height })) }
 }

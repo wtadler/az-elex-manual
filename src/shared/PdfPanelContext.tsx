@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
-import { EPM_PAGE_OFFSET } from './citation'
 import { getHashParam, setHashParam } from './hashQuery'
-import { parsePdfParam, printedToPdfPage } from './pdfPages'
+import { parsePdfParam, pdfToPrintedPage, printedToPdfPage } from './pdfPages'
 import { PDF_HASH_PARAM, PdfPanelContext, type PdfPanelApi } from './usePdfPanel'
 
 function replaceHash(hash: string) {
@@ -10,8 +9,10 @@ function replaceHash(hash: string) {
   history.replaceState(history.state, '', hash)
 }
 
-function printedFor(pdfPage: number): string {
-  return String(pdfPage - EPM_PAGE_OFFSET)
+/** The pdf= hash value for a PDF page: its printed page number, or nothing for front matter. */
+function pdfParamFor(pdfPage: number): string | null {
+  const printed = pdfToPrintedPage(pdfPage)
+  return printed == null ? null : String(printed)
 }
 
 export function PdfPanelProvider({ children }: { children: ReactNode }) {
@@ -45,7 +46,7 @@ export function PdfPanelProvider({ children }: { children: ReactNode }) {
     stateRef.current = state
     const hash = window.location.hash
     if (!state.isOpen && getHashParam(hash, PDF_HASH_PARAM) == null) return
-    replaceHash(setHashParam(hash, PDF_HASH_PARAM, state.isOpen ? printedFor(state.current) : null))
+    replaceHash(setHashParam(hash, PDF_HASH_PARAM, state.isOpen ? pdfParamFor(state.current) : null))
   }, [state])
 
   // Hash -> state: a pasted link or Back to a different page opens the panel there. Navigating to a
@@ -56,7 +57,7 @@ export function PdfPanelProvider({ children }: { children: ReactNode }) {
       const printed = parsePdfParam(getHashParam(hash, PDF_HASH_PARAM))
       const s = stateRef.current
       if (printed == null) {
-        if (s.isOpen) replaceHash(setHashParam(hash, PDF_HASH_PARAM, printedFor(s.current)))
+        if (s.isOpen) replaceHash(setHashParam(hash, PDF_HASH_PARAM, pdfParamFor(s.current)))
         return
       }
       const pdfPage = printedToPdfPage(printed)
