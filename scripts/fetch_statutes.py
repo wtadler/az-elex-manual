@@ -20,15 +20,24 @@ Output (the UI depends on this shape):
   public/statutes/<id>.json    {id, title, url, retrieved, notes, paragraphs}
 
 Fetching is polite: one request at a time, ~0.5s apart, a descriptive User-Agent, and
-retries with backoff on 5xx and timeouts. Raw HTML is cached under .cache/azleg/ (gitignored),
-so reruns don't hit the server; --refresh ignores the cache, --offline never hits the network.
-`retrieved` is the date the cached page was downloaded (its file mtime).
+retries with backoff on 5xx, 429, and timeouts (honoring Retry-After, up to 60s). A 403 means
+we're likely blocked, so the run stops. Raw HTML is cached under .cache/azleg/ (gitignored), but
+only pages whose <TITLE> is the section asked for, so an error page served with status 200 is
+never cached. Reruns don't hit the server; --refresh ignores the cache, --offline never hits
+the network. `retrieved` is the date the cached page was downloaded (its file mtime).
+
+A bad run never wipes the committed dataset:
+  - A 403, or network/HTTP failures (anything but a genuine 404) on more than 10% of sections,
+    writes nothing and exits non-zero.
+  - Under that, a section that failed keeps its existing JSON file and index entry.
+  - --offline never prunes old files.
 
 Standard library only, except pypdf for reading PDF link annotations when it is installed
 (otherwise the PDF's streams are scanned directly).
 """
 
 import argparse
+import email.utils
 import html
 import json
 import os
@@ -38,7 +47,7 @@ import time
 import urllib.error
 import urllib.request
 import zlib
-from datetime import date
+from datetime import date, datetime, timezone
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PDF = os.path.join(ROOT, 'public', 'epm.pdf')
@@ -52,8 +61,10 @@ BASE = 'https://www.azleg.gov'
 SOURCE = 'https://www.azleg.gov/arstitle/'
 USER_AGENT = 'az-elex-manual statute fetcher (+https://github.com/wtadler/az-elex-manual)'
 DELAY = 0.5
-RETRIES = 4
+RETRIES = 4  # so up to 5 attempts
+MAX_RETRY_AFTER = 60
 TIMEOUT = 30
+MAX_FAILURE_RATE = 0.10
 CROSS_REF_TITLES = {'16', '19'}
 
 # ---------------------------------------------------------------- ids and URLs
@@ -203,6 +214,46 @@ def seed_ids():
 # ---------------------------------------------------------------- fetching
 
 
+class Blocked(Exception):
+    """azleg.gov answered 403: we're probably blocked, so every later request would fail too."""
+
+
+def is_failure(status):
+    """True when a section couldn't be fetched for network/HTTP reasons, as opposed to 'ok' or a
+    genuine 404 (the section doesn't exist). Failures say nothing about the section, so they
+    mustn't replace or prune what's already in the dataset."""
+    return status not in ('ok', '404')
+
+
+def page_title_ok(sid, page):
+    """True if the page's <TITLE> starts with '<sid> - ', i.e. it's the section we asked for and
+    not an error or block page served with status 200."""
+    m = re.search(r'<title>(.*?)</title>', page or '', re.IGNORECASE | re.DOTALL)
+    return bool(m) and clean(m.group(1)).startswith(f'{sid} - ')
+
+
+def retry_after_seconds(value, now=None):
+    """Seconds to wait from a Retry-After header (delta-seconds or an HTTP date), capped at
+    MAX_RETRY_AFTER. None if the header is missing or unparseable."""
+    if not value:
+        return None
+    value = value.strip()
+    if value.isdigit():
+        seconds = int(value)
+    else:
+        try:
+            when = email.utils.parsedate_to_datetime(value)
+        except (TypeError, ValueError):
+            return None
+        if when is None:
+            return None
+        now = now or datetime.now(timezone.utc)
+        if when.tzinfo is None:
+            when = when.replace(tzinfo=timezone.utc)
+        seconds = (when - now).total_seconds()
+    return max(0, min(seconds, MAX_RETRY_AFTER))
+
+
 class Fetcher:
     def __init__(self, refresh=False, offline=False):
         self.refresh = refresh
@@ -215,17 +266,25 @@ class Fetcher:
         return os.path.join(CACHE_DIR, *url.split('/ars/')[1].split('/'))
 
     def get(self, sid):
-        """Return (status, html_text_or_None, retrieved_date). status is 'ok' or a reason."""
+        """Return (status, html_text_or_None, retrieved_date). status is 'ok' or a reason.
+
+        Raises Blocked on a 403."""
         path = self.cache_path(sid)
         missing_marker = path + '.missing'
         if not self.refresh:
+            # A cached page with the wrong title (an error page cached by an older version of
+            # this script) is ignored and fetched again.
             if os.path.exists(path):
-                return 'ok', _read(path), _mtime_date(path)
-            if os.path.exists(missing_marker):
+                page = _read(path)
+                if page_title_ok(sid, page):
+                    return 'ok', page, _mtime_date(path)
+            elif os.path.exists(missing_marker):
                 return _read(missing_marker).strip(), None, _mtime_date(missing_marker)
         if self.offline:
             return 'not cached (offline)', None, date.today()
         status, body = self._download(id_to_url(sid))
+        if status == 'ok' and not page_title_ok(sid, body):
+            status, body = 'unexpected page (not the section; error or block page?)', None
         os.makedirs(os.path.dirname(path), exist_ok=True)
         if status == 'ok':
             with open(path, 'w', encoding='utf-8') as f:
@@ -249,14 +308,18 @@ class Fetcher:
                 with urllib.request.urlopen(req, timeout=TIMEOUT) as resp:
                     return 'ok', resp.read().decode('utf-8', errors='replace')
             except urllib.error.HTTPError as e:
-                if e.code < 500:
+                if e.code == 403:
+                    raise Blocked(f'{url} returned 403 Forbidden') from e
+                if e.code < 500 and e.code != 429:
                     return str(e.code), None
                 reason = str(e.code)
+                retry_after = retry_after_seconds(e.headers.get('Retry-After') if e.headers else None)
             except (urllib.error.URLError, TimeoutError, ConnectionError) as e:
                 reason = f'network error: {getattr(e, "reason", e)}'
+                retry_after = None
             if attempt < RETRIES:
-                backoff = 2 ** attempt
-                print(f'  {url}: {reason}; retrying in {backoff}s', file=sys.stderr)
+                backoff = retry_after if retry_after is not None else 2 ** attempt
+                print(f'  {url}: {reason}; retrying in {backoff:g}s', file=sys.stderr)
                 time.sleep(backoff)
         return reason, None
 
@@ -312,17 +375,28 @@ def write_json(path, obj):
         f.write('\n')
 
 
+def _read_index():
+    try:
+        with open(os.path.join(OUT_DIR, 'index.json'), encoding='utf-8') as f:
+            return json.load(f)
+    except (OSError, ValueError):
+        return {}
+
+
 def run(fetcher):
+    """Fetch, parse, and write the dataset. Returns the process exit code."""
     seeds = seed_ids()
     print(f'{len(seeds)} sections cited by the manual, calendar, and ballot guide')
-    sections, missing = {}, {}
+    sections, missing, failed = {}, {}, {}
 
     def fetch_all(ids):
         for i, sid in enumerate(ids, 1):
-            if sid in sections or sid in missing:
+            if sid in sections or sid in missing or sid in failed:
                 continue
             status, page, retrieved = fetcher.get(sid)
-            if status != 'ok':
+            if is_failure(status):
+                failed[sid] = status
+            elif status != 'ok':
                 missing[sid] = status
             else:
                 try:
@@ -344,33 +418,59 @@ def run(fetcher):
             if i % 50 == 0:
                 print(f'  {i}/{len(ids)} ({fetcher.requests} requests)')
 
-    fetch_all(sorted(seeds, key=sort_key))
-    cross = []
-    for sid in sorted(sections, key=sort_key):
-        for ref in extract_section_refs('\n'.join(sections[sid]['paragraphs'])):
-            if ref not in seeds and ref not in cross:
-                cross.append(ref)
-    print(f'{len(cross)} more Title 16/19 sections cross-referenced by those')
-    fetch_all(sorted(cross, key=sort_key))
+    out = os.path.relpath(OUT_DIR, ROOT)
+    try:
+        fetch_all(sorted(seeds, key=sort_key))
+        cross = []
+        for sid in sorted(sections, key=sort_key):
+            for ref in extract_section_refs('\n'.join(sections[sid]['paragraphs'])):
+                if ref not in seeds and ref not in cross:
+                    cross.append(ref)
+        print(f'{len(cross)} more Title 16/19 sections cross-referenced by those')
+        fetch_all(sorted(cross, key=sort_key))
+    except Blocked as e:
+        print(f'error: {e}. azleg.gov is probably blocking this client, so the run stopped. '
+              f'Nothing under {out} was changed.', file=sys.stderr)
+        return 2
+
+    attempted = len(sections) + len(missing) + len(failed)
+    for sid in sorted(failed, key=sort_key):
+        print(f'  failed {sid}: {failed[sid]}', file=sys.stderr)
+    if attempted and len(failed) > MAX_FAILURE_RATE * attempted:
+        print(f'error: {len(failed)} of {attempted} sections failed for network/HTTP reasons '
+              f'(more than {MAX_FAILURE_RATE:.0%}). Nothing under {out} was changed; '
+              f'fix the cause and rerun.', file=sys.stderr)
+        return 1
+
+    # A section that failed this time keeps whatever the dataset already had for it.
+    old_titles = _read_index().get('sections', {})
+    kept = {sid: old_titles[sid] for sid in failed
+            if sid in old_titles and os.path.exists(os.path.join(OUT_DIR, f'{sid}.json'))}
 
     os.makedirs(OUT_DIR, exist_ok=True)
-    keep = {'index.json'} | {f'{sid}.json' for sid in sections}
-    for name in os.listdir(OUT_DIR):
-        if name.endswith('.json') and name not in keep:
-            os.remove(os.path.join(OUT_DIR, name))
+    if fetcher.offline:
+        print('offline: not pruning old files')
+    else:
+        keep = {'index.json'} | {f'{sid}.json' for sid in [*sections, *kept]}
+        for name in os.listdir(OUT_DIR):
+            if name.endswith('.json') and name not in keep:
+                os.remove(os.path.join(OUT_DIR, name))
     for sid, sec in sections.items():
         write_json(os.path.join(OUT_DIR, f'{sid}.json'), sec)
+    titles = {**kept, **{sid: sec['title'] for sid, sec in sections.items()}}
+    unresolved = {**missing, **{sid: reason for sid, reason in failed.items() if sid not in kept}}
     dates = [s['retrieved'] for s in sections.values()]
     write_json(os.path.join(OUT_DIR, 'index.json'), {
         'retrieved': min(dates) if dates else date.today().isoformat(),
         'source': SOURCE,
-        'sections': {sid: sections[sid]['title'] for sid in sorted(sections, key=sort_key)},
-        'missing': {sid: missing[sid] for sid in sorted(missing, key=sort_key)},
+        'sections': {sid: titles[sid] for sid in sorted(titles, key=sort_key)},
+        'missing': {sid: unresolved[sid] for sid in sorted(unresolved, key=sort_key)},
     })
-    print(f'wrote {len(sections)} sections to {os.path.relpath(OUT_DIR, ROOT)}; '
-          f'{len(missing)} missing; {fetcher.requests} network requests')
+    print(f'wrote {len(sections)} sections to {out}; kept {len(kept)} that failed to fetch; '
+          f'{len(unresolved)} missing; {fetcher.requests} network requests')
     for sid in sorted(missing, key=sort_key):
         print(f'  missing {sid}: {missing[sid]}')
+    return 0
 
 
 def main():
@@ -378,7 +478,7 @@ def main():
     ap.add_argument('--refresh', action='store_true', help='ignore the cache and re-download')
     ap.add_argument('--offline', action='store_true', help='use only cached pages')
     args = ap.parse_args()
-    run(Fetcher(refresh=args.refresh, offline=args.offline))
+    sys.exit(run(Fetcher(refresh=args.refresh, offline=args.offline)))
 
 
 if __name__ == '__main__':

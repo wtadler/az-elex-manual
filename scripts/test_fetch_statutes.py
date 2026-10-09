@@ -1,8 +1,16 @@
 """Unit tests for scripts/fetch_statutes.py. Run: python3 -m unittest scripts/test_fetch_statutes.py"""
 
+import contextlib
+import io
+import json
 import os
 import sys
+import tempfile
 import unittest
+import urllib.error
+from datetime import datetime, timezone
+from email.message import Message
+from unittest import mock
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
@@ -191,6 +199,338 @@ class ParseTest(unittest.TestCase):
         self.assertTrue(fs.NOTE_RE.match('(Caution: 1998 Prop. 105 applies)'))
         self.assertFalse(fs.NOTE_RE.match('(a) First item.'))
         self.assertFalse(fs.NOTE_RE.match('(10) Tenth item (with aside)'))
+
+
+# ---------------------------------------------------------------- fetching and writing (no network)
+
+
+def page_for(sid, title='Test section', body='<p>A. Some text.</p>'):
+    return (f'<HTML><HEAD><TITLE>{sid} - {title}</TITLE></HEAD><BODY>'
+            f'<p>{sid}. {title}</p>{body}</BODY></HTML>')
+
+
+def http_error(code, retry_after=None):
+    headers = Message()
+    if retry_after is not None:
+        headers['Retry-After'] = retry_after
+    return urllib.error.HTTPError('https://www.azleg.gov/x', code, 'err', headers, io.BytesIO(b''))
+
+
+class FakeResponse:
+    def __init__(self, body):
+        self.body = body.encode('utf-8')
+
+    def read(self):
+        return self.body
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *exc):
+        return False
+
+
+class FakeAzleg:
+    """Stands in for urllib.request.urlopen. `responses` maps a section id to a list of outcomes
+    served in order (the last one repeats): a str is a 200 body, an int an HTTP error, an
+    exception instance is raised. Ids not listed get a normal page."""
+
+    def __init__(self, responses=None):
+        self.responses = responses or {}
+        self.calls = []
+
+    def __call__(self, req, timeout=None):
+        sid = fs.url_to_id(req.full_url)
+        self.calls.append(sid)
+        queue = self.responses.get(sid)
+        if not queue:
+            return FakeResponse(page_for(sid))
+        outcome = queue.pop(0) if len(queue) > 1 else queue[0]
+        if isinstance(outcome, BaseException):
+            raise outcome
+        if isinstance(outcome, int):
+            raise http_error(outcome)
+        if isinstance(outcome, tuple):
+            raise http_error(*outcome)
+        return FakeResponse(outcome)
+
+
+class FetchTestCase(unittest.TestCase):
+    """Points the cache and output at a temp dir and makes sleeps instant."""
+
+    def setUp(self):
+        tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(tmp.cleanup)
+        self.tmp = tmp.name
+        self.out = os.path.join(self.tmp, 'statutes')
+        self.cache = os.path.join(self.tmp, 'cache')
+        for name, value in [('OUT_DIR', self.out), ('CACHE_DIR', self.cache), ('ROOT', self.tmp)]:
+            patcher = mock.patch.object(fs, name, value)
+            patcher.start()
+            self.addCleanup(patcher.stop)
+        sleep = mock.patch.object(fs.time, 'sleep')
+        self.sleep = sleep.start()
+        self.addCleanup(sleep.stop)
+        quiet = mock.patch.object(sys, 'stderr', io.StringIO())  # retry messages
+        quiet.start()
+        self.addCleanup(quiet.stop)
+
+    def use(self, fake):
+        patcher = mock.patch.object(fs.urllib.request, 'urlopen', fake)
+        patcher.start()
+        self.addCleanup(patcher.stop)
+        return fake
+
+    def seed(self, ids):
+        patcher = mock.patch.object(fs, 'seed_ids', lambda: {sid: {'test'} for sid in ids})
+        patcher.start()
+        self.addCleanup(patcher.stop)
+
+    def run_quietly(self, **kwargs):
+        with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()) as err:
+            code = fs.run(fs.Fetcher(**kwargs))
+        self.stderr = err.getvalue()
+        return code
+
+    def existing_dataset(self, ids):
+        """Writes a committed-looking dataset for `ids` and returns a snapshot of it."""
+        os.makedirs(self.out)
+        for sid in ids:
+            fs.write_json(os.path.join(self.out, f'{sid}.json'), {'id': sid, 'title': f'Old {sid}'})
+        fs.write_json(os.path.join(self.out, 'index.json'), {
+            'retrieved': '2026-01-01', 'source': fs.SOURCE,
+            'sections': {sid: f'Old {sid}' for sid in ids}, 'missing': {}})
+        return self.snapshot()
+
+    def snapshot(self):
+        files = {}
+        for name in sorted(os.listdir(self.out)):
+            with open(os.path.join(self.out, name), encoding='utf-8') as f:
+                files[name] = f.read()
+        return files
+
+    def index(self):
+        with open(os.path.join(self.out, 'index.json'), encoding='utf-8') as f:
+            return json.load(f)
+
+
+IDS = [f'16-{n}' for n in range(101, 121)]  # 20 sections
+
+
+class RetryTest(FetchTestCase):
+    def test_429_retries_honoring_retry_after(self):
+        fake = self.use(FakeAzleg({'16-101': [(429, '7'), (429, '3'), page_for('16-101')]}))
+        status, page, _ = fs.Fetcher().get('16-101')
+        self.assertEqual(status, 'ok')
+        self.assertEqual(fake.calls, ['16-101'] * 3)
+        backoffs = [c.args[0] for c in self.sleep.call_args_list if c.args[0] >= 1]
+        self.assertEqual(backoffs, [7, 3])
+
+    def test_503_retries_and_caps_retry_after_at_60s(self):
+        self.use(FakeAzleg({'16-101': [(503, '3600'), page_for('16-101')]}))
+        status, _, _ = fs.Fetcher().get('16-101')
+        self.assertEqual(status, 'ok')
+        self.assertIn(mock.call(60), self.sleep.call_args_list)
+
+    def test_429_without_retry_after_uses_exponential_backoff(self):
+        self.use(FakeAzleg({'16-101': [429, 429, page_for('16-101')]}))
+        status, _, _ = fs.Fetcher().get('16-101')
+        self.assertEqual(status, 'ok')
+        self.assertIn(mock.call(1), self.sleep.call_args_list)
+        self.assertIn(mock.call(2), self.sleep.call_args_list)
+
+    def test_gives_up_after_five_attempts(self):
+        fake = self.use(FakeAzleg({'16-101': [429]}))
+        status, page, _ = fs.Fetcher().get('16-101')
+        self.assertEqual((status, page), ('429', None))
+        self.assertEqual(len(fake.calls), 5)
+        self.assertTrue(fs.is_failure(status))
+        self.assertFalse(os.path.exists(fs.Fetcher().cache_path('16-101')))
+
+    def test_network_errors_retry_and_count_as_failures(self):
+        fake = self.use(FakeAzleg({'16-101': [urllib.error.URLError('down')]}))
+        status, _, _ = fs.Fetcher().get('16-101')
+        self.assertTrue(status.startswith('network error'))
+        self.assertTrue(fs.is_failure(status))
+        self.assertEqual(len(fake.calls), 5)
+
+    def test_404_is_genuine_missing_and_cached(self):
+        fake = self.use(FakeAzleg({'16-101': [404]}))
+        status, _, _ = fs.Fetcher().get('16-101')
+        self.assertEqual(status, '404')
+        self.assertFalse(fs.is_failure(status))
+        self.assertEqual(len(fake.calls), 1)
+        self.assertEqual(fs.Fetcher().get('16-101')[0], '404')
+        self.assertEqual(len(fake.calls), 1)  # served from the .missing marker
+
+    def test_403_raises_blocked(self):
+        fake = self.use(FakeAzleg({'16-101': [403]}))
+        with self.assertRaises(fs.Blocked):
+            fs.Fetcher().get('16-101')
+        self.assertEqual(len(fake.calls), 1)
+
+
+class RetryAfterTest(unittest.TestCase):
+    def test_seconds(self):
+        self.assertEqual(fs.retry_after_seconds('5'), 5)
+        self.assertEqual(fs.retry_after_seconds(' 0 '), 0)
+        self.assertEqual(fs.retry_after_seconds('600'), 60)
+
+    def test_http_date(self):
+        now = datetime(2026, 10, 9, 12, 0, 0, tzinfo=timezone.utc)
+        self.assertEqual(fs.retry_after_seconds('Fri, 09 Oct 2026 12:00:20 GMT', now), 20)
+        self.assertEqual(fs.retry_after_seconds('Fri, 09 Oct 2026 13:00:00 GMT', now), 60)
+        self.assertEqual(fs.retry_after_seconds('Fri, 09 Oct 2026 11:00:00 GMT', now), 0)
+
+    def test_missing_or_junk(self):
+        for value in [None, '', 'soon', '-5']:
+            self.assertIsNone(fs.retry_after_seconds(value), value)
+
+
+class TitleCheckTest(FetchTestCase):
+    def test_page_title_ok(self):
+        self.assertTrue(fs.page_title_ok('16-579', fixture('16-579.htm')))
+        self.assertFalse(fs.page_title_ok('16-57', fixture('16-579.htm')))
+        self.assertFalse(fs.page_title_ok('16-580', fixture('16-579.htm')))
+        self.assertFalse(fs.page_title_ok('16-579', '<html><title>Access denied</title></html>'))
+        self.assertFalse(fs.page_title_ok('16-579', 'Rate limited'))
+        self.assertFalse(fs.page_title_ok('16-579', None))
+
+    def test_block_page_with_200_is_not_cached_and_is_a_failure(self):
+        block = '<html><head><title>Request blocked</title></head><body>Try later</body></html>'
+        fake = self.use(FakeAzleg({'16-579': [block, fixture('16-579.htm')]}))
+        status, page, _ = fs.Fetcher().get('16-579')
+        self.assertIsNone(page)
+        self.assertTrue(fs.is_failure(status))
+        self.assertNotIn('unparseable', status)
+        path = fs.Fetcher().cache_path('16-579')
+        self.assertFalse(os.path.exists(path))
+        self.assertFalse(os.path.exists(path + '.missing'))
+        # The next run fetches it again and gets the real page.
+        status, page, _ = fs.Fetcher().get('16-579')
+        self.assertEqual(status, 'ok')
+        self.assertTrue(os.path.exists(path))
+        self.assertEqual(len(fake.calls), 2)
+
+    def test_previously_cached_error_page_is_refetched(self):
+        path = fs.Fetcher().cache_path('16-579')
+        os.makedirs(os.path.dirname(path))
+        with open(path, 'w', encoding='utf-8') as f:
+            f.write('<html><title>Service unavailable</title></html>')
+        fake = self.use(FakeAzleg({'16-579': [fixture('16-579.htm')]}))
+        status, _, _ = fs.Fetcher().get('16-579')
+        self.assertEqual(status, 'ok')
+        self.assertEqual(fake.calls, ['16-579'])
+        self.assertTrue(fs.page_title_ok('16-579', fs._read(path)))
+
+    def test_previously_cached_error_page_offline_is_a_failure(self):
+        path = fs.Fetcher().cache_path('16-579')
+        os.makedirs(os.path.dirname(path))
+        with open(path, 'w', encoding='utf-8') as f:
+            f.write('<html><title>Service unavailable</title></html>')
+        fake = self.use(FakeAzleg())
+        status, page, _ = fs.Fetcher(offline=True).get('16-579')
+        self.assertIsNone(page)
+        self.assertTrue(fs.is_failure(status))
+        self.assertEqual(fake.calls, [])
+
+    def test_good_cached_page_skips_the_network(self):
+        fake = self.use(FakeAzleg())
+        fs.Fetcher().get('16-101')
+        fs.Fetcher().get('16-101')
+        self.assertEqual(fake.calls, ['16-101'])
+
+
+class RunSafetyTest(FetchTestCase):
+    def test_clean_run_writes_and_prunes(self):
+        before = self.existing_dataset(['16-101', '9-999'])
+        self.assertIn('9-999.json', before)
+        self.seed(IDS)
+        self.use(FakeAzleg({'16-120': [404]}))
+        self.assertEqual(self.run_quietly(), 0)
+        files = self.snapshot()
+        self.assertNotIn('9-999.json', files)  # no longer cited
+        self.assertNotIn('16-120.json', files)
+        self.assertEqual(len(self.index()['sections']), 19)
+        self.assertEqual(self.index()['missing'], {'16-120': '404'})
+
+    def test_over_10_percent_failures_changes_nothing_and_exits_nonzero(self):
+        before = self.existing_dataset(IDS)
+        self.seed(IDS)
+        # 3 of 20 (15%) fail after retries.
+        self.use(FakeAzleg({sid: [503] for sid in IDS[:3]}))
+        self.assertEqual(self.run_quietly(), 1)
+        self.assertEqual(self.snapshot(), before)
+        self.assertIn('3 of 20 sections failed', self.stderr)
+        self.assertIn('Nothing under', self.stderr)
+
+    def test_genuine_404s_and_blank_pages_do_not_count_as_failures(self):
+        self.existing_dataset(IDS)
+        self.seed(IDS)
+        blank = page_for('16-106', body='')
+        self.use(FakeAzleg({**{sid: [404] for sid in IDS[:5]}, '16-106': [blank]}))
+        self.assertEqual(self.run_quietly(), 0)
+        missing = self.index()['missing']
+        self.assertEqual(len(missing), 6)
+        self.assertEqual(missing['16-106'], 'blank or repealed')
+        self.assertNotIn('16-101.json', self.snapshot())
+
+    def test_block_pages_with_200_count_as_failures(self):
+        before = self.existing_dataset(IDS)
+        self.seed(IDS)
+        block = '<html><title>Pardon our interruption</title></html>'
+        self.use(FakeAzleg({sid: [block] for sid in IDS[:4]}))
+        self.assertEqual(self.run_quietly(), 1)
+        self.assertEqual(self.snapshot(), before)
+
+    def test_few_failures_keep_existing_files_and_index_entries(self):
+        self.existing_dataset(IDS)
+        self.seed(IDS)
+        # 2 of 20 (10%) is at the limit, not over it.
+        self.use(FakeAzleg({'16-101': [503], '16-102': [urllib.error.URLError('reset')]}))
+        self.assertEqual(self.run_quietly(), 0)
+        files = self.snapshot()
+        self.assertEqual(json.loads(files['16-101.json'])['title'], 'Old 16-101')
+        self.assertEqual(json.loads(files['16-102.json'])['title'], 'Old 16-102')
+        self.assertEqual(json.loads(files['16-103.json'])['title'], 'Test section')
+        index = self.index()
+        self.assertEqual(index['sections']['16-101'], 'Old 16-101')
+        self.assertEqual(index['sections']['16-102'], 'Old 16-102')
+        self.assertNotIn('16-101', index['missing'])
+
+    def test_failure_with_no_existing_copy_is_listed_missing(self):
+        self.seed(IDS)
+        self.use(FakeAzleg({'16-101': [503]}))
+        self.assertEqual(self.run_quietly(), 0)
+        self.assertEqual(self.index()['missing'], {'16-101': '503'})
+        self.assertNotIn('16-101', self.index()['sections'])
+
+    def test_403_stops_the_run_and_changes_nothing(self):
+        before = self.existing_dataset(IDS)
+        self.seed(IDS)
+        fake = self.use(FakeAzleg({'16-103': [403]}))
+        self.assertEqual(self.run_quietly(), 2)
+        self.assertEqual(self.snapshot(), before)
+        self.assertEqual(fake.calls, ['16-101', '16-102', '16-103'])  # nothing after the 403
+        self.assertIn('403', self.stderr)
+
+    def test_offline_with_an_empty_cache_changes_nothing(self):
+        before = self.existing_dataset(IDS)
+        self.seed(IDS)
+        fake = self.use(FakeAzleg())
+        self.assertEqual(self.run_quietly(offline=True), 1)
+        self.assertEqual(self.snapshot(), before)
+        self.assertEqual(fake.calls, [])
+
+    def test_offline_never_prunes(self):
+        self.existing_dataset(['16-101', '9-999'])
+        self.seed(['16-101'])
+        self.use(FakeAzleg())
+        fs.Fetcher().get('16-101')  # warm the cache
+        self.assertEqual(self.run_quietly(offline=True), 0)
+        self.assertIn('9-999.json', self.snapshot())
+        self.assertEqual(json.loads(self.snapshot()['16-101.json'])['title'], 'Test section')
+
 
 if __name__ == '__main__':
     unittest.main()
