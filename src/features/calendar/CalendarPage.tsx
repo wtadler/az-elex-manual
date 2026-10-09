@@ -1,12 +1,11 @@
 import { useEffect, useMemo, useState } from 'react'
 import calendar from '../../data/calendar.json'
 import { Cite } from '../../shared/Cite'
-import type { CalendarEntry } from '../../shared/types'
+import type { CalendarEntry, Office } from '../../shared/types'
 import './calendar.css'
 import { ALL_ELECTIONS, CYCLE_WIDE, defaultView, filterEntries, groupByMonth, upcoming, type View } from './filter'
 import { buildIcs } from './ics'
 import {
-  type CalendarOffice,
   CYCLE_WIDE_LABEL,
   electionLabel,
   electionOptions,
@@ -62,7 +61,7 @@ export function CalendarPage() {
   const groups = groupByMonth(rows)
 
   const set = (patch: Partial<CalendarState>) => setState({ ...state, ...patch })
-  const toggleOffice = (o: CalendarOffice) =>
+  const toggleOffice = (o: Office) =>
     set({ offices: state.offices.includes(o) ? state.offices.filter((x) => x !== o) : [...state.offices, o] })
   const filtersOn = state.election !== ALL_ELECTIONS || state.offices.length > 0 || state.query !== ''
 
