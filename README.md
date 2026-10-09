@@ -21,7 +21,7 @@ npm run dev
 
 ## Deploy
 
-- Merging to `main` publishes to GitHub Pages through `.github/workflows/deploy.yml`.
+- Merging to `main` publishes to GitHub Pages at https://azunofficialelectionsmanual.com through `.github/workflows/deploy.yml`. `public/CNAME` keeps the custom domain across deploys.
 - Each pull request gets a preview at `/pr-preview/pr-<number>/` through `.github/workflows/preview.yml`.
 
 See [CLAUDE.md](CLAUDE.md) for team roles, data contracts, and rules.
