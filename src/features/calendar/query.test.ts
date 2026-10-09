@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { routeFromHash } from '../../shared/useHashRoute'
 import { CYCLE_WIDE } from './filter'
-import { calendarHash, DEFAULT_STATE, parseCalendarHash, type CalendarState } from './query'
+import { calendarHash, DEFAULT_STATE, nextCalendarHash, parseCalendarHash, type CalendarState } from './query'
 
 describe('calendar hash query', () => {
   it('omits defaults', () => {
@@ -70,5 +70,34 @@ describe('calendar hash query', () => {
 
   it.each(['2026-10', '2026-13-01', '20261020', 'today', ''])('drops an invalid day %j', (d) => {
     expect(parseCalendarHash(`#/calendar?view=month&day=${d}`).day).toBeNull()
+  })
+})
+
+describe('nextCalendarHash', () => {
+  const state: CalendarState = { ...DEFAULT_STATE, election: 'NOV_EV' }
+
+  it('keeps the PDF panel page', () => {
+    expect(nextCalendarHash(state, '#/calendar?pdf=304')).toBe('#/calendar?election=NOV_EV&pdf=304')
+  })
+
+  it('keeps unknown params when no calendar params are set', () => {
+    expect(nextCalendarHash(DEFAULT_STATE, '#/calendar?office=REC&pdf=211')).toBe('#/calendar?pdf=211')
+  })
+
+  it('replaces calendar params rather than duplicating them', () => {
+    expect(nextCalendarHash(state, '#/calendar?election=MAR_ODD&office=REC&view=month&pdf=1')).toBe(
+      '#/calendar?election=NOV_EV&pdf=1',
+    )
+  })
+
+  it('matches calendarHash when there is nothing else to keep', () => {
+    for (const h of ['', '#', '#/calendar', '#/calendar?', '#/calendar?q=x']) {
+      expect(nextCalendarHash(state, h)).toBe(calendarHash(state))
+    }
+  })
+
+  it('round-trips the calendar state with a pdf param present', () => {
+    const full: CalendarState = { ...DEFAULT_STATE, view: 'month', month: '2026-10', day: '2026-10-20', offices: ['REC'] }
+    expect(parseCalendarHash(nextCalendarHash(full, '#/calendar?pdf=304'))).toEqual(full)
   })
 })

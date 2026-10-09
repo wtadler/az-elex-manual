@@ -66,3 +66,20 @@ export function calendarHash(s: CalendarState): string {
   const q = params.toString().replaceAll('%2C', ',')
   return q ? `#/calendar?${q}` : '#/calendar'
 }
+
+const CALENDAR_PARAMS = ['election', 'office', 'q', 'view', 'days', 'month', 'day']
+
+/**
+ * The hash to write for a new calendar state, keeping any params the calendar doesn't own
+ * (such as the PDF panel's pdf=<page>) from the current hash.
+ */
+export function nextCalendarHash(s: CalendarState, currentHash: string): string {
+  const i = currentHash.indexOf('?')
+  const others = [...new URLSearchParams(i < 0 ? '' : currentHash.slice(i + 1))].filter(
+    ([k]) => !CALENDAR_PARAMS.includes(k),
+  )
+  if (others.length === 0) return calendarHash(s)
+  const base = calendarHash(s)
+  const extra = new URLSearchParams(others).toString()
+  return base.includes('?') ? `${base}&${extra}` : `${base}?${extra}`
+}
