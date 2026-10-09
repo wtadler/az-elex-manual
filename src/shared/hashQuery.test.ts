@@ -95,3 +95,35 @@ describe('route + query round-trip', () => {
     expect(setHashParam(setHashParam(start, 'pdf', '304'), 'pdf', null)).toBe(start)
   })
 })
+
+describe('statute panel ars= param', () => {
+  it('keeps parentheses readable', () => {
+    expect(setHashParam('#/calendar', 'ars', '16-579(A)(1)')).toBe('#/calendar?ars=16-579(A)(1)')
+    expect(getHashParam('#/calendar?ars=16-579(A)(1)', 'ars')).toBe('16-579(A)(1)')
+  })
+
+  it('still reads percent-encoded parentheses', () => {
+    expect(getHashParam('#/calendar?ars=16-579%28A%29%281%29', 'ars')).toBe('16-579(A)(1)')
+  })
+
+  it('coexists with pdf= and calendar params in either order', () => {
+    let h = '#/calendar?election=NOV_EV&office=REC,BOS'
+    h = setHashParam(h, 'pdf', '304')
+    h = setHashParam(h, 'ars', '16-121.01(B)')
+    expect(h).toBe('#/calendar?election=NOV_EV&office=REC%2CBOS&pdf=304&ars=16-121.01(B)')
+    expect(getHashParam(h, 'pdf')).toBe('304')
+    expect(getHashParam(h, 'office')).toBe('REC,BOS')
+    expect(setHashParam(h, 'ars', null)).toBe('#/calendar?election=NOV_EV&office=REC%2CBOS&pdf=304')
+    expect(setHashParam(setHashParam(h, 'pdf', null), 'ars', null)).toBe('#/calendar?election=NOV_EV&office=REC%2CBOS')
+  })
+
+  it('open then close restores the original hash', () => {
+    const start = '#/ballot-guide?pdf=211'
+    expect(setHashParam(setHashParam(start, 'ars', '9-471'), 'ars', null)).toBe(start)
+  })
+
+  it('round-trips a hash with both panels open', () => {
+    const h = '#/calendar?view=month&pdf=304&ars=16-579(A)(1)(a)'
+    expect(joinHash(splitHash(h))).toBe(h)
+  })
+})

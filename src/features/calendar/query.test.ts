@@ -96,6 +96,20 @@ describe('nextCalendarHash', () => {
     }
   })
 
+  it('keeps the statute panel ref alongside the PDF page', () => {
+    expect(nextCalendarHash(state, '#/calendar?pdf=304&ars=16-579(A)(1)')).toBe(
+      '#/calendar?election=NOV_EV&pdf=304&ars=16-579(A)(1)',
+    )
+    expect(nextCalendarHash(DEFAULT_STATE, '#/calendar?view=month&ars=16-121.01(B)')).toBe('#/calendar?ars=16-121.01(B)')
+  })
+
+  it('round-trips the calendar state with pdf and ars params present', () => {
+    const full: CalendarState = { ...DEFAULT_STATE, view: 'all', offices: ['REC', 'BOS'], query: 'early' }
+    const hash = nextCalendarHash(full, '#/calendar?ars=16-579(A)(1)&pdf=304')
+    expect(parseCalendarHash(hash)).toEqual(full)
+    expect(hash).toContain('ars=16-579(A)(1)')
+  })
+
   it('round-trips the calendar state with a pdf param present', () => {
     const full: CalendarState = { ...DEFAULT_STATE, view: 'month', month: '2026-10', day: '2026-10-20', offices: ['REC'] }
     expect(parseCalendarHash(nextCalendarHash(full, '#/calendar?pdf=304'))).toEqual(full)

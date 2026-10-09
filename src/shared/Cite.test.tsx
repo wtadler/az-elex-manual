@@ -3,6 +3,7 @@ import { cleanup, fireEvent, render, screen } from '@testing-library/react'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { Cite } from './Cite'
 import { PdfPanelContext, type PdfPanelApi } from './usePdfPanel'
+import { StatutePanelContext, type StatutePanelApi } from './useStatutePanel'
 
 function fakePanel(): PdfPanelApi {
   return {
@@ -15,10 +16,29 @@ function fakePanel(): PdfPanelApi {
   }
 }
 
-function renderCite(panel: PdfPanelApi | null, props: Parameters<typeof Cite>[0]) {
+function fakeStatutes(): StatutePanelApi {
+  return {
+    isOpen: false,
+    current: null,
+    nonce: 0,
+    canGoBack: false,
+    openStatute: vi.fn(),
+    navigate: vi.fn(),
+    back: vi.fn(),
+    close: vi.fn(),
+  }
+}
+
+function renderCite(
+  panel: PdfPanelApi | null,
+  props: Parameters<typeof Cite>[0],
+  statutes: StatutePanelApi | null = fakeStatutes(),
+) {
   render(
     <PdfPanelContext.Provider value={panel}>
-      <Cite {...props} />
+      <StatutePanelContext.Provider value={statutes}>
+        <Cite {...props} />
+      </StatutePanelContext.Provider>
     </PdfPanelContext.Provider>,
   )
 }
@@ -77,13 +97,48 @@ describe('Cite EPM link', () => {
 })
 
 describe('Cite statute link', () => {
-  it('still goes to azleg.gov in a new tab and never opens the panel', () => {
-    const panel = fakePanel()
-    renderCite(panel, { epmPage: 211, statute: '16-584(B)' })
+  it('keeps the azleg.gov href, opening in a new tab', () => {
+    renderCite(fakePanel(), { epmPage: 211, statute: '16-584(B)' })
     const link = screen.getByRole('link', { name: /A\.R\.S/ })
     expect(link.getAttribute('href')).toBe('https://www.azleg.gov/ars/16/00584.htm')
     expect(link.getAttribute('target')).toBe('_blank')
-    expect(click(link)).toBe(false)
+    expect(link.getAttribute('rel')).toBe('noreferrer')
+  })
+
+  it('a plain click opens the statute panel at the ref, not the PDF panel', () => {
+    const panel = fakePanel()
+    const statutes = fakeStatutes()
+    renderCite(panel, { epmPage: 211, statute: '16-579(A)(1)' }, statutes)
+    expect(click(screen.getByRole('link', { name: /A\.R\.S/ }))).toBe(true)
+    expect(statutes.openStatute).toHaveBeenCalledExactlyOnceWith('16-579(A)(1)')
     expect(panel.openAt).not.toHaveBeenCalled()
   })
+
+  it.each([
+    ['cmd', { metaKey: true }],
+    ['ctrl', { ctrlKey: true }],
+    ['shift', { shiftKey: true }],
+    ['alt', { altKey: true }],
+    ['middle', { button: 1 }],
+  ])('%s-click leaves the browser default alone', (_, mods) => {
+    const statutes = fakeStatutes()
+    renderCite(fakePanel(), { statute: '16-579(A)(1)' }, statutes)
+    expect(click(screen.getByRole('link', { name: /A\.R\.S/ }), mods)).toBe(false)
+    expect(statutes.openStatute).not.toHaveBeenCalled()
+  })
+
+  it('without a statute panel provider, a plain click falls through to azleg.gov', () => {
+    renderCite(fakePanel(), { statute: '16-579' }, null)
+    expect(click(screen.getByRole('link', { name: /A\.R\.S/ }))).toBe(false)
+  })
+
+  it.each(['Const. Art. IV, Pt. 1, § 1(3)', '52 U.S.C. § 21082(c)', 'Procedures Manual'])(
+    'renders %j as plain text, not a link',
+    (statute) => {
+      const statutes = fakeStatutes()
+      renderCite(fakePanel(), { statute }, statutes)
+      expect(screen.queryByRole('link')).toBeNull()
+      expect(screen.getByText(statute)).toBeTruthy()
+    },
+  )
 })

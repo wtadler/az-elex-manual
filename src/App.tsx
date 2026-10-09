@@ -1,17 +1,21 @@
 import { features } from './features/registry'
-import { PdfPanel } from './shared/PdfPanel'
 import { PdfPanelProvider } from './shared/PdfPanelContext'
+import { SidePanels } from './shared/SidePanels'
+import { StatutePanelProvider } from './shared/StatutePanelContext'
 import { usePdfPanel } from './shared/usePdfPanel'
 import { useHashRoute } from './shared/useHashRoute'
+import { useStatutePanel } from './shared/useStatutePanel'
 
 function Shell() {
   const route = useHashRoute()
   const active = features.find((f) => f.id === route) ?? features[0]
   const pdf = usePdfPanel()
   const pdfOpen = pdf?.isOpen ?? false
+  const statuteOpen = useStatutePanel()?.isOpen ?? false
+  const sideOpen = pdfOpen || statuteOpen
 
   return (
-    <div className={pdfOpen ? 'app has-pdf' : 'app'}>
+    <div className={sideOpen ? 'app has-side' : 'app'}>
       <header>
         <h1><a href="#/">AZ Elections Manual</a></h1>
         <nav>
@@ -36,7 +40,7 @@ function Shell() {
             <active.Component />
           </main>
         </div>
-        <PdfPanel />
+        <SidePanels />
       </div>
     </div>
   )
@@ -45,7 +49,9 @@ function Shell() {
 function App() {
   return (
     <PdfPanelProvider>
-      <Shell />
+      <StatutePanelProvider>
+        <Shell />
+      </StatutePanelProvider>
     </PdfPanelProvider>
   )
 }
