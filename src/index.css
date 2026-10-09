@@ -71,3 +71,140 @@ button:hover { border-color: var(--accent); }
 .tag { font-size: 0.8rem; border: 1px solid var(--line); border-radius: 4px; padding: 0 6px; }
 .chapters li { margin: 4px 0; }
 .chapters .cite { margin-left: 8px; font-size: 0.88rem; }
+
+/* ---- PDF panel ---------------------------------------------------------- */
+header .header-pdf { margin-left: auto; padding: 4px 12px; align-self: center; }
+header .header-pdf[aria-pressed='true'] { border-color: var(--accent); color: var(--accent); }
+
+.layout { display: flex; align-items: stretch; }
+.content { flex: 1; min-width: 0; }
+
+.pdf-panel {
+  flex: none;
+  position: relative;
+  width: var(--pdf-panel-width, 50%);
+  max-width: calc(100% - 320px);
+  border-left: 1px solid var(--line);
+  background: var(--card);
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+/* Desktop split view: header on top, content and PDF scroll independently. */
+@media (min-width: 900px) {
+  .app.has-pdf { height: 100vh; height: 100dvh; display: flex; flex-direction: column; }
+  .app.has-pdf .layout { flex: 1; min-height: 0; }
+  .app.has-pdf .content { overflow: auto; }
+}
+
+/* Mobile: the panel is a full-screen overlay. */
+@media (max-width: 899.98px) {
+  .pdf-panel {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    width: auto;
+    max-width: none;
+    border-left: 0;
+  }
+  .pdf-resize { display: none; }
+}
+
+.pdf-resize {
+  position: absolute;
+  left: -4px;
+  top: 0;
+  bottom: 0;
+  width: 8px;
+  cursor: col-resize;
+  z-index: 2;
+  touch-action: none;
+}
+.pdf-resize:hover, .pdf-resize:active { background: var(--accent); opacity: 0.35; }
+
+.pdf-viewer { display: flex; flex-direction: column; flex: 1; min-height: 0; }
+.pdf-toolbar {
+  border-bottom: 1px solid var(--line);
+  background: var(--bg);
+  padding: 8px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.9rem;
+}
+.pdf-toolbar-row { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; }
+.pdf-toolbar button { padding: 2px 10px; min-height: 32px; }
+.pdf-toolbar button:disabled { opacity: 0.45; cursor: default; }
+.pdf-toolbar button[aria-pressed='true'] { border-color: var(--accent); color: var(--accent); }
+.pdf-position { min-width: 0; }
+.pdf-muted { color: var(--muted); white-space: nowrap; }
+.pdf-close { margin-left: auto; font-weight: 600; }
+.pdf-goto { display: flex; align-items: center; gap: 6px; }
+.pdf-goto input {
+  font: inherit; width: 4.5em; padding: 2px 6px; min-height: 32px;
+  border: 1px solid var(--line); border-radius: 6px; background: var(--bg); color: var(--fg);
+}
+.pdf-goto input[aria-invalid='true'] { border-color: var(--caution); outline-color: var(--caution); }
+.pdf-zoom { display: flex; gap: 4px; }
+
+.pdf-scroller {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+  position: relative;
+}
+.pdf-status { padding: 16px; color: var(--muted); }
+.pdf-pages { position: relative; min-width: 100%; }
+.pdf-page {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fff;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.25);
+}
+.pdf-canvas, .pdf-canvas canvas { display: block; width: 100%; height: 100%; }
+
+/* Selectable text over the canvas: the parts of pdf.js's pdf_viewer.css the TextLayer needs. */
+.pdf-page .textLayer {
+  --scale-round-x: 1px;
+  --scale-round-y: 1px;
+  --min-font-size: 1;
+  --text-scale-factor: calc(var(--total-scale-factor) * var(--min-font-size));
+  --min-font-size-inv: calc(1 / var(--min-font-size));
+  position: absolute;
+  inset: 0;
+  overflow: clip;
+  line-height: 1;
+  text-align: initial;
+  text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  forced-color-adjust: none;
+  transform-origin: 0 0;
+  z-index: 0;
+}
+.pdf-page .textLayer :is(span, br) {
+  color: transparent;
+  position: absolute;
+  white-space: pre;
+  cursor: text;
+  transform-origin: 0% 0%;
+}
+.pdf-page .textLayer > :not(.markedContent),
+.pdf-page .textLayer .markedContent span:not(.markedContent) {
+  z-index: 1;
+  --font-height: 0;
+  font-size: calc(var(--text-scale-factor) * var(--font-height));
+  --scale-x: 1;
+  --rotate: 0deg;
+  transform: rotate(var(--rotate)) scaleX(var(--scale-x)) scale(var(--min-font-size-inv));
+}
+.pdf-page .textLayer .markedContent { display: contents; }
+.pdf-page .textLayer ::selection { background: rgb(0 90 255 / 0.3); color: transparent; }
+.pdf-page .textLayer br::selection { background: transparent; }
+.pdf-page .textLayer .endOfContent {
+  display: block; position: absolute; inset: 100% 0 0; z-index: 0; cursor: default; user-select: none;
+}
+
+.chapters .chapter-page { color: var(--muted); font-size: 0.88rem; margin-left: 6px; }

@@ -1,5 +1,6 @@
-import { Cite } from '../../shared/Cite'
 import { PDF_URL } from '../../shared/citation'
+import { PdfPageLink } from '../../shared/PdfPageLink'
+import { usePdfPanel } from '../../shared/usePdfPanel'
 
 // Owner: Person A (after the shell). Ideas: full-text search over source/epm.txt,
 // cross-references as links, a vote center / assigned precinct toggle, a federal-only view.
@@ -22,16 +23,26 @@ const CHAPTERS: [string, number][] = [
 ]
 
 export function ManualPage() {
+  const pdf = usePdfPanel()
   return (
     <section>
       <h2>Browse the manual</h2>
       <p>
-        <a href={PDF_URL} target="_blank" rel="noreferrer">Open the full PDF</a> (2025 EPM, 479 pages)
+        {pdf && (
+          <>
+            <button type="button" onClick={pdf.open}>
+              Browse the PDF here
+            </button>{' '}
+          </>
+        )}
+        <a href={PDF_URL} target="_blank" rel="noreferrer">Open the full PDF in a new tab</a> (2025 EPM, 479 pages)
       </p>
+      <p className="help">Pick a chapter to open the manual at its first page.</p>
       <ol className="chapters">
         {CHAPTERS.map(([title, page]) => (
           <li key={title}>
-            {title} <Cite epmPage={page} />
+            <PdfPageLink printedPage={page}>{title}</PdfPageLink>
+            <span className="chapter-page">p.&nbsp;{page}</span>
           </li>
         ))}
       </ol>
