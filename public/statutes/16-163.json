@@ -1,0 +1,16 @@
+{
+  "id": "16-163",
+  "title": "Assignment of registrations to general county register; exception; notification to elector; electronic storage of registration forms",
+  "url": "https://www.azleg.gov/ars/16/00163.htm",
+  "retrieved": "2026-10-09",
+  "notes": [],
+  "paragraphs": [
+    "A. The county recorder, on receipt of a registration in proper form, shall assign the registration record to its proper precinct and alphabetical arrangement in the general county register. The general county register shall be preserved permanently to reflect the registration as of each general election. After the general county register is revised to reflect the valid registrations for the general election, the county recorder shall provide the Arizona state library, archives and public records with a copy of the revised county register.",
+    "B. After placing the record of registration in the county general register, the county recorder shall notify the elector within thirty days in writing that the elector's name appears in the general register.",
+    "C. If the notice that is sent is returned undeliverable, the county recorder may send an additional notice as prescribed by section 16-166, subsection A and that notice shall indicate that the elector must respond not later than thirty-five days after the mailing of the notice.",
+    "D. Images of original registration forms shall be stored electronically in the voter registration database. All original registration forms that are canceled, and all original applications for cancellation of registration received since the preceding general election, also shall be maintained in the voter registration database. Computer output microfilm, listings or other electronic format media containing the information from the general county register after each general election shall be provided to the Arizona state library, archives and public records and shall serve to fulfill the requirements of this section and section 16-164, subsection A.",
+    "E. When the county recorder makes a change to the information prescribed by section 16-152 for an existing registered voter:",
+    "1. The county recorder shall notify the elector of any changes made to the information prescribed by section 16-152 for the elector by sending a text message or email alert within twenty-four hours after making the change as requested by the elector's subscription preferences.",
+    "2. If the elector has not subscribed to the voter registration alert system, the county recorder shall notify the elector in writing within ten days after the change in the information prescribed by section 16-152 for the elector. The notice shall include instructions on how the elector may check the elector's voter registration status, make any revisions to the elector's voter registration information and notify the county recorder if the elector did not request or authorize the change to the information prescribed by section 16-152 for the elector's voter registration."
+  ]
+}

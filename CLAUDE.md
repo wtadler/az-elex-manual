@@ -34,6 +34,8 @@ An unofficial, browsable companion to the 2025 Arizona Elections Procedures Manu
 - `public/epm.pdf`: the manual, served at `./epm.pdf`. Link to a page with `epmPdfUrl(printedPage)`.
 - `source/epm.txt`: text extracted with `pdftotext -layout`. Pages are separated by form feeds (`\f`), so PDF page N is the Nth chunk. Footers read `CHAPTER 9: … 211` (the printed page).
 - Chapter 9, Sections IV and VI (voter ID and issuing ballots) is printed pages 205–216.
+- `public/statutes/`: the text of the Arizona Revised Statutes sections the app cites, served as static JSON because azleg.gov blocks iframes and sends no CORS headers. `index.json` maps each section id (`16-579`, `16-121.01`) to its title and lists sections that couldn't be fetched under `missing`; `<id>.json` holds one section's `title`, `url`, `retrieved`, `notes`, and verbatim `paragraphs`. It covers every ARS link and A.R.S. citation in the manual, `calendar.json`, and the ballot guide, plus the Title 16 and 19 sections those sections cite. Regenerate with `python3 scripts/fetch_statutes.py` (raw pages are cached in the gitignored `.cache/azleg/`; `--refresh` re-downloads). Don't hand-edit it. `src/data/statutes.test.ts` checks the contract.
+- **The statute text is current as of its `retrieved` date, not as of the 2025 EPM.** The legislature has amended some sections since the manual was written, so the statute and the manual can disagree. Label it as current law, and keep citing the manual for the rule.
 
 ## Workflow
 
