@@ -1,8 +1,10 @@
 import { useEffect, useMemo, useState } from 'react'
 import calendar from '../../data/calendar.json'
+import notes from '../../data/calendar-notes.json'
 import type { CalendarEntry, Office } from '../../shared/types'
 import './calendar.css'
 import { ALL_ELECTIONS, CYCLE_WIDE, defaultView, filterEntries, groupByMonth, upcoming, type View } from './filter'
+import { Cite } from '../../shared/Cite'
 import { EntryCard } from './EntryCard'
 import { buildIcs } from './ics'
 import { defaultMonth, monthOf } from './month'
@@ -32,7 +34,7 @@ function useCalendarState(): [CalendarState, (s: CalendarState) => void] {
 }
 
 function download(rows: CalendarEntry[]) {
-  const ics = buildIcs(rows, { baseUrl: window.location.href, now: new Date(), electionLabels })
+  const ics = buildIcs(rows, { baseUrl: window.location.href, now: new Date(), electionLabels, footnote: notes.footnote })
   const url = URL.createObjectURL(new Blob([ics], { type: 'text/calendar;charset=utf-8' }))
   const a = document.createElement('a')
   a.href = url
@@ -69,6 +71,10 @@ export function CalendarPage() {
       <p className="help">
         Deadlines from Chapter 15 of the 2025 Elections Procedures Manual. Check the manual and statutes before
         relying on a date.
+      </p>
+      <p className="notice cal-footnote">
+        <strong>Weekends and holidays:</strong> the manual's calendar notes, “{notes.footnote}”{' '}
+        <Cite epmPage={notes.epmPages[0]} />
       </p>
 
       <form className="cal-filters" role="search" onSubmit={(e) => e.preventDefault()}>

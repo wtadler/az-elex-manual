@@ -61,9 +61,12 @@ function hash(s: string): string {
   return (a >>> 0).toString(16).padStart(8, '0') + (b >>> 0).toString(16).padStart(8, '0')
 }
 
-/** UID for a row: stable across exports, derived from its date, election, and event. */
+/**
+ * UID for a row: stable across exports and filters, derived from its date, election, event,
+ * and statutes. (The manual has two rows that differ only in their statutes.)
+ */
 export function entryUid(e: CalendarEntry): string {
-  return `${hash(`${e.date}|${e.election ?? ''}|${e.event}`)}@az-elex-manual`
+  return `${hash([e.date, e.election ?? '', e.event, ...e.statutes].join('|'))}@az-elex-manual`
 }
 
 export interface IcsOptions {
@@ -73,6 +76,8 @@ export interface IcsOptions {
   now: Date
   /** Election code -> label, e.g. "NOV_EV" -> "November 3, 2026". */
   electionLabels: Map<string, string>
+  /** The calendar's page footnote (weekend and holiday rule), added to every event. */
+  footnote?: string
 }
 
 function eventLines(e: CalendarEntry, uid: string, o: IcsOptions): string[] {
@@ -82,6 +87,7 @@ function eventLines(e: CalendarEntry, uid: string, o: IcsOptions): string[] {
     e.offices.length > 0 && `Offices: ${e.offices.map((x) => OFFICE_NAMES[x]).join(', ')}`,
     e.statutes.length > 0 && `Statutes: ${e.statutes.join(', ')}`,
     e.weekendNote && `Weekend/holiday: ${e.weekendNote}`,
+    o.footnote && `Calendar note: ${o.footnote}`,
     `Source: 2025 Arizona Elections Procedures Manual, p. ${e.epmPage}: ${pdf}`,
   ]
     .filter(Boolean)

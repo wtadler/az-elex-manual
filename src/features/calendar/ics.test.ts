@@ -1,4 +1,6 @@
 import { describe, expect, it } from 'vitest'
+import calendar from '../../data/calendar.json'
+import type { CalendarEntry } from '../../shared/types'
 import { row } from './fixtures'
 import { buildIcs, entryUid, escapeText, foldLine, icsTimestamp, type IcsOptions } from './ics'
 
@@ -78,8 +80,21 @@ describe('entryUid', () => {
     expect(entryUid(row())).toMatch(/^[0-9a-f]{16}@az-elex-manual$/)
   })
 
-  it('ignores fields outside date, election, and event', () => {
-    expect(entryUid(row({ epmPage: 310, statutes: [], offices: ['SOS'] }))).toBe(entryUid(row()))
+  it('ignores page, offices, and weekend note', () => {
+    expect(entryUid(row({ epmPage: 310, offices: ['SOS'], weekendNote: 'Sunday.' }))).toBe(entryUid(row()))
+  })
+
+  it('differs when only the statutes differ', () => {
+    expect(entryUid(row({ statutes: ['16-549(D)'] }))).not.toBe(entryUid(row({ statutes: ['16-549'] })))
+    expect(entryUid(row({ statutes: [] }))).not.toBe(entryUid(row()))
+  })
+
+  it('gives the same row the same UID however the export is filtered', () => {
+    const a = row({ statutes: ['16-549(D)'] })
+    const b = row({ statutes: ['16-549'] })
+    const opts = { baseUrl: 'https://example.test/', now: new Date(0), electionLabels: new Map() }
+    const uidOf = (ics: string, n: number) => ics.split('\r\n').filter((l) => l.startsWith('UID:'))[n]
+    expect(uidOf(buildIcs([a, b], opts), 1)).toBe(uidOf(buildIcs([b], opts), 0))
   })
 
   it('differs when date, election, or event differs', () => {
@@ -196,5 +211,27 @@ describe('buildIcs', () => {
 
   it('is deterministic for the same input', () => {
     expect(buildIcs([row()], opts)).toBe(buildIcs([row()], opts))
+  })
+})
+
+describe('UIDs for the real calendar', () => {
+  it('are unique for every row in the manual', () => {
+    const rows = calendar as CalendarEntry[]
+    expect(new Set(rows.map(entryUid)).size).toBe(rows.length)
+  })
+})
+
+describe('calendar footnote in .ics', () => {
+  const opts = { baseUrl: 'https://example.test/', now: new Date(0), electionLabels: new Map<string, string>() }
+  const unfold = (ics: string) => ics.replace(/\r\n /g, '')
+
+  it('adds the footnote to every event description when given', () => {
+    const ics = unfold(buildIcs([row(), row({ date: '2026-02-01' })], { ...opts, footnote: 'Sunday deadline; does not move.' }))
+    const notes = ics.split('\r\n').filter((l) => l.startsWith('DESCRIPTION:') && l.includes('Calendar note: Sunday deadline\\; does not move.'))
+    expect(notes).toHaveLength(2)
+  })
+
+  it('leaves it out when not given', () => {
+    expect(buildIcs([row()], opts)).not.toContain('Calendar note')
   })
 })

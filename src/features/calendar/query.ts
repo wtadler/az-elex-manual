@@ -37,7 +37,7 @@ export function parseCalendarHash(hash: string): CalendarState {
   const params = new URLSearchParams(i < 0 ? '' : hash.slice(i + 1))
   const offices = (params.get('office') ?? '')
     .split(',')
-    .filter((o): o is Office => (OFFICES as string[]).includes(o))
+    .filter((o): o is Office => (OFFICES as readonly string[]).includes(o))
   const view = params.get('view')
   const days = Number(params.get('days'))
   const month = params.get('month') ?? ''

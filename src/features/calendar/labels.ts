@@ -11,7 +11,7 @@ export const OFFICE_NAMES: Record<Office, string> = {
   GOV: 'Governor',
 }
 
-export const OFFICES: Office[] = ['REC', 'BOS', 'ELEC', 'SOS', 'GOV']
+export { OFFICES } from '../../shared/types'
 
 /** Label for rows with no election code. */
 export const CYCLE_WIDE_LABEL = 'All elections/cycle-wide'

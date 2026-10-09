@@ -1,10 +1,10 @@
 import { describe, expect, it } from 'vitest'
-import type { CalendarEntry, Office } from '../shared/types'
+import { OFFICES, type CalendarEntry } from '../shared/types'
 import raw from './calendar.json'
+import notes from './calendar-notes.json'
 
 // Guards the contract between the calendar parser (Person B) and the calendar UI (Person C).
 const entries = raw as CalendarEntry[]
-const OFFICES: Office[] = ['REC', 'BOS', 'ELEC', 'SOS', 'GOV']
 const DAY_MS = 86_400_000
 
 function electionDate(e: CalendarEntry): string | null {
@@ -27,7 +27,7 @@ describe('calendar.json', () => {
     for (const o of e.offices) expect(OFFICES).toContain(o)
     expect(new Set(e.offices).size).toBe(e.offices.length)
     expect(Array.isArray(e.statutes)).toBe(true)
-    for (const s of e.statutes) expect(s).toMatch(/^(\d{1,2}-\d+(\.\d+)?\S*|Const\. .+|Procedures Manual|MOVE Act)$/)
+    for (const s of e.statutes) expect(s).toMatch(/^(\d{1,2}-\d+(\.\d+)?( ?\(\S+)?|Const\. .+|Procedures Manual|MOVE Act)$/)
     if (e.election != null) expect(e.election).toMatch(/^(MAR|MAY|AUG|NOV)_(ODD|EV|NEXT)$/)
     if (e.daysFromElection != null) expect(Number.isInteger(e.daysFromElection)).toBe(true)
     // Chapter 15 calendar runs from printed page 304 through 320.
@@ -100,7 +100,7 @@ describe('calendar.json', () => {
 
     it('splits a reference cell that wraps two statutes across lines', () => {
       expect(find('2025-12-01', 'continued representation').statutes).toEqual([
-        '16-804(A)-(D)',
+        '16-804 (A)-(D)',
         '16-168(G)(2)(d)',
       ])
     })
@@ -134,6 +134,13 @@ describe('calendar.json', () => {
       expect(find('2026-08-02', 'Deliver ballots to Inspector').weekendNote).toBe(
         'Sunday. Moves Inspector next business day.',
       )
+    })
+
+    it('keeps the page footnote, which sets the weekend rule for rows without a note', () => {
+      expect(notes.footnote).toMatch(/^2024 Az Leg Session Law changed signature cure to calendar days thru 2026\./)
+      expect(notes.footnote).toMatch(/All other dates on holidays\/Sunday move to next business day unless noted\./)
+      expect(notes.footnote).toMatch(/See separate calendar for CD7 Special Election\.$/)
+      expect(notes.epmPages).toEqual([304, 320])
     })
 
     it('does not leak footnote text into rows', () => {

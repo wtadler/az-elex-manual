@@ -9,6 +9,7 @@ anchored by the date in the left column; the other cells are vertically centered
 date. Lines in multi-line columns (event, reference, weekend note) are split among rows
 so that each row's lines are tight and centered on its date (see assign_lines). The parser
 fails loudly instead of guessing when a cell isn't centered or a code is unrecognized.
+The footnote repeated on every calendar page goes to src/data/calendar-notes.json.
 
 The output is verbatim, including the manual's own typos and four rows whose day counts
 don't match their dates (listed in src/data/calendar.test.ts).
@@ -16,6 +17,7 @@ don't match their dates (listed in src/data/calendar.test.ts).
 
 import html
 import json
+import os
 import re
 import subprocess
 import sys
@@ -82,6 +84,13 @@ def footer_top(words):
     return min(ys) if ys else 760
 
 
+def footnote(words):
+    """The page's footnote text, without the calendar's own page counter at the end."""
+    top = footer_top(words)
+    text = ' '.join(t for _, t in lines_of([w for w in words if top - 1 <= w[1] < 760]))
+    return re.sub(r'\s+\d+$', '', text)
+
+
 def lines_of(words):
     """Group words into lines by y, sorted top to bottom, words left to right."""
     lines = []
@@ -142,8 +151,7 @@ def split_refs(texts):
     """Join a reference cell, repair line wraps ("16-" / "168(G)"), and split it wherever a
     new reference starts: a statute ("16-542(C)"), "Const.", "Procedures Manual", "MOVE Act"."""
     text = re.sub(r'\s+', ' ', ' '.join(texts)).strip()
-    text = re.sub(r'(\d-) (\d)', r'\1\2', text)  # "16- 168" -> "16-168"
-    text = re.sub(r'(\d) (\()', r'\1\2', text)  # "16-804 (A)" -> "16-804(A)"
+    text = re.sub(r'(\d-) (\d)', r'\1\2', text)  # rejoin a statute wrapped as "16-" / "168(G)"
     if not text:
         return []
     return re.split(r' (?=\d{1,2}-\d|Const\.|Procedures Manual|MOVE Act)', text)
@@ -219,9 +227,19 @@ def parse_page(pdf_page, words):
 def main():
     pdf = sys.argv[1] if len(sys.argv) > 1 else 'public/epm.pdf'
     out = sys.argv[2] if len(sys.argv) > 2 else 'src/data/calendar.json'
-    entries = []
+    notes_out = os.path.join(os.path.dirname(out), 'calendar-notes.json')
+    entries, notes = [], set()
     for pdf_page, words in read_pages(pdf):
         entries.extend(parse_page(pdf_page, words))
+        notes.add(footnote(words))
+    if len(notes) != 1:
+        raise ValueError(f'Calendar pages have different footnotes: {notes}')
+    with open(notes_out, 'w') as f:
+        json.dump({
+            'footnote': notes.pop(),
+            'epmPages': [PDF_FIRST - PAGE_OFFSET, PDF_LAST - PAGE_OFFSET],
+        }, f, indent=2, ensure_ascii=False)
+        f.write('\n')
     entries.sort(key=lambda e: e['date'])  # stable: keeps manual order within a date
     with open(out, 'w') as f:
         json.dump(entries, f, indent=2, ensure_ascii=False)
