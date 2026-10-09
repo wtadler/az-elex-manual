@@ -1,5 +1,6 @@
 import { ALL_ELECTIONS, type Filters, type View } from './filter'
 import type { Office } from '../../shared/types'
+import { joinHash, splitHash } from '../../shared/hashQuery'
 import { OFFICES } from './labels'
 import { isMonthKey } from './month'
 
@@ -65,4 +66,19 @@ export function calendarHash(s: CalendarState): string {
   if (s.day) params.set('day', s.day)
   const q = params.toString().replaceAll('%2C', ',')
   return q ? `#/calendar?${q}` : '#/calendar'
+}
+
+/** Every hash param calendarHash can write. */
+export const CALENDAR_PARAMS = ['election', 'office', 'q', 'view', 'days', 'month', 'day']
+
+/**
+ * The hash to write for a new calendar state, keeping any params the calendar doesn't own
+ * (such as the PDF panel's pdf=<page>) from the current hash.
+ */
+export function nextCalendarHash(s: CalendarState, currentHash: string): string {
+  const next = splitHash(calendarHash(s))
+  for (const [k, v] of splitHash(currentHash).params) {
+    if (!CALENDAR_PARAMS.includes(k)) next.params.append(k, v)
+  }
+  return joinHash(next).replaceAll('%2C', ',')
 }

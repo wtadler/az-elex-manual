@@ -10,7 +10,7 @@ import { buildIcs } from './ics'
 import { defaultMonth, monthOf } from './month'
 import { MonthView } from './MonthView'
 import { CYCLE_WIDE_LABEL, electionOptions, formatMonth, localIsoDate, OFFICE_NAMES, OFFICES } from './labels'
-import { calendarHash, parseCalendarHash, WINDOW_OPTIONS, type CalendarState } from './query'
+import { nextCalendarHash, parseCalendarHash, WINDOW_OPTIONS, type CalendarState } from './query'
 
 // Owner: Person C. Data comes from src/data/calendar.json (owned by Person B).
 const entries = calendar as CalendarEntry[]
@@ -27,7 +27,7 @@ function useCalendarState(): [CalendarState, (s: CalendarState) => void] {
   }, [])
   const update = (next: CalendarState) => {
     setState(next)
-    const hash = calendarHash(next)
+    const hash = nextCalendarHash(next, window.location.hash)
     if (window.location.hash !== hash) window.history.replaceState(null, '', hash)
   }
   return [state, update]
