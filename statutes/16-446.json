@@ -1,0 +1,20 @@
+{
+  "id": "16-446",
+  "title": "Specifications of electronic voting system",
+  "url": "https://www.azleg.gov/ars/16/00446.htm",
+  "retrieved": "2026-10-09",
+  "notes": [],
+  "paragraphs": [
+    "A. An electronic voting system consisting of a voting or marking device in combination with vote tabulating equipment shall provide facilities for voting for candidates at both primary and general elections.",
+    "B. An electronic voting system shall:",
+    "1. Provide for voting in secrecy when used with voting booths.",
+    "2. Permit each elector to vote at any election for any person for any office whether or not nominated as a candidate, to vote for as many persons for an office as the elector is entitled to vote for and to vote for or against any question on which the elector is entitled to vote, and the vote tabulating equipment shall reject choices recorded on the elector's ballot if the number of choices exceeds the number that the elector is entitled to vote for the office or on the measure.",
+    "3. Prevent the elector from voting for the same person more than once for the same office.",
+    "4. Be suitably designed for the purpose used and be of durable construction, and may be used safely, efficiently and accurately in the conduct of elections and counting ballots.",
+    "5. Be provided with means for sealing the voting or marking device against any further voting after the close of the polls and the last voter has voted.",
+    "6. When properly operated, record correctly and count accurately every vote cast.",
+    "7. Provide a durable paper document that visually indicates the voter's selections, that the voter may use to verify the voter's choices, that may be spoiled by the voter if it fails to reflect the voter's choices and that permits the voter to cast a new ballot. This paper document shall be used in manual audits and recounts.",
+    "8. To the extent practicable, provide for the ballot layout to be in the same order of arrangement, including rotation, as provided for paper ballots, except that information may be printed in vertical or horizontal rows, or in a number of separate pages or screens that are placed or displayed on the voting device. The titles of offices may be arranged in vertical columns or in a series of separate pages or screens and shall be printed above or at the side of the names of candidates so as to indicate clearly the candidates for each office and the number to be elected. If there are more candidates for an office than can be printed in one column or on one ballot page or screen, the ballot shall be clearly marked that the list of candidates is continued on the following column, page or screen, and to the extent practicable, the same number of names shall be printed on each column, page or screen.",
+    "9. Provide for a color designation for use in the primary election for each political party represented."
+  ]
+}
