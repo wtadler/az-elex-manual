@@ -1,11 +1,31 @@
 [
   {
+    "date": "2025-01-02",
+    "election": null,
+    "daysFromElection": null,
+    "offices": [
+      "REC",
+      "SOS"
+    ],
+    "event": "Begin compiling county-provided January 2 Voter Registration Report.",
+    "statutes": [
+      "16-168(G)(2)(a)"
+    ],
+    "weekendNote": null,
+    "epmPage": 304
+  },
+  {
     "date": "2025-01-07",
     "election": "AUG_ODD",
     "daysFromElection": -210,
-    "offices": ["BOS", "ELEC"],
+    "offices": [
+      "BOS",
+      "ELEC"
+    ],
     "event": "Deadline for 210 day notice by Board of Supervisors for August 5, 2025 election.",
-    "statutes": ["16-205(A)"],
+    "statutes": [
+      "16-205(A)"
+    ],
     "weekendNote": null,
     "epmPage": 304
   },
@@ -13,19 +33,86 @@
     "date": "2025-01-25",
     "election": "MAR_ODD",
     "daysFromElection": -45,
-    "offices": ["REC"],
+    "offices": [
+      "REC"
+    ],
     "event": "Deadline for active early voters to notify county that an early ballot not be sent for March 11, 2025 election.",
-    "statutes": ["16-544(F)"],
+    "statutes": [
+      "16-544(F)"
+    ],
     "weekendNote": "Saturday. Moves to next business day.",
+    "epmPage": 304
+  },
+  {
+    "date": "2025-01-25",
+    "election": "MAR_ODD",
+    "daysFromElection": -45,
+    "offices": [
+      "REC"
+    ],
+    "event": "UOCAVA deadline for March 11, 2025 election.",
+    "statutes": [
+      "16-543(A)",
+      "MOVE Act"
+    ],
+    "weekendNote": "Saturday.",
+    "epmPage": 304
+  },
+  {
+    "date": "2025-01-30",
+    "election": "MAR_ODD",
+    "daysFromElection": -40,
+    "offices": [
+      "ELEC"
+    ],
+    "event": "Deadline for Write-In Candidates to file Nomination Papers (March Local Elections).",
+    "statutes": [
+      "16-312(B)"
+    ],
+    "weekendNote": null,
+    "epmPage": 304
+  },
+  {
+    "date": "2025-02-05",
+    "election": "MAR_ODD",
+    "daysFromElection": -34,
+    "offices": [
+      "BOS",
+      "ELEC"
+    ],
+    "event": "Deadline to begin Logic and Accuracy Tests before early voting for March Election for accessible voting system units (7 days prior to early voting). Notify public 48 hours in advance.",
+    "statutes": [
+      "16-449",
+      "Procedures Manual"
+    ],
+    "weekendNote": null,
+    "epmPage": 304
+  },
+  {
+    "date": "2025-02-06",
+    "election": "AUG_ODD",
+    "daysFromElection": -180,
+    "offices": [
+      "BOS"
+    ],
+    "event": "Deadline for jurisdictions to call August 5, 2025 election and notify BOS of intent to conduct election.",
+    "statutes": [
+      "16-226(A)"
+    ],
+    "weekendNote": null,
     "epmPage": 304
   },
   {
     "date": "2025-02-10",
     "election": "MAR_ODD",
     "daysFromElection": -29,
-    "offices": ["REC"],
+    "offices": [
+      "REC"
+    ],
     "event": "Last day register to vote for March 11, 2025 Election (11:59 p.m.).",
-    "statutes": ["16-120(A)"],
+    "statutes": [
+      "16-120(A)"
+    ],
     "weekendNote": null,
     "epmPage": 304
   },
@@ -33,9 +120,118 @@
     "date": "2025-02-12",
     "election": "MAR_ODD",
     "daysFromElection": -27,
-    "offices": ["REC"],
+    "offices": [
+      "REC"
+    ],
+    "event": "Mail Early Ballots for March 11, 2025 Election to voters on active early voting list and voters who have requested a one-time ballot-by-mail.",
+    "statutes": [
+      "16-544(F)",
+      "16-542(C)"
+    ],
+    "weekendNote": null,
+    "epmPage": 304
+  },
+  {
+    "date": "2025-02-12",
+    "election": "MAR_ODD",
+    "daysFromElection": -27,
+    "offices": [
+      "ELEC"
+    ],
+    "event": "Tallying of early ballots for March 11, 2025 Election may begin.",
+    "statutes": [
+      "16-550(B)",
+      "16-552"
+    ],
+    "weekendNote": null,
+    "epmPage": 304
+  },
+  {
+    "date": "2025-02-12",
+    "election": "MAR_ODD",
+    "daysFromElection": -27,
+    "offices": [
+      "REC"
+    ],
     "event": "Early Voting begins for March 11, 2025 election.",
-    "statutes": ["16-542(C)"],
+    "statutes": [
+      "16-542(C)"
+    ],
+    "weekendNote": null,
+    "epmPage": 304
+  },
+  {
+    "date": "2025-02-16",
+    "election": "MAY_ODD",
+    "daysFromElection": -93,
+    "offices": [
+      "REC"
+    ],
+    "event": "Begin accepting ballot-by-mail requests for May 20, 2025 election. (UOCAVA voters and protected voters under 16-153 can request ballots before this date.)",
+    "statutes": [
+      "16-542(A)(B)",
+      "16-153"
+    ],
+    "weekendNote": "Sunday.",
+    "epmPage": 304
+  },
+  {
+    "date": "2025-02-22",
+    "election": "MAR_ODD",
+    "daysFromElection": -17,
+    "offices": [
+      "ELEC",
+      "SOS"
+    ],
+    "event": "File Computer Program and Voting Equipment Certification for March 11, 2025 Election with Secretary of State.",
+    "statutes": [
+      "16-445(A)",
+      "Procedures Manual"
+    ],
+    "weekendNote": "Saturday. Moves to next business day.",
+    "epmPage": 304
+  },
+  {
+    "date": "2025-02-28",
+    "election": "MAR_ODD",
+    "daysFromElection": -11,
+    "offices": [
+      "REC"
+    ],
+    "event": "Deadline to request Ballot by mail for March 11, 2025 election.",
+    "statutes": [
+      "16-542(E)"
+    ],
+    "weekendNote": null,
+    "epmPage": 304
+  },
+  {
+    "date": "2025-03-07",
+    "election": "MAR_ODD",
+    "daysFromElection": -4,
+    "offices": [
+      "REC",
+      "ELEC"
+    ],
+    "event": "Begin emergency early voting in a manner prescribed by the BOS due to an emergency occurring between 7:00 p.m. on March 7, 2025 and 5:00 p.m. on March 10, 2025 that would prevent the elector from voting at the polls.",
+    "statutes": [
+      "16-542(H)"
+    ],
+    "weekendNote": null,
+    "epmPage": 304
+  },
+  {
+    "date": "2025-03-07",
+    "election": "MAR_ODD",
+    "daysFromElection": -4,
+    "offices": [
+      "REC",
+      "ELEC"
+    ],
+    "event": "Deadline to vote early in person for March 11, 2025 election until 7:00 p.m.",
+    "statutes": [
+      "16-542(E)"
+    ],
     "weekendNote": null,
     "epmPage": 304
   },
@@ -45,7 +241,10 @@
     "daysFromElection": 0,
     "offices": [],
     "event": "March Odd Year Election",
-    "statutes": ["16-204", "16-204.01"],
+    "statutes": [
+      "16-204",
+      "16-204.01"
+    ],
     "weekendNote": null,
     "epmPage": 304
   },
@@ -53,10 +252,4222 @@
     "date": "2025-03-14",
     "election": "MAR_ODD",
     "daysFromElection": 3,
-    "offices": ["REC"],
+    "offices": [
+      "REC"
+    ],
     "event": "Last day for identification verification for Conditional Provisional Ballots and curing of early ballot affidavit signatures.",
-    "statutes": ["16-579(A)(2)", "16-550(A)", "Procedures Manual"],
+    "statutes": [
+      "16-579(A)(2)",
+      "16-550(A)",
+      "Procedures Manual"
+    ],
     "weekendNote": null,
     "epmPage": 304
+  },
+  {
+    "date": "2025-03-17",
+    "election": "MAR_ODD",
+    "daysFromElection": 6,
+    "offices": [
+      "BOS",
+      "ELEC"
+    ],
+    "event": "First day to canvass returns for March 11, 2025 Election.",
+    "statutes": [
+      "16-642(A)(3)",
+      "16-645(A)"
+    ],
+    "weekendNote": null,
+    "epmPage": 304
+  },
+  {
+    "date": "2025-03-31",
+    "election": "MAR_ODD",
+    "daysFromElection": 20,
+    "offices": [
+      "BOS",
+      "ELEC"
+    ],
+    "event": "Last day to canvass returns for March 11, 2025 Election.",
+    "statutes": [
+      "16-642(A)(3)",
+      "16-645(A)"
+    ],
+    "weekendNote": null,
+    "epmPage": 304
+  },
+  {
+    "date": "2025-04-01",
+    "election": null,
+    "daysFromElection": null,
+    "offices": [
+      "SOS",
+      "REC"
+    ],
+    "event": "Begin compiling county-provided April 1 Voter Registration Report.",
+    "statutes": [
+      "16-168(G)(2)(b)"
+    ],
+    "weekendNote": null,
+    "epmPage": 304
+  },
+  {
+    "date": "2025-04-05",
+    "election": "MAY_ODD",
+    "daysFromElection": -45,
+    "offices": [
+      "REC"
+    ],
+    "event": "Deadline for active early voters to notify county that an early ballot not be sent for May 20, 2025 election.",
+    "statutes": [
+      "16-544(F)"
+    ],
+    "weekendNote": "Sunday. Moves to next business day.",
+    "epmPage": 305
+  },
+  {
+    "date": "2025-04-05",
+    "election": "MAY_ODD",
+    "daysFromElection": -45,
+    "offices": [
+      "REC"
+    ],
+    "event": "UOCAVA deadline for May 20, 2025 election.",
+    "statutes": [
+      "16-543(A)",
+      "MOVE Act"
+    ],
+    "weekendNote": "Saturday.",
+    "epmPage": 305
+  },
+  {
+    "date": "2025-04-08",
+    "election": "NOV_ODD",
+    "daysFromElection": -210,
+    "offices": [
+      "BOS",
+      "ELEC"
+    ],
+    "event": "Deadline for 210 day notice by Board of Supervisors for November 4, 2025 election.",
+    "statutes": [
+      "16-205(A)"
+    ],
+    "weekendNote": null,
+    "epmPage": 305
+  },
+  {
+    "date": "2025-04-10",
+    "election": "MAY_ODD",
+    "daysFromElection": -40,
+    "offices": [
+      "ELEC"
+    ],
+    "event": "Deadline for Write-In Candidates to file Nomination Papers (May Local Elections).",
+    "statutes": [
+      "16-312(B)"
+    ],
+    "weekendNote": null,
+    "epmPage": 305
+  },
+  {
+    "date": "2025-04-16",
+    "election": "MAY_ODD",
+    "daysFromElection": -34,
+    "offices": [
+      "BOS",
+      "ELEC"
+    ],
+    "event": "Deadline to begin Logic and Accuracy Tests before early voting for May 20, 2025 election for accessible voting system units (7 days prior to early voting). Notify public 48 hours in advance.",
+    "statutes": [
+      "16-449",
+      "Procedures Manual"
+    ],
+    "weekendNote": null,
+    "epmPage": 305
+  },
+  {
+    "date": "2025-04-21",
+    "election": "MAY_ODD",
+    "daysFromElection": -29,
+    "offices": [
+      "REC"
+    ],
+    "event": "Last day register to vote for May 20, 2025 Election (11:59 p.m.).",
+    "statutes": [
+      "16-120(A)"
+    ],
+    "weekendNote": null,
+    "epmPage": 305
+  },
+  {
+    "date": "2025-04-23",
+    "election": "MAY_ODD",
+    "daysFromElection": -27,
+    "offices": [
+      "REC"
+    ],
+    "event": "Mail early ballots for May 20, 2025 Election to voters on Active Early Voting List and voters who have requested a one-time ballot-by-mail.",
+    "statutes": [
+      "16-544(F)",
+      "16-542(C)"
+    ],
+    "weekendNote": null,
+    "epmPage": 305
+  },
+  {
+    "date": "2025-04-23",
+    "election": "MAY_ODD",
+    "daysFromElection": -27,
+    "offices": [
+      "ELEC"
+    ],
+    "event": "Tallying of early ballots for May 20, 2025 election may begin.",
+    "statutes": [
+      "16-550(B)",
+      "16-552"
+    ],
+    "weekendNote": null,
+    "epmPage": 305
+  },
+  {
+    "date": "2025-04-23",
+    "election": "MAY_ODD",
+    "daysFromElection": -27,
+    "offices": [
+      "REC"
+    ],
+    "event": "Early Voting begins for May 20, 2025 election.",
+    "statutes": [
+      "16-542(C)"
+    ],
+    "weekendNote": null,
+    "epmPage": 305
+  },
+  {
+    "date": "2025-05-03",
+    "election": "MAY_ODD",
+    "daysFromElection": -17,
+    "offices": [
+      "ELEC",
+      "SOS"
+    ],
+    "event": "File Computer Program and Voting Equipment Certification for May 20, 2025 Election with Secretary of State.",
+    "statutes": [
+      "16-445(A)",
+      "Procedures Manual"
+    ],
+    "weekendNote": "Sunday. Moves to next business day.",
+    "epmPage": 305
+  },
+  {
+    "date": "2025-05-04",
+    "election": "AUG_ODD",
+    "daysFromElection": -93,
+    "offices": [
+      "REC"
+    ],
+    "event": "Begin accepting ballot-by-mail requests for August 5, 2025 election. (UOCAVA voters and protected voters under 16-153 can request ballots before this date.)",
+    "statutes": [
+      "16-542(A)(B)",
+      "16-153"
+    ],
+    "weekendNote": "Sunday.",
+    "epmPage": 305
+  },
+  {
+    "date": "2025-05-07",
+    "election": "AUG_ODD",
+    "daysFromElection": -90,
+    "offices": [
+      "ELEC"
+    ],
+    "event": "Mail Notice of August 5, 2025 Election to Active Early Voters.",
+    "statutes": [
+      "16-544(D)"
+    ],
+    "weekendNote": null,
+    "epmPage": 305
+  },
+  {
+    "date": "2025-05-08",
+    "election": "NOV_ODD",
+    "daysFromElection": -180,
+    "offices": [
+      "BOS"
+    ],
+    "event": "Deadline for jurisdictions to call November 4, 2025 election and notify BOS of intent to conduct election.",
+    "statutes": [
+      "16-226(A)"
+    ],
+    "weekendNote": null,
+    "epmPage": 305
+  },
+  {
+    "date": "2025-05-09",
+    "election": "MAY_ODD",
+    "daysFromElection": -11,
+    "offices": [
+      "REC"
+    ],
+    "event": "Deadline to request Ballot by mail for May 20, 2025 election.",
+    "statutes": [
+      "16-542(E)"
+    ],
+    "weekendNote": null,
+    "epmPage": 305
+  },
+  {
+    "date": "2025-05-16",
+    "election": "MAY_ODD",
+    "daysFromElection": -4,
+    "offices": [
+      "REC"
+    ],
+    "event": "Begin emergency early voting in a manner prescribed by the BOS due to an emergency occurring between 7:00 p.m. on May 16, 2025 and 5:00 p.m. on May 19, 2025 that would prevent the elector from voting at the polls.",
+    "statutes": [
+      "16-542(H)"
+    ],
+    "weekendNote": null,
+    "epmPage": 305
+  },
+  {
+    "date": "2025-05-16",
+    "election": "MAY_ODD",
+    "daysFromElection": -4,
+    "offices": [
+      "REC",
+      "ELEC"
+    ],
+    "event": "Deadline to vote early in person for May 20, 2025 election until 7:00 p.m.",
+    "statutes": [
+      "16-542(E)"
+    ],
+    "weekendNote": null,
+    "epmPage": 305
+  },
+  {
+    "date": "2025-05-20",
+    "election": "MAY_ODD",
+    "daysFromElection": 0,
+    "offices": [],
+    "event": "May Odd Year Election",
+    "statutes": [
+      "16-204",
+      "16-204.01"
+    ],
+    "weekendNote": null,
+    "epmPage": 305
+  },
+  {
+    "date": "2025-05-23",
+    "election": "MAY_ODD",
+    "daysFromElection": 3,
+    "offices": [
+      "REC"
+    ],
+    "event": "Last day for identification verification for Conditional Provisional Ballots and curing of early ballot affidavit signatures. For counties that have a 4-day work week, the deadline will be the next business day.",
+    "statutes": [
+      "16-579(A)(2)",
+      "16-550(A)",
+      "Procedures Manual"
+    ],
+    "weekendNote": null,
+    "epmPage": 305
+  },
+  {
+    "date": "2025-05-26",
+    "election": "MAY_ODD",
+    "daysFromElection": 6,
+    "offices": [
+      "BOS",
+      "ELEC"
+    ],
+    "event": "First day to canvass returns for May 20, 2025 election.",
+    "statutes": [
+      "16-642(A)(3)",
+      "16-645(A)"
+    ],
+    "weekendNote": "Holiday. Move to next business day.",
+    "epmPage": 305
+  },
+  {
+    "date": "2025-06-09",
+    "election": "MAY_ODD",
+    "daysFromElection": 20,
+    "offices": [
+      "BOS",
+      "ELEC"
+    ],
+    "event": "Last day to canvass returns for May 20, 2025 Election.",
+    "statutes": [
+      "16-642(A)(3)",
+      "16-645(A)"
+    ],
+    "weekendNote": null,
+    "epmPage": 305
+  },
+  {
+    "date": "2025-06-21",
+    "election": "AUG_ODD",
+    "daysFromElection": -45,
+    "offices": [
+      "REC"
+    ],
+    "event": "Deadline for active early voters to notify county that an early ballot not be sent for August 5, 2025 election.",
+    "statutes": [
+      "16-544(F)"
+    ],
+    "weekendNote": "Saturday. Moves to next business day",
+    "epmPage": 306
+  },
+  {
+    "date": "2025-06-21",
+    "election": "AUG_ODD",
+    "daysFromElection": -45,
+    "offices": [
+      "REC"
+    ],
+    "event": "UOCAVA deadline for August 5, 2025 election.",
+    "statutes": [
+      "16-543(A)",
+      "MOVE Act"
+    ],
+    "weekendNote": "Saturday.",
+    "epmPage": 306
+  },
+  {
+    "date": "2025-07-01",
+    "election": null,
+    "daysFromElection": null,
+    "offices": [
+      "SOS",
+      "REC"
+    ],
+    "event": "Begin compiling county-provided July 1 Voter Registration Report.",
+    "statutes": [
+      "16-168(G)(2)(c)"
+    ],
+    "weekendNote": null,
+    "epmPage": 306
+  },
+  {
+    "date": "2025-07-02",
+    "election": "AUG_ODD",
+    "daysFromElection": -34,
+    "offices": [
+      "BOS",
+      "ELEC"
+    ],
+    "event": "Deadline to begin Logic and Accuracy Tests before early voting for August 5, 2025 Election for accessible voting system units (7 days prior to early voting). Notify public 48 hours in advance.",
+    "statutes": [
+      "16-449",
+      "Procedures Manual"
+    ],
+    "weekendNote": null,
+    "epmPage": 306
+  },
+  {
+    "date": "2025-07-07",
+    "election": "AUG_ODD",
+    "daysFromElection": -29,
+    "offices": [
+      "REC"
+    ],
+    "event": "Last day register to vote for August 5, 2025 Election (11:59 p.m.).",
+    "statutes": [
+      "16-120(A)"
+    ],
+    "weekendNote": null,
+    "epmPage": 306
+  },
+  {
+    "date": "2025-07-09",
+    "election": "AUG_ODD",
+    "daysFromElection": -27,
+    "offices": [
+      "REC"
+    ],
+    "event": "Mail Early Ballots for August 5, 2025 election to voters on active early voting list and voters who have requested a one-time ballot-by-mail.",
+    "statutes": [
+      "16-544(F)",
+      "16-542(C)"
+    ],
+    "weekendNote": null,
+    "epmPage": 306
+  },
+  {
+    "date": "2025-07-09",
+    "election": "AUG_ODD",
+    "daysFromElection": -27,
+    "offices": [
+      "ELEC"
+    ],
+    "event": "Tallying of early ballots for August 5, 2025 election may begin.",
+    "statutes": [
+      "16-550(B)",
+      "16-552"
+    ],
+    "weekendNote": null,
+    "epmPage": 306
+  },
+  {
+    "date": "2025-07-09",
+    "election": "AUG_ODD",
+    "daysFromElection": -27,
+    "offices": [
+      "REC"
+    ],
+    "event": "Early Voting begins for August 5, 2025 election.",
+    "statutes": [
+      "16-542(C)"
+    ],
+    "weekendNote": null,
+    "epmPage": 306
+  },
+  {
+    "date": "2025-07-19",
+    "election": "AUG_ODD",
+    "daysFromElection": -17,
+    "offices": [
+      "ELEC",
+      "SOS"
+    ],
+    "event": "File Computer Program and Voting Equipment Certification for August 5, 2025 election with Secretary of State.",
+    "statutes": [
+      "16-445(A)",
+      "Procedures Manual"
+    ],
+    "weekendNote": "Saturday. Moves to next business day",
+    "epmPage": 306
+  },
+  {
+    "date": "2025-07-25",
+    "election": "AUG_ODD",
+    "daysFromElection": -11,
+    "offices": [
+      "REC"
+    ],
+    "event": "Deadline to request Ballot by mail for August 5, 2025 election.",
+    "statutes": [
+      "16-542(E)"
+    ],
+    "weekendNote": null,
+    "epmPage": 306
+  },
+  {
+    "date": "2025-08-01",
+    "election": "AUG_ODD",
+    "daysFromElection": -4,
+    "offices": [
+      "REC"
+    ],
+    "event": "Begin emergency early voting in a manner prescribed by the BOS due to an emergency occurring between 7:00 p.m. on August 1, 2025 and 5:00 p.m. on August 4, 2025 that would prevent the elector from voting at the polls.",
+    "statutes": [
+      "16-542(H)"
+    ],
+    "weekendNote": null,
+    "epmPage": 306
+  },
+  {
+    "date": "2025-08-01",
+    "election": "AUG_ODD",
+    "daysFromElection": -4,
+    "offices": [
+      "REC",
+      "ELEC"
+    ],
+    "event": "Deadline to vote early in person for August 5, 2025 election.",
+    "statutes": [
+      "16-542(E)"
+    ],
+    "weekendNote": null,
+    "epmPage": 306
+  },
+  {
+    "date": "2025-08-03",
+    "election": "NOV_ODD",
+    "daysFromElection": -93,
+    "offices": [
+      "REC"
+    ],
+    "event": "Begin accepting ballot-by-mail requests for November 4, 2025 election. (UOCAVA voters and protected voters under 16-153 can request ballots before this date.)",
+    "statutes": [
+      "16-542(A)(B)",
+      "16-153"
+    ],
+    "weekendNote": "Sunday.",
+    "epmPage": 306
+  },
+  {
+    "date": "2025-08-05",
+    "election": "AUG_ODD",
+    "daysFromElection": 0,
+    "offices": [],
+    "event": "August Odd Year Election",
+    "statutes": [
+      "16-204",
+      "16-204.01"
+    ],
+    "weekendNote": null,
+    "epmPage": 306
+  },
+  {
+    "date": "2025-08-08",
+    "election": "AUG_ODD",
+    "daysFromElection": 3,
+    "offices": [
+      "REC"
+    ],
+    "event": "Last day for identification verification for Conditional Provisional Ballots and curing of early ballot affidavit signatures.",
+    "statutes": [
+      "16-579(A)(2)",
+      "16-550(A)",
+      "Procedures Manual"
+    ],
+    "weekendNote": null,
+    "epmPage": 306
+  },
+  {
+    "date": "2025-08-11",
+    "election": "AUG_ODD",
+    "daysFromElection": 6,
+    "offices": [
+      "BOS",
+      "ELEC"
+    ],
+    "event": "First day to canvass returns for August 5, 2025 election.",
+    "statutes": [
+      "16-642(A)(3)",
+      "16-645(A)"
+    ],
+    "weekendNote": null,
+    "epmPage": 306
+  },
+  {
+    "date": "2025-08-12",
+    "election": "MAR_EV",
+    "daysFromElection": -210,
+    "offices": [
+      "BOS",
+      "ELEC"
+    ],
+    "event": "Deadline for 210 day notice by Board of Supervisors for March 10, 2026 election.",
+    "statutes": [
+      "16-205(A)"
+    ],
+    "weekendNote": null,
+    "epmPage": 306
+  },
+  {
+    "date": "2025-08-25",
+    "election": "AUG_ODD",
+    "daysFromElection": 20,
+    "offices": [
+      "BOS"
+    ],
+    "event": "Last day to canvass returns for August 5, 2025 election.",
+    "statutes": [
+      "16-642(A)(3)",
+      "16-645(A)"
+    ],
+    "weekendNote": null,
+    "epmPage": 306
+  },
+  {
+    "date": "2025-09-11",
+    "election": "MAR_EV",
+    "daysFromElection": -180,
+    "offices": [
+      "BOS"
+    ],
+    "event": "Deadline for jurisdictions to call March 10, 2026 election and notify BOS of intent to conduct election.",
+    "statutes": [
+      "16-226(A)"
+    ],
+    "weekendNote": null,
+    "epmPage": 306
+  },
+  {
+    "date": "2025-09-20",
+    "election": "NOV_ODD",
+    "daysFromElection": -45,
+    "offices": [
+      "REC"
+    ],
+    "event": "Deadline for active early voters to notify county that an early ballot not be sent for November 4, 2025 election.",
+    "statutes": [
+      "16-544(F)"
+    ],
+    "weekendNote": "Saturday. Moves to next business day",
+    "epmPage": 306
+  },
+  {
+    "date": "2025-09-20",
+    "election": "NOV_ODD",
+    "daysFromElection": -45,
+    "offices": [
+      "REC"
+    ],
+    "event": "UOCAVA deadline for November 4, 2025 election.",
+    "statutes": [
+      "16-543(A)",
+      "MOVE Act"
+    ],
+    "weekendNote": "Saturday.",
+    "epmPage": 307
+  },
+  {
+    "date": "2025-09-26",
+    "election": null,
+    "daysFromElection": null,
+    "offices": [],
+    "event": "General effective date of legislation passed during the 2025 Fifty-Seventh Legislature, First Regular Session (Adjourned on June 27, 2025)",
+    "statutes": [
+      "Const. Art. IV, Pt. 1, § 1(3)",
+      "1-243(A)"
+    ],
+    "weekendNote": null,
+    "epmPage": 307
+  },
+  {
+    "date": "2025-09-26",
+    "election": null,
+    "daysFromElection": null,
+    "offices": [
+      "REC",
+      "BOS",
+      "ELEC",
+      "SOS"
+    ],
+    "event": "Deadline to file Referendum. 90 days after session ends that passed the measure to which law is applied.",
+    "statutes": [
+      "Const. Art. IV, Pt.1 § 1(3)"
+    ],
+    "weekendNote": null,
+    "epmPage": 307
+  },
+  {
+    "date": "2025-10-01",
+    "election": "NOV_ODD",
+    "daysFromElection": -34,
+    "offices": [
+      "BOS",
+      "ELEC"
+    ],
+    "event": "Deadline to begin Logic and Accuracy Tests before early voting for November 4, 2025 Election for accessible voting system units (7 days prior to early voting). Notify public 48 hours in advance.",
+    "statutes": [
+      "16-449",
+      "Procedures Manual"
+    ],
+    "weekendNote": null,
+    "epmPage": 307
+  },
+  {
+    "date": "2025-10-01",
+    "election": null,
+    "daysFromElection": null,
+    "offices": [
+      "SOS",
+      "REC"
+    ],
+    "event": "Begin compiling county-provided October 1 Voter Registration Report.",
+    "statutes": [
+      "16-168(G)(2)(d)"
+    ],
+    "weekendNote": null,
+    "epmPage": 307
+  },
+  {
+    "date": "2025-10-01",
+    "election": null,
+    "daysFromElection": null,
+    "offices": [
+      "SOS",
+      "ELEC"
+    ],
+    "event": "Continued party recognition calculated based on registered voters as of October 1, 2025.",
+    "statutes": [
+      "16-804(A)(B)",
+      "16-168(G)(2)(d)"
+    ],
+    "weekendNote": null,
+    "epmPage": 307
+  },
+  {
+    "date": "2025-10-01",
+    "election": null,
+    "daysFromElection": null,
+    "offices": [
+      "BOS",
+      "REC"
+    ],
+    "event": "Deadline to establish new election precincts and boundaries.",
+    "statutes": [
+      "16-411(A)"
+    ],
+    "weekendNote": null,
+    "epmPage": 307
+  },
+  {
+    "date": "2025-10-06",
+    "election": "NOV_ODD",
+    "daysFromElection": -29,
+    "offices": [
+      "REC"
+    ],
+    "event": "Last day register to vote for November 4, 2025 Election (11:59 p.m.).",
+    "statutes": [
+      "16-120(A)"
+    ],
+    "weekendNote": null,
+    "epmPage": 307
+  },
+  {
+    "date": "2025-10-08",
+    "election": "NOV_ODD",
+    "daysFromElection": -27,
+    "offices": [
+      "ELEC"
+    ],
+    "event": "Tallying of early ballots for November 4, 2025 election may begin.",
+    "statutes": [
+      "16-550(B)",
+      "16-552"
+    ],
+    "weekendNote": null,
+    "epmPage": 307
+  },
+  {
+    "date": "2025-10-08",
+    "election": "NOV_ODD",
+    "daysFromElection": -27,
+    "offices": [
+      "REC"
+    ],
+    "event": "Mail Early Ballots for November 4, 2025 election to voters on active early voting list and voters who have requested a one-time ballot-by-mail.",
+    "statutes": [
+      "16-544(F)",
+      "16-542(C)"
+    ],
+    "weekendNote": null,
+    "epmPage": 307
+  },
+  {
+    "date": "2025-10-08",
+    "election": "NOV_ODD",
+    "daysFromElection": -27,
+    "offices": [
+      "REC"
+    ],
+    "event": "Early Voting begins for November 4, 2025 election.",
+    "statutes": [
+      "16-542(C)"
+    ],
+    "weekendNote": null,
+    "epmPage": 307
+  },
+  {
+    "date": "2025-10-18",
+    "election": "NOV_ODD",
+    "daysFromElection": -17,
+    "offices": [
+      "ELEC",
+      "SOS"
+    ],
+    "event": "File Computer Program and Voting Equipment Certification for November 4, 2025 election with Secretary of State.",
+    "statutes": [
+      "16-445(A)",
+      "Procedures Manual"
+    ],
+    "weekendNote": "Saturday. Moves to next business day",
+    "epmPage": 307
+  },
+  {
+    "date": "2025-10-21",
+    "election": "MAY_EV",
+    "daysFromElection": -210,
+    "offices": [
+      "BOS",
+      "ELEC"
+    ],
+    "event": "Deadline for 210 day notice by Board of Supervisors for May 19, 2026 Election.",
+    "statutes": [
+      "16-205(A)"
+    ],
+    "weekendNote": null,
+    "epmPage": 307
+  },
+  {
+    "date": "2025-10-24",
+    "election": "NOV_ODD",
+    "daysFromElection": -11,
+    "offices": [
+      "REC",
+      "ELEC"
+    ],
+    "event": "Deadline to request Ballot by mail for November 4, 2025 election.",
+    "statutes": [
+      "16-542(E)"
+    ],
+    "weekendNote": null,
+    "epmPage": 307
+  },
+  {
+    "date": "2025-10-31",
+    "election": "NOV_ODD",
+    "daysFromElection": -4,
+    "offices": [
+      "REC"
+    ],
+    "event": "Begin emergency early voting in a manner prescribed by the BOS due to an emergency occurring between 7:00 p.m. on October 31, 2025 and 5:00 p.m. on November 3, 2025 that would prevent the elector from voting at the polls.",
+    "statutes": [
+      "16-542(H)"
+    ],
+    "weekendNote": null,
+    "epmPage": 307
+  },
+  {
+    "date": "2025-10-31",
+    "election": "NOV_ODD",
+    "daysFromElection": -4,
+    "offices": [
+      "REC",
+      "ELEC"
+    ],
+    "event": "Deadline to vote early in person for November 4, 2025 election.",
+    "statutes": [
+      "16-542(E)"
+    ],
+    "weekendNote": null,
+    "epmPage": 307
+  },
+  {
+    "date": "2025-11-04",
+    "election": "NOV_ODD",
+    "daysFromElection": 0,
+    "offices": [],
+    "event": "November Odd Year Election",
+    "statutes": [
+      "16-204",
+      "16-204.01"
+    ],
+    "weekendNote": null,
+    "epmPage": 307
+  },
+  {
+    "date": "2025-11-07",
+    "election": "NOV_ODD",
+    "daysFromElection": 3,
+    "offices": [
+      "REC"
+    ],
+    "event": "Last day for identification verification for Conditional Provisional Ballots and curing of early ballot affidavit signatures.",
+    "statutes": [
+      "16-579(A)(2)",
+      "16-550(A)",
+      "Procedures Manual"
+    ],
+    "weekendNote": null,
+    "epmPage": 307
+  },
+  {
+    "date": "2025-11-10",
+    "election": "NOV_ODD",
+    "daysFromElection": 6,
+    "offices": [
+      "BOS",
+      "ELEC"
+    ],
+    "event": "First day to canvass returns for November 4, 2025 election.",
+    "statutes": [
+      "16-642(A)(3)",
+      "16-645(A)"
+    ],
+    "weekendNote": null,
+    "epmPage": 307
+  },
+  {
+    "date": "2025-11-20",
+    "election": "MAY_EV",
+    "daysFromElection": -180,
+    "offices": [
+      "BOS",
+      "ELEC"
+    ],
+    "event": "Deadline for jurisdictions to call May 19, 2026 election and notify BOS of intent to conduct election.",
+    "statutes": [
+      "16-226(A)"
+    ],
+    "weekendNote": null,
+    "epmPage": 308
+  },
+  {
+    "date": "2025-11-24",
+    "election": "NOV_ODD",
+    "daysFromElection": 20,
+    "offices": [
+      "BOS",
+      "ELEC"
+    ],
+    "event": "Last day to canvass returns for November 4, 2025 election.",
+    "statutes": [
+      "16-642(A)(3)",
+      "16-645(A)"
+    ],
+    "weekendNote": null,
+    "epmPage": 308
+  },
+  {
+    "date": "2025-11-27",
+    "election": "AUG_EV",
+    "daysFromElection": -250,
+    "offices": [
+      "SOS",
+      "ELEC"
+    ],
+    "event": "Deadline for filing new party petitions with Secretary of State (for statewide recognition) or the county officer in charge of elections (for county recognition) for signature verification. 250 days from Primary Election, August 4, 2026.",
+    "statutes": [
+      "16-803(A)"
+    ],
+    "weekendNote": "Holiday. Moves to next business day 11/28/2025",
+    "epmPage": 308
+  },
+  {
+    "date": "2025-12-01",
+    "election": null,
+    "daysFromElection": null,
+    "offices": [
+      "SOS",
+      "REC"
+    ],
+    "event": "Deadline to determine political parties for continued representation based on votes cast for Governor or presidential electors at last General Election, or based on October 1 county voter registration report.",
+    "statutes": [
+      "16-804 (A)-(D)",
+      "16-168(G)(2)(d)"
+    ],
+    "weekendNote": null,
+    "epmPage": 308
+  },
+  {
+    "date": "2025-12-07",
+    "election": "MAR_EV",
+    "daysFromElection": -93,
+    "offices": [
+      "REC"
+    ],
+    "event": "Begin accepting ballot-by-mail requests for March 10, 2026 election. (UOCAVA voters and protected voters under 16-153 can request ballots before this date.)",
+    "statutes": [
+      "16-542(A)(B)",
+      "16-153"
+    ],
+    "weekendNote": "Sunday.",
+    "epmPage": 308
+  },
+  {
+    "date": "2025-12-08",
+    "election": "AUG_EV",
+    "daysFromElection": null,
+    "offices": [
+      "SOS"
+    ],
+    "event": "Deadline for Secretary of State to remove ineligible sheets and signatures from new party petition sheets and transmit random sample to County Recorders for signature verification. +7 business days after receipt of new party petitions. Date may vary for early filings.",
+    "statutes": [
+      "16-803(B)(C)"
+    ],
+    "weekendNote": null,
+    "epmPage": 308
+  },
+  {
+    "date": "2025-12-10",
+    "election": "MAR_EV",
+    "daysFromElection": -90,
+    "offices": [
+      "ELEC"
+    ],
+    "event": "Mail Notice of March 10, 2026 Election to Active Early Voters if not all mail election.",
+    "statutes": [
+      "16-544(D)"
+    ],
+    "weekendNote": null,
+    "epmPage": 308
+  },
+  {
+    "date": "2025-12-22",
+    "election": "AUG_EV",
+    "daysFromElection": null,
+    "offices": [
+      "REC",
+      "SOS"
+    ],
+    "event": "Deadline for County Recorders to verify new party petition signatures for Primary Election and provide certified results to Secretary of State. +10 business days after receipt of random sample. Date may vary for early filings.",
+    "statutes": [
+      "16-803(E)(F)"
+    ],
+    "weekendNote": null,
+    "epmPage": 308
+  },
+  {
+    "date": "2025-12-28",
+    "election": "AUG_EV",
+    "daysFromElection": null,
+    "offices": [
+      "SOS"
+    ],
+    "event": "Deadline for Secretary of State to determine new party petition results of random sample, issue receipt to sponsor committee and issue party recognition (deadline may vary depending on timing of county certification). +72 hours (business days only) after receipt of certification from County Recorders.",
+    "statutes": [
+      "16-803(H)(I)"
+    ],
+    "weekendNote": "12/25 holiday moves to Monday.",
+    "epmPage": 308
+  },
+  {
+    "date": "2025-12-31",
+    "election": null,
+    "daysFromElection": null,
+    "offices": [
+      "SOS"
+    ],
+    "event": "Deadline for issuance of updated Elections Procedures Manual, following approval by Governor and Attorney General.",
+    "statutes": [
+      "16-452(B)"
+    ],
+    "weekendNote": null,
+    "epmPage": 308
+  },
+  {
+    "date": "2026-01-02",
+    "election": null,
+    "daysFromElection": null,
+    "offices": [
+      "SOS",
+      "REC"
+    ],
+    "event": "Begin compiling county-provided January 2 Voter Registration Report.",
+    "statutes": [
+      "16-168(G)(1)(a)"
+    ],
+    "weekendNote": null,
+    "epmPage": 308
+  },
+  {
+    "date": "2026-01-02",
+    "election": null,
+    "daysFromElection": null,
+    "offices": [
+      "SOS",
+      "ELEC"
+    ],
+    "event": "Calculate petition signature requirements for candidates for the 2026 Primary and General Elections based on the Jan. 2 voter registration numbers.",
+    "statutes": [
+      "16-322(B)",
+      "16-168(G)(1)(a)",
+      "16-193(1)",
+      "16-321(F)"
+    ],
+    "weekendNote": null,
+    "epmPage": 308
+  },
+  {
+    "date": "2026-01-02",
+    "election": null,
+    "daysFromElection": null,
+    "offices": [
+      "REC",
+      "BOS"
+    ],
+    "event": "Deadline to transfer voters into newly established precincts and boundaries.",
+    "statutes": [
+      "16-411",
+      "16-412"
+    ],
+    "weekendNote": null,
+    "epmPage": 308
+  },
+  {
+    "date": "2026-01-06",
+    "election": "AUG_EV",
+    "daysFromElection": -210,
+    "offices": [
+      "BOS"
+    ],
+    "event": "Deadline for 210 day notice by Board of Supervisors for August 4, 2026 election.",
+    "statutes": [
+      "16-205(A)"
+    ],
+    "weekendNote": null,
+    "epmPage": 308
+  },
+  {
+    "date": "2026-01-24",
+    "election": "MAR_EV",
+    "daysFromElection": -45,
+    "offices": [
+      "REC"
+    ],
+    "event": "Deadline for active early voters to notify county that an early ballot not be sent for March 10, 2026 election.",
+    "statutes": [
+      "16-544(F)"
+    ],
+    "weekendNote": null,
+    "epmPage": 309
+  },
+  {
+    "date": "2026-01-24",
+    "election": "MAR_EV",
+    "daysFromElection": -45,
+    "offices": [
+      "REC"
+    ],
+    "event": "UOCAVA deadline for March 10, 2026 election.",
+    "statutes": [
+      "16-543(A)",
+      "MOVE Act"
+    ],
+    "weekendNote": "Saturday.",
+    "epmPage": 309
+  },
+  {
+    "date": "2026-02-04",
+    "election": "MAR_EV",
+    "daysFromElection": -34,
+    "offices": [
+      "BOS",
+      "ELEC"
+    ],
+    "event": "Deadline to begin Logic and Accuracy Tests before early voting for March 10, 2026 Election for accessible voting system units. (7 days prior to early voting.) Notify public 48 hours in advance.",
+    "statutes": [
+      "16-449",
+      "Procedures Manual"
+    ],
+    "weekendNote": null,
+    "epmPage": 309
+  },
+  {
+    "date": "2026-02-05",
+    "election": "AUG_EV",
+    "daysFromElection": -180,
+    "offices": [
+      "BOS"
+    ],
+    "event": "Deadline for jurisdictions to call August 4, 2026 election and notify BOS of intent to conduct election.",
+    "statutes": [
+      "16-226(A)"
+    ],
+    "weekendNote": null,
+    "epmPage": 309
+  },
+  {
+    "date": "2026-02-09",
+    "election": "MAR_EV",
+    "daysFromElection": -29,
+    "offices": [
+      "REC"
+    ],
+    "event": "Last day register to vote for March 10, 2026 Election (11:59 p.m.).",
+    "statutes": [
+      "16-120(A)"
+    ],
+    "weekendNote": null,
+    "epmPage": 309
+  },
+  {
+    "date": "2026-02-11",
+    "election": "MAR_EV",
+    "daysFromElection": -27,
+    "offices": [
+      "ELEC"
+    ],
+    "event": "Tallying of early ballots for March 10, 2026 Election may begin.",
+    "statutes": [
+      "16-550(B)",
+      "16-552"
+    ],
+    "weekendNote": null,
+    "epmPage": 309
+  },
+  {
+    "date": "2026-02-11",
+    "election": "MAR_EV",
+    "daysFromElection": -27,
+    "offices": [
+      "REC"
+    ],
+    "event": "Mail Early Ballots for March 10, 2026 Election to voters on active early voting list and voters who have requested a one-time ballot-by-mail.",
+    "statutes": [
+      "16-544(F)",
+      "16-542(C)"
+    ],
+    "weekendNote": null,
+    "epmPage": 309
+  },
+  {
+    "date": "2026-02-11",
+    "election": "MAR_EV",
+    "daysFromElection": -27,
+    "offices": [
+      "REC"
+    ],
+    "event": "Early Voting begins for March 10, 2026 election.",
+    "statutes": [
+      "16-542(C)"
+    ],
+    "weekendNote": null,
+    "epmPage": 309
+  },
+  {
+    "date": "2026-02-15",
+    "election": "MAY_EV",
+    "daysFromElection": -93,
+    "offices": [
+      "REC"
+    ],
+    "event": "Begin accepting ballot-by-mail requests for May 19, 2026 election. (UOCAVA voters and protected voters under 16-153 can request ballots before this date.)",
+    "statutes": [
+      "16-542(A)(B)",
+      "16-153"
+    ],
+    "weekendNote": "Sunday.",
+    "epmPage": 309
+  },
+  {
+    "date": "2026-02-21",
+    "election": "MAR_EV",
+    "daysFromElection": -17,
+    "offices": [
+      "ELEC",
+      "SOS"
+    ],
+    "event": "File Computer Program and Voting Equipment Certification for March 10, 2026 election with Secretary of State.",
+    "statutes": [
+      "16-445(A)",
+      "Procedures Manual"
+    ],
+    "weekendNote": "Saturday. Moves to next business day",
+    "epmPage": 309
+  },
+  {
+    "date": "2026-02-27",
+    "election": "MAR_EV",
+    "daysFromElection": -11,
+    "offices": [
+      "REC"
+    ],
+    "event": "Deadline to request Ballot by mail for March 10, 2026 election.",
+    "statutes": [
+      "16-542(E)"
+    ],
+    "weekendNote": null,
+    "epmPage": 309
+  },
+  {
+    "date": "2026-03-06",
+    "election": "MAR_EV",
+    "daysFromElection": -4,
+    "offices": [
+      "REC"
+    ],
+    "event": "Begin emergency early voting in a manner prescribed by the BOS due to an emergency occurring between 7:00 p.m. on March 6, 2026 and 5:00 p.m. on March 9, 2026 that would prevent the elector from voting at the polls.",
+    "statutes": [
+      "16-542(H)"
+    ],
+    "weekendNote": null,
+    "epmPage": 309
+  },
+  {
+    "date": "2026-03-06",
+    "election": "MAR_EV",
+    "daysFromElection": -4,
+    "offices": [
+      "REC",
+      "ELEC"
+    ],
+    "event": "Deadline to vote early in person for March 10, 2026 election.",
+    "statutes": [
+      "16-542(E)"
+    ],
+    "weekendNote": null,
+    "epmPage": 309
+  },
+  {
+    "date": "2026-03-07",
+    "election": "AUG_EV",
+    "daysFromElection": -150,
+    "offices": [
+      "SOS",
+      "ELEC"
+    ],
+    "event": "Beginning of filing period for Nomination Papers, Nomination Petitions, and Financial Disclosure Statements for Primary Election candidates seeking partisan nomination.",
+    "statutes": [
+      "16-311(A)",
+      "16-314(A)",
+      "38-543"
+    ],
+    "weekendNote": "Saturday. Moves to next business day",
+    "epmPage": 309
+  },
+  {
+    "date": "2026-03-07",
+    "election": "AUG_EV",
+    "daysFromElection": -150,
+    "offices": [
+      "SOS",
+      "ELEC"
+    ],
+    "event": "Beginning of filing period for Nomination Papers, Nomination Petitions, and Financial Disclosure Statements for Primary Election candidates seeking \"Nomination Other than by Primary\" (Independent Candidates).",
+    "statutes": [
+      "16-341(A)(C)",
+      "38-543"
+    ],
+    "weekendNote": "Saturday. Moves to next business day",
+    "epmPage": 309
+  },
+  {
+    "date": "2026-03-07",
+    "election": "AUG_EV",
+    "daysFromElection": -150,
+    "offices": [
+      "ELEC"
+    ],
+    "event": "Beginning of filing period for Non-Partisan candidate Nomination Petitions and Papers for Primary Election (Applicable County and Local Jurisdictions).",
+    "statutes": [
+      "16-311(B)",
+      "16-204"
+    ],
+    "weekendNote": "Saturday. Moves to next business day",
+    "epmPage": 309
+  },
+  {
+    "date": "2026-03-07",
+    "election": "AUG_EV",
+    "daysFromElection": -150,
+    "offices": [
+      "SOS",
+      "ELEC"
+    ],
+    "event": "Beginning of filing period for Write-in Candidate Nomination Papers for Primary Election.",
+    "statutes": [
+      "16-312(B)"
+    ],
+    "weekendNote": "Saturday. Moves to next business day",
+    "epmPage": 309
+  },
+  {
+    "date": "2026-03-10",
+    "election": "MAR_EV",
+    "daysFromElection": 0,
+    "offices": [],
+    "event": "March Even Year Election",
+    "statutes": [
+      "16-204",
+      "16-204.01"
+    ],
+    "weekendNote": null,
+    "epmPage": 310
+  },
+  {
+    "date": "2026-03-13",
+    "election": "MAR_EV",
+    "daysFromElection": 3,
+    "offices": [
+      "REC"
+    ],
+    "event": "Last day for identification verification for Conditional Provisional Ballots and curing of early ballot affidavit signatures.",
+    "statutes": [
+      "16-579(A)(2)",
+      "16-550(A)",
+      "Procedures Manual"
+    ],
+    "weekendNote": null,
+    "epmPage": 310
+  },
+  {
+    "date": "2026-03-16",
+    "election": "MAR_EV",
+    "daysFromElection": 6,
+    "offices": [
+      "BOS"
+    ],
+    "event": "First day to canvass returns for March 10, 2026 election.",
+    "statutes": [
+      "16-642(A)(3)",
+      "16-645(A)"
+    ],
+    "weekendNote": null,
+    "epmPage": 310
+  },
+  {
+    "date": "2026-03-20",
+    "election": "MAY_EV",
+    "daysFromElection": -60,
+    "offices": [
+      "ELEC"
+    ],
+    "event": "Deadline for Write-In Candidates to file Nomination Papers (May Local Elections).",
+    "statutes": [
+      "16-312(B)"
+    ],
+    "weekendNote": "SB1153",
+    "epmPage": 310
+  },
+  {
+    "date": "2026-03-30",
+    "election": "MAR_EV",
+    "daysFromElection": 20,
+    "offices": [
+      "BOS"
+    ],
+    "event": "Last day to canvass returns for March 10, 2026 election.",
+    "statutes": [
+      "16-642(A)(3)",
+      "16-645(A)"
+    ],
+    "weekendNote": null,
+    "epmPage": 310
+  },
+  {
+    "date": "2026-04-01",
+    "election": null,
+    "daysFromElection": null,
+    "offices": [
+      "SOS",
+      "REC"
+    ],
+    "event": "Begin compiling county-provided April 1 Voter Registration Report.",
+    "statutes": [
+      "16-168(G)(1)(b)"
+    ],
+    "weekendNote": null,
+    "epmPage": 310
+  },
+  {
+    "date": "2026-04-04",
+    "election": "MAY_EV",
+    "daysFromElection": -45,
+    "offices": [
+      "REC"
+    ],
+    "event": "Deadline for active early voters to notify county that an early ballot not be sent for May 19, 2026 election.",
+    "statutes": [
+      "16-544(F)"
+    ],
+    "weekendNote": "Saturday. Moves to next business day",
+    "epmPage": 310
+  },
+  {
+    "date": "2026-04-04",
+    "election": "MAY_EV",
+    "daysFromElection": -45,
+    "offices": [
+      "REC"
+    ],
+    "event": "UOCAVA deadline for May 19, 2026 election.",
+    "statutes": [
+      "16-543(A)",
+      "MOVE Act"
+    ],
+    "weekendNote": "Saturday.",
+    "epmPage": 310
+  },
+  {
+    "date": "2026-04-06",
+    "election": "AUG_EV",
+    "daysFromElection": -120,
+    "offices": [
+      "SOS"
+    ],
+    "event": "Deadline for Secretary of State to send notice to Board of Supervisors designating state and federal offices for which candidates are to be nominated at the August 4, 2026 Primary Election.",
+    "statutes": [
+      "16-202"
+    ],
+    "weekendNote": null,
+    "epmPage": 310
+  },
+  {
+    "date": "2026-04-06",
+    "election": "AUG_EV",
+    "daysFromElection": -120,
+    "offices": [
+      "SOS",
+      "ELEC"
+    ],
+    "event": "Deadline for accepting Nomination Papers, Nomination Petitions, and Financial Disclosure Statements for Primary Election candidates seeking partisan nomination.",
+    "statutes": [
+      "16-311(A)",
+      "16-314(A)",
+      "38-543"
+    ],
+    "weekendNote": null,
+    "epmPage": 310
+  },
+  {
+    "date": "2026-04-06",
+    "election": "AUG_EV",
+    "daysFromElection": -120,
+    "offices": [
+      "SOS",
+      "ELEC"
+    ],
+    "event": "Deadline for accepting Nomination Papers, Nomination Petitions, and Financial Disclosure Statements for Primary Election candidates seeking \"Nomination Other than by Primary\" (Independent Candidates).",
+    "statutes": [
+      "16-341(A)(C)",
+      "38-543"
+    ],
+    "weekendNote": null,
+    "epmPage": 310
+  },
+  {
+    "date": "2026-04-06",
+    "election": "AUG_EV",
+    "daysFromElection": -120,
+    "offices": [
+      "ELEC"
+    ],
+    "event": "Deadline for accepting Nonpartisan Candidate Nomination Petitions and Papers for Primary Election (Applicable County and Local Jurisdictions).",
+    "statutes": [
+      "16-311(B)",
+      "16-204"
+    ],
+    "weekendNote": null,
+    "epmPage": 310
+  },
+  {
+    "date": "2026-04-07",
+    "election": "NOV_EV",
+    "daysFromElection": -210,
+    "offices": [
+      "BOS"
+    ],
+    "event": "Deadline for 210 day notice by Board of Supervisors for November 3, 2026 election.",
+    "statutes": [
+      "16-205(A)"
+    ],
+    "weekendNote": null,
+    "epmPage": 310
+  },
+  {
+    "date": "2026-04-15",
+    "election": "MAY_EV",
+    "daysFromElection": -34,
+    "offices": [
+      "BOS",
+      "ELEC"
+    ],
+    "event": "Deadline to begin Logic and Accuracy Tests before early voting for May 19, 2026 Election for accessible voting system units (7 days prior to early voting). Notify public 48 hours in advance.",
+    "statutes": [
+      "16-449",
+      "Procedures Manual"
+    ],
+    "weekendNote": null,
+    "epmPage": 310
+  },
+  {
+    "date": "2026-04-20",
+    "election": "AUG_EV",
+    "daysFromElection": null,
+    "offices": [
+      "SOS",
+      "ELEC"
+    ],
+    "event": "Deadline for filing challenges to candidate Nomination Petitions for August 4, 2026 Primary. 10 business days after filing closes.",
+    "statutes": [
+      "16-351(A)"
+    ],
+    "weekendNote": null,
+    "epmPage": 310
+  },
+  {
+    "date": "2026-04-20",
+    "election": "MAY_EV",
+    "daysFromElection": -29,
+    "offices": [
+      "REC"
+    ],
+    "event": "Last day register to vote for May 19, 2026 Election (11:59 p.m.).",
+    "statutes": [
+      "16-120(A)"
+    ],
+    "weekendNote": null,
+    "epmPage": 310
+  },
+  {
+    "date": "2026-04-21",
+    "election": "AUG_EV",
+    "daysFromElection": -105,
+    "offices": [
+      "BOS",
+      "ELEC"
+    ],
+    "event": "Earliest day Board of Supervisors may cancel election for certain offices held under Title 15, Title 48, or 16-822 based on number of candidates who have filed Nomination Paper and appoint those candidates to the office.",
+    "statutes": [
+      "16-410(A)"
+    ],
+    "weekendNote": null,
+    "epmPage": 310
+  },
+  {
+    "date": "2026-04-22",
+    "election": "MAY_EV",
+    "daysFromElection": -27,
+    "offices": [
+      "REC"
+    ],
+    "event": "Mail Early Ballots for May 19, 2026 election to voters on active early voting list and voters who have requested a one-time ballot-by-mail.",
+    "statutes": [
+      "16-544(F)",
+      "16-542(C)"
+    ],
+    "weekendNote": null,
+    "epmPage": 311
+  },
+  {
+    "date": "2026-04-22",
+    "election": "MAY_EV",
+    "daysFromElection": -27,
+    "offices": [
+      "REC"
+    ],
+    "event": "Early Voting begins for May 19, 2026 election.",
+    "statutes": [
+      "16-542(C)"
+    ],
+    "weekendNote": null,
+    "epmPage": 311
+  },
+  {
+    "date": "2026-05-02",
+    "election": "MAY_EV",
+    "daysFromElection": -17,
+    "offices": [
+      "ELEC",
+      "SOS"
+    ],
+    "event": "File Computer Program and Voting Equipment Certification for May 19, 2026 election with Secretary of State.",
+    "statutes": [
+      "16-445(A)",
+      "Procedures Manual"
+    ],
+    "weekendNote": "Saturday. Moves to next business day.",
+    "epmPage": 311
+  },
+  {
+    "date": "2026-05-03",
+    "election": "AUG_EV",
+    "daysFromElection": -93,
+    "offices": [
+      "REC"
+    ],
+    "event": "Begin accepting ballot-by-mail requests for August 4, 2026 election. (UOCAVA voters and protected voters under 16-153 can request ballots before this date.)",
+    "statutes": [
+      "16-542(A)(B)",
+      "16-153"
+    ],
+    "weekendNote": "Sunday.",
+    "epmPage": 311
+  },
+  {
+    "date": "2026-05-06",
+    "election": "AUG_EV",
+    "daysFromElection": -90,
+    "offices": [
+      "BOS"
+    ],
+    "event": "Accept lists of Election Board nominees submitted by political party chairmen for Primary Election.",
+    "statutes": [
+      "16-531(A)"
+    ],
+    "weekendNote": null,
+    "epmPage": 311
+  },
+  {
+    "date": "2026-05-06",
+    "election": "AUG_EV",
+    "daysFromElection": -90,
+    "offices": [
+      "REC"
+    ],
+    "event": "Mail Notice of August 4, 2026 Election to Active Early Voters.",
+    "statutes": [
+      "16-544(D)"
+    ],
+    "weekendNote": null,
+    "epmPage": 311
+  },
+  {
+    "date": "2026-05-07",
+    "election": "NOV_EV",
+    "daysFromElection": -180,
+    "offices": [
+      "BOS"
+    ],
+    "event": "Deadline for jurisdictions to call November 3, 2026 election and notify BOS of intent to conduct election.",
+    "statutes": [
+      "16-226(A)"
+    ],
+    "weekendNote": null,
+    "epmPage": 311
+  },
+  {
+    "date": "2026-05-08",
+    "election": "MAY_EV",
+    "daysFromElection": -11,
+    "offices": [
+      "REC"
+    ],
+    "event": "Deadline to request Ballot by mail for May 19, 2026 election.",
+    "statutes": [
+      "16-542(E)"
+    ],
+    "weekendNote": null,
+    "epmPage": 311
+  },
+  {
+    "date": "2026-05-15",
+    "election": "MAY_EV",
+    "daysFromElection": -4,
+    "offices": [
+      "REC"
+    ],
+    "event": "Begin emergency early voting in a manner prescribed by the BOS due to an emergency occurring between 7:00 p.m. on May 15, 2026 and 5:00 p.m. on May 18, 2026 that would prevent the elector from voting at the polls.",
+    "statutes": [
+      "16-542(H)"
+    ],
+    "weekendNote": null,
+    "epmPage": 311
+  },
+  {
+    "date": "2026-05-15",
+    "election": "MAY_EV",
+    "daysFromElection": -4,
+    "offices": [
+      "REC",
+      "ELEC"
+    ],
+    "event": "Deadline to vote early in person for May 19, 2026 election.",
+    "statutes": [
+      "16-542(E)"
+    ],
+    "weekendNote": null,
+    "epmPage": 311
+  },
+  {
+    "date": "2026-05-19",
+    "election": "MAY_EV",
+    "daysFromElection": null,
+    "offices": [],
+    "event": "May Even Year Election",
+    "statutes": [
+      "16-204",
+      "16-204.01"
+    ],
+    "weekendNote": null,
+    "epmPage": 311
+  },
+  {
+    "date": "2026-05-22",
+    "election": "MAY_EV",
+    "daysFromElection": 3,
+    "offices": [
+      "REC"
+    ],
+    "event": "Last day for identification verification for Conditional Provisional Ballots and curing of early ballot affidavit signatures.",
+    "statutes": [
+      "16-579(A)(2)",
+      "16-550(A)",
+      "Procedures Manual"
+    ],
+    "weekendNote": null,
+    "epmPage": 311
+  },
+  {
+    "date": "2026-05-25",
+    "election": "MAY_EV",
+    "daysFromElection": 6,
+    "offices": [
+      "BOS",
+      "ELEC"
+    ],
+    "event": "First day to canvass returns for May 19, 2026 election.",
+    "statutes": [
+      "16-642(A)(3)",
+      "16-645(A)"
+    ],
+    "weekendNote": "Holiday. Moves to next business day.",
+    "epmPage": 311
+  },
+  {
+    "date": "2026-05-27",
+    "election": "NOV_EV",
+    "daysFromElection": -160,
+    "offices": [
+      "ELEC"
+    ],
+    "event": "Contact shared counties regarding any cross-county elections (Special Districts).",
+    "statutes": [],
+    "weekendNote": null,
+    "epmPage": 311
+  },
+  {
+    "date": "2026-06-05",
+    "election": "AUG_EV",
+    "daysFromElection": -60,
+    "offices": [
+      "REC"
+    ],
+    "event": "Accept lists of nominees for Special Election Boards from the county party chairmen and begin appointing Special Election Boards for Primary Election.",
+    "statutes": [
+      "16-549(A)"
+    ],
+    "weekendNote": null,
+    "epmPage": 311
+  },
+  {
+    "date": "2026-06-05",
+    "election": "AUG_EV",
+    "daysFromElection": -60,
+    "offices": [
+      "SOS",
+      "ELEC"
+    ],
+    "event": "Deadline for Write-in Candidate Nomination Papers for Primary Election at 5:00 p.m.",
+    "statutes": [
+      "16-312(B)"
+    ],
+    "weekendNote": "SB1153",
+    "epmPage": 311
+  },
+  {
+    "date": "2026-06-06",
+    "election": "AUG_EV",
+    "daysFromElection": -59,
+    "offices": [
+      "SOS",
+      "ELEC"
+    ],
+    "event": "Recommended date to deliver notice to counties of Write-in Candidates filing Nomination Papers with Secretary of State.",
+    "statutes": [
+      "16-312(E)",
+      "Procedures Manual"
+    ],
+    "weekendNote": null,
+    "epmPage": 311
+  },
+  {
+    "date": "2026-06-06",
+    "election": "NOV_EV",
+    "daysFromElection": -150,
+    "offices": [
+      "ELEC"
+    ],
+    "event": "Begin accepting Nonpartisan Candidate Nomination Petitions and Papers for General Election (applicable county and local jurisdictions).",
+    "statutes": [
+      "16-311(B)",
+      "16-204"
+    ],
+    "weekendNote": null,
+    "epmPage": 311
+  },
+  {
+    "date": "2026-06-06",
+    "election": "NOV_EV",
+    "daysFromElection": -150,
+    "offices": [
+      "SOS",
+      "ELEC"
+    ],
+    "event": "Beginning of Filing Period for Write-in Candidate Nomination Papers for General Election.",
+    "statutes": [
+      "16-312(B)"
+    ],
+    "weekendNote": null,
+    "epmPage": 312
+  },
+  {
+    "date": "2026-06-08",
+    "election": "MAY_EV",
+    "daysFromElection": 20,
+    "offices": [
+      "BOS"
+    ],
+    "event": "Last day to canvass returns for May 19, 2026 election.",
+    "statutes": [
+      "16-642(A)(3)",
+      "16-645(A)"
+    ],
+    "weekendNote": null,
+    "epmPage": 312
+  },
+  {
+    "date": "2026-06-20",
+    "election": "AUG_EV",
+    "daysFromElection": -45,
+    "offices": [
+      "BOS",
+      "ELEC"
+    ],
+    "event": "Instruction classes for Precinct Election Boards may begin.",
+    "statutes": [
+      "16-532(A)"
+    ],
+    "weekendNote": "Saturday.",
+    "epmPage": 312
+  },
+  {
+    "date": "2026-06-20",
+    "election": "AUG_EV",
+    "daysFromElection": -45,
+    "offices": [
+      "ELEC"
+    ],
+    "event": "Prepare proof of sample ballots and: (1) Submit to each county party chairman, and (2) Mail a copy to each candidate who has properly filed a Nomination Paper.",
+    "statutes": [
+      "16-461(A)"
+    ],
+    "weekendNote": "Saturday. Moves to next business day.",
+    "epmPage": 312
+  },
+  {
+    "date": "2026-06-20",
+    "election": "AUG_EV",
+    "daysFromElection": -45,
+    "offices": [
+      "REC"
+    ],
+    "event": "Deadline for active early voters to notify county that an early ballot not be sent for August 4, 2026 election",
+    "statutes": [
+      "16-544(F)"
+    ],
+    "weekendNote": "Saturday. Moves to next business day.",
+    "epmPage": 312
+  },
+  {
+    "date": "2026-06-20",
+    "election": "AUG_EV",
+    "daysFromElection": -45,
+    "offices": [
+      "REC"
+    ],
+    "event": "UOCAVA deadline for August 4, 2026 election.",
+    "statutes": [
+      "16-543(A)",
+      "MOVE Act"
+    ],
+    "weekendNote": "Saturday.",
+    "epmPage": 312
+  },
+  {
+    "date": "2026-06-22",
+    "election": "AUG_EV",
+    "daysFromElection": -43,
+    "offices": [
+      "ELEC"
+    ],
+    "event": "Last day to accept suggestions from county party chairmen on changes to sample ballot due to error or omission.",
+    "statutes": [
+      "16-461(B)"
+    ],
+    "weekendNote": null,
+    "epmPage": 312
+  },
+  {
+    "date": "2026-06-25",
+    "election": "AUG_EV",
+    "daysFromElection": -40,
+    "offices": [
+      "BOS",
+      "ELEC"
+    ],
+    "event": "Deadline to print sample ballots.",
+    "statutes": [
+      "16-461(B)",
+      "16-461(C)"
+    ],
+    "weekendNote": null,
+    "epmPage": 312
+  },
+  {
+    "date": "2026-07-01",
+    "election": "AUG_EV",
+    "daysFromElection": -34,
+    "offices": [
+      "SOS",
+      "BOS"
+    ],
+    "event": "Deadline to begin Logic and Accuracy Tests before early voting for the August 4, 2026 Primary Election for accessible voting system units (7 days prior to early voting). Notify public 48 hours in advance.",
+    "statutes": [
+      "16-449",
+      "Procedures Manual"
+    ],
+    "weekendNote": null,
+    "epmPage": 312
+  },
+  {
+    "date": "2026-07-02",
+    "election": "AUG_EV",
+    "daysFromElection": -33,
+    "offices": [
+      "BOS"
+    ],
+    "event": "Print early ballots and deliver to County Recorder.",
+    "statutes": [
+      "16-503",
+      "16-545(B)(1)"
+    ],
+    "weekendNote": null,
+    "epmPage": 312
+  },
+  {
+    "date": "2026-07-02",
+    "election": "AUG_EV",
+    "daysFromElection": -33,
+    "offices": [
+      "REC"
+    ],
+    "event": "Recommended deadline to appoint Special Election Boards.",
+    "statutes": [
+      "16-549(A)"
+    ],
+    "weekendNote": null,
+    "epmPage": 312
+  },
+  {
+    "date": "2026-07-02",
+    "election": "NOV_EV",
+    "daysFromElection": -124,
+    "offices": [
+      "SOS"
+    ],
+    "event": "Deadline for filing statewide initiative petitions with the Secretary of State.",
+    "statutes": [
+      "Const. Art. IV, Pt. 1 § 1(4)"
+    ],
+    "weekendNote": null,
+    "epmPage": 312
+  },
+  {
+    "date": "2026-07-03",
+    "election": "AUG_EV",
+    "daysFromElection": -32,
+    "offices": [
+      "BOS"
+    ],
+    "event": "Designate locations for Central Counting Place Boards, Precinct Boards, Early Boards, Data Processing Boards and Receiving Site Boards.",
+    "statutes": [
+      "Procedures Manual"
+    ],
+    "weekendNote": "Holiday. Moves to next business day.",
+    "epmPage": 312
+  },
+  {
+    "date": "2026-07-05",
+    "election": "AUG_EV",
+    "daysFromElection": -30,
+    "offices": [
+      "BOS"
+    ],
+    "event": "Recommended date to begin accepting political party election observer lists submitted by county party chairman for Primary Election.",
+    "statutes": [
+      "16-590(A)"
+    ],
+    "weekendNote": "Sunday. Moves to next business day.",
+    "epmPage": 312
+  },
+  {
+    "date": "2026-07-05",
+    "election": "AUG_EV",
+    "daysFromElection": -30,
+    "offices": [
+      "SOS"
+    ],
+    "event": "Deadline for SOS to appoint 7 persons to Vote Count Verification Committee.",
+    "statutes": [
+      "16-602(K)(1)"
+    ],
+    "weekendNote": "Sunday. Moves to next business day.",
+    "epmPage": 312
+  },
+  {
+    "date": "2026-07-06",
+    "election": "AUG_EV",
+    "daysFromElection": -29,
+    "offices": [
+      "SOS",
+      "REC"
+    ],
+    "event": "Begin compiling county-provided Primary Election Voter Registration Report.",
+    "statutes": [
+      "16-168(G)(1)(c)"
+    ],
+    "weekendNote": null,
+    "epmPage": 312
+  },
+  {
+    "date": "2026-07-06",
+    "election": "AUG_EV",
+    "daysFromElection": -29,
+    "offices": [
+      "BOS"
+    ],
+    "event": "Recommended deadline for designating locations for Receiving Sites, Central Counting Place, Computer Center and Early Processing Center.",
+    "statutes": [
+      "16-551"
+    ],
+    "weekendNote": null,
+    "epmPage": 312
+  },
+  {
+    "date": "2026-07-06",
+    "election": "AUG_EV",
+    "daysFromElection": -29,
+    "offices": [
+      "REC"
+    ],
+    "event": "Last day register to vote for August 4, 2026 Election (11:59 p.m.).",
+    "statutes": [
+      "16-120(A)"
+    ],
+    "weekendNote": null,
+    "epmPage": 312
+  },
+  {
+    "date": "2026-07-06",
+    "election": "NOV_EV",
+    "daysFromElection": -120,
+    "offices": [
+      "ELEC"
+    ],
+    "event": "Deadline for accepting Nonpartisan Candidate Nomination Petitions and Papers for General Election (Applicable County and Local Jurisdictions).",
+    "statutes": [
+      "16-311(B)",
+      "16-204"
+    ],
+    "weekendNote": null,
+    "epmPage": 312
+  },
+  {
+    "date": "2026-07-08",
+    "election": "AUG_EV",
+    "daysFromElection": -27,
+    "offices": [
+      "ELEC"
+    ],
+    "event": "Tallying of early ballots for August 4, 2026 election may begin.",
+    "statutes": [
+      "16-550(B)",
+      "16-552"
+    ],
+    "weekendNote": null,
+    "epmPage": 312
+  },
+  {
+    "date": "2026-07-08",
+    "election": "AUG_EV",
+    "daysFromElection": -27,
+    "offices": [
+      "REC"
+    ],
+    "event": "Mail Early Ballots for August 4, 2026 election to voters on active early voting list and voters who have requested a one-time ballot-by-mail.",
+    "statutes": [
+      "16-544(F)",
+      "16-542(C)"
+    ],
+    "weekendNote": null,
+    "epmPage": 313
+  },
+  {
+    "date": "2026-07-08",
+    "election": "AUG_EV",
+    "daysFromElection": -27,
+    "offices": [
+      "REC"
+    ],
+    "event": "Early Voting begins for August 4, 2026 election.",
+    "statutes": [
+      "16-542(C)"
+    ],
+    "weekendNote": null,
+    "epmPage": 313
+  },
+  {
+    "date": "2026-07-09",
+    "election": "AUG_EV",
+    "daysFromElection": -26,
+    "offices": [
+      "REC",
+      "SOS"
+    ],
+    "event": "Begin providing to recognized political parties, daily,a list of voters whose signatures are missing, or inconsistent thru the end of conditional provisional ballot cure deadline.",
+    "statutes": [
+      "16-550(A)"
+    ],
+    "weekendNote": null,
+    "epmPage": 313
+  },
+  {
+    "date": "2026-07-14",
+    "election": "AUG_EV",
+    "daysFromElection": -21,
+    "offices": [
+      "REC"
+    ],
+    "event": "Deadline to deliver complete copies of precinct registers to county and state party chairmen. 8 days after registration deadline.",
+    "statutes": [
+      "16-168(C)"
+    ],
+    "weekendNote": null,
+    "epmPage": 313
+  },
+  {
+    "date": "2026-07-15",
+    "election": "AUG_EV",
+    "daysFromElection": -20,
+    "offices": [
+      "BOS"
+    ],
+    "event": "Designate polling places including emergency voting and dropbox locations (except for special district and mail ballot elections).",
+    "statutes": [
+      "16-411(B)"
+    ],
+    "weekendNote": null,
+    "epmPage": 313
+  },
+  {
+    "date": "2026-07-15",
+    "election": "AUG_EV",
+    "daysFromElection": -20,
+    "offices": [
+      "BOS",
+      "ELEC"
+    ],
+    "event": "Deadline to appoint all Election Boards by BOS.",
+    "statutes": [
+      "16-531(A)",
+      "16-535",
+      "16-551"
+    ],
+    "weekendNote": null,
+    "epmPage": 313
+  },
+  {
+    "date": "2026-07-16",
+    "election": "AUG_EV",
+    "daysFromElection": -19,
+    "offices": [
+      "BOS",
+      "ELEC"
+    ],
+    "event": "Recommended deadline to outline polling place support plan.",
+    "statutes": [
+      "Procedures Manual"
+    ],
+    "weekendNote": null,
+    "epmPage": 313
+  },
+  {
+    "date": "2026-07-18",
+    "election": "AUG_EV",
+    "daysFromElection": -17,
+    "offices": [
+      "ELEC",
+      "SOS"
+    ],
+    "event": "File Computer Program and Voting Equipment Certification for August 4, 2026 election with Secretary of State.",
+    "statutes": [
+      "16-445(A)",
+      "Procedures Manual"
+    ],
+    "weekendNote": "Saturday. Moves to next business day.",
+    "epmPage": 313
+  },
+  {
+    "date": "2026-07-20",
+    "election": "NOV_EV",
+    "daysFromElection": null,
+    "offices": [
+      "ELEC"
+    ],
+    "event": "Deadline for filing challenges to Candidate Nonpartisan Nomination Petitions for the November 3, 2026 General Election. 10 business days.",
+    "statutes": [
+      "16-351(A)"
+    ],
+    "weekendNote": null,
+    "epmPage": 313
+  },
+  {
+    "date": "2026-07-21",
+    "election": "AUG_EV",
+    "daysFromElection": -14,
+    "offices": [
+      "BOS",
+      "ELEC"
+    ],
+    "event": "Mail notice to county party chairmen as to time and place when voting devices can be inspected.",
+    "statutes": [
+      "16-447(B)"
+    ],
+    "weekendNote": null,
+    "epmPage": 313
+  },
+  {
+    "date": "2026-07-21",
+    "election": "NOV_EV",
+    "daysFromElection": -105,
+    "offices": [
+      "BOS",
+      "ELEC"
+    ],
+    "event": "Earliest day Board of Supervisors may cancel election for certain offices held under Title 15, Title 48, or 16-822 based on number of candidates who have filed Nomination Paper and appoint those candidates to the office.",
+    "statutes": [
+      "16-410(A)"
+    ],
+    "weekendNote": null,
+    "epmPage": 313
+  },
+  {
+    "date": "2026-07-21",
+    "election": "AUG_EV",
+    "daysFromElection": -14,
+    "offices": [
+      "ELEC"
+    ],
+    "event": "Deadline for political parties to provide names of persons intending to participate in hand count by 5:00 p.m.",
+    "statutes": [
+      "16-602(B)(7)"
+    ],
+    "weekendNote": null,
+    "epmPage": 313
+  },
+  {
+    "date": "2026-07-22",
+    "election": "AUG_EV",
+    "daysFromElection": -13,
+    "offices": [
+      "ELEC"
+    ],
+    "event": "Deadline for officer in charge of elections to notify political parties of shortage in number of persons intending to participate in hand count by 9:00 a.m.",
+    "statutes": [
+      "16-602(B)(7)(c)"
+    ],
+    "weekendNote": null,
+    "epmPage": 313
+  },
+  {
+    "date": "2026-07-23",
+    "election": "AUG_EV",
+    "daysFromElection": -12,
+    "offices": [
+      "ELEC"
+    ],
+    "event": "Deadline for political parties to provide sufficient number of additional persons to cover hand count board shortages by 9:00 a.m.",
+    "statutes": [
+      "16-602(B)(7)"
+    ],
+    "weekendNote": null,
+    "epmPage": 313
+  },
+  {
+    "date": "2026-07-24",
+    "election": "AUG_EV",
+    "daysFromElection": -11,
+    "offices": [
+      "REC"
+    ],
+    "event": "Deadline for accepting requests for assistance by Special Election Board due to \"continuing\" illness at 5:00 p.m.",
+    "statutes": [
+      "16-549(C)"
+    ],
+    "weekendNote": null,
+    "epmPage": 313
+  },
+  {
+    "date": "2026-07-24",
+    "election": "AUG_EV",
+    "daysFromElection": -11,
+    "offices": [
+      "BOS",
+      "ELEC"
+    ],
+    "event": "Deadline to mail sample ballots.",
+    "statutes": [
+      "16-510(C)"
+    ],
+    "weekendNote": null,
+    "epmPage": 313
+  },
+  {
+    "date": "2026-07-24",
+    "election": "AUG_EV",
+    "daysFromElection": -11,
+    "offices": [
+      "REC"
+    ],
+    "event": "Begin accepting requests for assistance by Special Election Board due to \"unanticipated\" illness or disability.",
+    "statutes": [
+      "16-549(D)"
+    ],
+    "weekendNote": null,
+    "epmPage": 313
+  },
+  {
+    "date": "2026-07-24",
+    "election": "AUG_EV",
+    "daysFromElection": -11,
+    "offices": [
+      "REC"
+    ],
+    "event": "Deadline to request Ballot by mail for August 4, 2026 election.",
+    "statutes": [
+      "16-542(E)"
+    ],
+    "weekendNote": null,
+    "epmPage": 314
+  },
+  {
+    "date": "2026-07-25",
+    "election": "AUG_EV",
+    "daysFromElection": -10,
+    "offices": [
+      "REC"
+    ],
+    "event": "Prepare official precinct registers.",
+    "statutes": [
+      "16-168(A)"
+    ],
+    "weekendNote": "Saturday. Moves to next business day.",
+    "epmPage": 314
+  },
+  {
+    "date": "2026-07-25",
+    "election": "AUG_EV",
+    "daysFromElection": -10,
+    "offices": [
+      "REC"
+    ],
+    "event": "Recommended date to provide inactive voter list to each precinct on or before Election Day.",
+    "statutes": [
+      "16-583(A)"
+    ],
+    "weekendNote": "Saturday. Moves to next business day.",
+    "epmPage": 314
+  },
+  {
+    "date": "2026-07-25",
+    "election": "AUG_EV",
+    "daysFromElection": -10,
+    "offices": [
+      "SOS"
+    ],
+    "event": "Deadline for the Vote Count Verification Committee to meet and consider revision of the designated margins to be used in the hand count audit, which will be simultaneously posted to the Secretary of State’s website.",
+    "statutes": [
+      "16-602(K)(4)"
+    ],
+    "weekendNote": "Saturday. Moves to next business day.",
+    "epmPage": 314
+  },
+  {
+    "date": "2026-07-27",
+    "election": "AUG_EV",
+    "daysFromElection": -8,
+    "offices": [
+      "BOS",
+      "ELEC"
+    ],
+    "event": "Deadline to complete tabulation contingency plans.",
+    "statutes": [
+      "Procedures Manual"
+    ],
+    "weekendNote": null,
+    "epmPage": 314
+  },
+  {
+    "date": "2026-07-27",
+    "election": "AUG_EV",
+    "daysFromElection": -8,
+    "offices": [
+      "ELEC"
+    ],
+    "event": "Deadline to send list of hand count members to state chairs of recognized political parties and the county party chair.",
+    "statutes": [
+      "16-602(B)(7)"
+    ],
+    "weekendNote": null,
+    "epmPage": 314
+  },
+  {
+    "date": "2026-07-30",
+    "election": "AUG_EV",
+    "daysFromElection": -5,
+    "offices": [
+      "ELEC"
+    ],
+    "event": "Deadline to cancel hand count if political parties have not provided a sufficient amount of workers by 5:00 p.m.",
+    "statutes": [
+      "16-602(B)(7)"
+    ],
+    "weekendNote": null,
+    "epmPage": 314
+  },
+  {
+    "date": "2026-07-30",
+    "election": "NOV_EV",
+    "daysFromElection": null,
+    "offices": [
+      "SOS"
+    ],
+    "event": "Deadline for Secretary of State to remove ineligible initiative petition sheets and signatures and transmit random sample to County Recorders. Filing date +20 business days (date may vary for early filings).",
+    "statutes": [
+      "19-121.01(A)",
+      "19-121.01(B)",
+      "19-121.01(D)"
+    ],
+    "weekendNote": null,
+    "epmPage": 314
+  },
+  {
+    "date": "2026-07-31",
+    "election": "AUG_EV",
+    "daysFromElection": -4,
+    "offices": [
+      "REC"
+    ],
+    "event": "Deadline for \"overseas\" voter as defined in UOCAVA who was recently discharged or separated from employment to register to vote for the Primary Election at 5:00 p.m.",
+    "statutes": [
+      "16-103(D)"
+    ],
+    "weekendNote": null,
+    "epmPage": 314
+  },
+  {
+    "date": "2026-07-31",
+    "election": "AUG_EV",
+    "daysFromElection": -4,
+    "offices": [
+      "REC",
+      "BOS"
+    ],
+    "event": "Begin emergency early voting in a manner prescribed by the BOS; available to electors who experience an emergency between 7:00 p.m. on July 31, 2026 and 5:00 p.m. on August 3, 2026 that would prevent them from voting at the polls.",
+    "statutes": [
+      "16-542(H)"
+    ],
+    "weekendNote": null,
+    "epmPage": 314
+  },
+  {
+    "date": "2026-07-31",
+    "election": "AUG_EV",
+    "daysFromElection": -4,
+    "offices": [
+      "REC"
+    ],
+    "event": "Deadline to vote early in person for August 4, 2026 election.",
+    "statutes": [
+      "16-542(E)"
+    ],
+    "weekendNote": null,
+    "epmPage": 314
+  },
+  {
+    "date": "2026-08-02",
+    "election": "AUG_EV",
+    "daysFromElection": -2,
+    "offices": [
+      "BOS",
+      "ELEC"
+    ],
+    "event": "If BOS fails to designate polling places, the Justice of the Peace may designate polling places.",
+    "statutes": [
+      "16-411(C)"
+    ],
+    "weekendNote": "Sunday. Moves to next business day.",
+    "epmPage": 314
+  },
+  {
+    "date": "2026-08-02",
+    "election": "AUG_EV",
+    "daysFromElection": -2,
+    "offices": [
+      "BOS",
+      "ELEC"
+    ],
+    "event": "Deliver ballots to Inspector.",
+    "statutes": [
+      "16-509"
+    ],
+    "weekendNote": "Sunday. Moves Inspector next business day.",
+    "epmPage": 314
+  },
+  {
+    "date": "2026-08-02",
+    "election": "NOV_EV",
+    "daysFromElection": -93,
+    "offices": [
+      "REC"
+    ],
+    "event": "Begin accepting ballot-by-mail requests for November 3, 2026 election (UOCAVA voters and protected voters under 16-153 can request ballots before this date.)",
+    "statutes": [
+      "16-542(A)(B)",
+      "16-153"
+    ],
+    "weekendNote": "Sunday.",
+    "epmPage": 314
+  },
+  {
+    "date": "2026-08-02",
+    "election": "NOV_EV",
+    "daysFromElection": -93,
+    "offices": [
+      "REC"
+    ],
+    "event": "Begin accepting requests for assistance by Special Election Board due to \"continuing\" illness.",
+    "statutes": [
+      "16-549"
+    ],
+    "weekendNote": "Sunday.",
+    "epmPage": 314
+  },
+  {
+    "date": "2026-08-03",
+    "election": "AUG_EV",
+    "daysFromElection": -1,
+    "offices": [
+      "BOS",
+      "ELEC"
+    ],
+    "event": "Recommended deadline to complete instruction classes for Precinct Boards, Receiving and Central Counting Place Boards and Data Processing Boards.",
+    "statutes": [
+      "16-532"
+    ],
+    "weekendNote": null,
+    "epmPage": 315
+  },
+  {
+    "date": "2026-08-03",
+    "election": "AUG_EV",
+    "daysFromElection": -1,
+    "offices": [
+      "BOS"
+    ],
+    "event": "Recommended deadline to deliver polling place supplies.",
+    "statutes": [
+      "16-404",
+      "16-405",
+      "16-447",
+      "16-511"
+    ],
+    "weekendNote": null,
+    "epmPage": 315
+  },
+  {
+    "date": "2026-08-03",
+    "election": "AUG_EV",
+    "daysFromElection": -1,
+    "offices": [
+      "REC"
+    ],
+    "event": "Deadline for Accepting Requests for Assistance by Special Election Board due to \"unanticipated\" Illness or Disability.",
+    "statutes": [
+      "16-549(D)"
+    ],
+    "weekendNote": null,
+    "epmPage": 315
+  },
+  {
+    "date": "2026-08-03",
+    "election": "AUG_EV",
+    "daysFromElection": -1,
+    "offices": [
+      "REC",
+      "ELEC"
+    ],
+    "event": "Deliver list of all electors who were issued early ballots to Precinct Inspectors.",
+    "statutes": [
+      "16-542(G)"
+    ],
+    "weekendNote": null,
+    "epmPage": 315
+  },
+  {
+    "date": "2026-08-03",
+    "election": "AUG_EV",
+    "daysFromElection": -1,
+    "offices": [
+      "BOS",
+      "ELEC"
+    ],
+    "event": "Recommended deadline to deliver list of qualified write-in candidates to Inspector to be posted in polling place on Election Day.",
+    "statutes": [
+      "16-312(E)"
+    ],
+    "weekendNote": null,
+    "epmPage": 315
+  },
+  {
+    "date": "2026-08-04",
+    "election": "AUG_EV",
+    "daysFromElection": 0,
+    "offices": [
+      "REC",
+      "ELEC"
+    ],
+    "event": "Continue delivery of early ballots to Early Boards for processing until 7:00 p.m.",
+    "statutes": [
+      "16-551(C)"
+    ],
+    "weekendNote": null,
+    "epmPage": 315
+  },
+  {
+    "date": "2026-08-04",
+    "election": "AUG_EV",
+    "daysFromElection": 0,
+    "offices": [],
+    "event": "August Even Year Primary Election",
+    "statutes": [
+      "16-204",
+      "16-201"
+    ],
+    "weekendNote": null,
+    "epmPage": 315
+  },
+  {
+    "date": "2026-08-04",
+    "election": "AUG_EV",
+    "daysFromElection": 0,
+    "offices": [
+      "REC"
+    ],
+    "event": "Deadline for UOCAVA voters temporarily absent from the state to register to vote for August 4, 2026 Primary Election at 7:00 p.m.",
+    "statutes": [
+      "16-103(C)"
+    ],
+    "weekendNote": null,
+    "epmPage": 315
+  },
+  {
+    "date": "2026-08-05",
+    "election": "AUG_EV",
+    "daysFromElection": 1,
+    "offices": [
+      "ELEC"
+    ],
+    "event": "Political Party Hand count audit begins within 24 hours of the closing of the polls for early and polling place ballots. Deliver results to SOS within 48 hours.",
+    "statutes": [
+      "16-602(I)",
+      "Procedures Manual"
+    ],
+    "weekendNote": null,
+    "epmPage": 315
+  },
+  {
+    "date": "2026-08-05",
+    "election": "NOV_EV",
+    "daysFromElection": -90,
+    "offices": [
+      "BOS"
+    ],
+    "event": "Accept lists submitted by party chairmen of Election Board nominees for November 3, 2026 General Election.",
+    "statutes": [
+      "16-531(A)"
+    ],
+    "weekendNote": null,
+    "epmPage": 315
+  },
+  {
+    "date": "2026-08-05",
+    "election": "NOV_EV",
+    "daysFromElection": -90,
+    "offices": [
+      "SOS",
+      "BOS"
+    ],
+    "event": "Begin accepting retention paperwork for judicial officers of Supreme and Appellate courts (SOS) and Superior Court (CLK).",
+    "statutes": [
+      "Const. Art. VI, § 38(A)(B)"
+    ],
+    "weekendNote": null,
+    "epmPage": 315
+  },
+  {
+    "date": "2026-08-09",
+    "election": "AUG_EV",
+    "daysFromElection": 5,
+    "offices": [
+      "REC"
+    ],
+    "event": "Last day for identification verification for Conditional Provisional Ballots.",
+    "statutes": [
+      "16-579(A)(2)",
+      "16-550(A)",
+      "Procedures Manual"
+    ],
+    "weekendNote": "Sunday.",
+    "epmPage": 315
+  },
+  {
+    "date": "2026-08-09",
+    "election": "AUG_EV",
+    "daysFromElection": 5,
+    "offices": [
+      "REC"
+    ],
+    "event": "Last day for signature cure of early ballots.",
+    "statutes": [
+      "16-579(A)(2)",
+      "16-550(A)",
+      "Procedures Manual"
+    ],
+    "weekendNote": "Sunday.",
+    "epmPage": 315
+  },
+  {
+    "date": "2026-08-10",
+    "election": "AUG_EV",
+    "daysFromElection": 6,
+    "offices": [
+      "BOS",
+      "ELEC"
+    ],
+    "event": "First day to canvass returns for August 4, 2026 Primary Election, and issue Letters of Nomination and Certificates of Election.",
+    "statutes": [
+      "16-642(A)(3)",
+      "16-645(A)"
+    ],
+    "weekendNote": null,
+    "epmPage": 315
+  },
+  {
+    "date": "2026-08-10",
+    "election": "AUG_EV",
+    "daysFromElection": 6,
+    "offices": [
+      "BOS",
+      "ELEC"
+    ],
+    "event": "Deadline to hear early ballot challenges (by 5:00 p.m.).",
+    "statutes": [
+      "16-552(E)"
+    ],
+    "weekendNote": null,
+    "epmPage": 315
+  },
+  {
+    "date": "2026-08-11",
+    "election": "MAR_NEXT",
+    "daysFromElection": -210,
+    "offices": [
+      "BOS",
+      "ELEC"
+    ],
+    "event": "Deadline for 210 day notice by Board of Supervisors for March 9, 2027.",
+    "statutes": [
+      "16-205(A)"
+    ],
+    "weekendNote": null,
+    "epmPage": 315
+  },
+  {
+    "date": "2026-08-11",
+    "election": "AUG_EV",
+    "daysFromElection": 10,
+    "offices": [
+      "REC"
+    ],
+    "event": "Deadline to process provisional ballots from the August 4, 2026 Primary Election. 5 business days.",
+    "statutes": [
+      "16-135(D)",
+      "16-584(E)"
+    ],
+    "weekendNote": null,
+    "epmPage": 315
+  },
+  {
+    "date": "2026-08-17",
+    "election": "AUG_EV",
+    "daysFromElection": 13,
+    "offices": [
+      "BOS"
+    ],
+    "event": "Last day for County BOS to canvass returns for August 4, 2026 Primary Election, and issue Letters of Nomination and Certificates of Election.",
+    "statutes": [
+      "16-642(A)",
+      "16-645(A)(B)"
+    ],
+    "weekendNote": null,
+    "epmPage": 315
+  },
+  {
+    "date": "2026-08-20",
+    "election": "AUG_EV",
+    "daysFromElection": 16,
+    "offices": [
+      "SOS"
+    ],
+    "event": "Deadline for the OFFICIAL CANVASS OF THE AUGUST 4, 2026 PRIMARY ELECTION: Canvass returns for all Federal, Statewide, and Legislative Offices.",
+    "statutes": [
+      "16-645(B)"
+    ],
+    "weekendNote": null,
+    "epmPage": 316
+  },
+  {
+    "date": "2026-08-20",
+    "election": "AUG_EV",
+    "daysFromElection": 16,
+    "offices": [
+      "SOS"
+    ],
+    "event": "Issue Letters of Nomination to all prevailing Federal, Statewide, and Legislative Candidates who filed Nomination Papers with the Secretary of State.",
+    "statutes": [
+      "16-645(B)"
+    ],
+    "weekendNote": null,
+    "epmPage": 316
+  },
+  {
+    "date": "2026-08-20",
+    "election": "NOV_EV",
+    "daysFromElection": null,
+    "offices": [
+      "REC"
+    ],
+    "event": "Deadline for County Recorders to verify initiative petition signatures and provide certified results to the Secretary of State. Receipt of Random Sample +15 Business Days (date may vary for early filings).",
+    "statutes": [
+      "19-121.02"
+    ],
+    "weekendNote": null,
+    "epmPage": 316
+  },
+  {
+    "date": "2026-08-25",
+    "election": "AUG_EV",
+    "daysFromElection": 21,
+    "offices": [],
+    "event": "Deadline to file a state election contest for Primary Election. 5 Days after State Canvass.",
+    "statutes": [
+      "16-673(A)"
+    ],
+    "weekendNote": null,
+    "epmPage": 316
+  },
+  {
+    "date": "2026-08-27",
+    "election": "NOV_EV",
+    "daysFromElection": null,
+    "offices": [
+      "SOS"
+    ],
+    "event": "Deadline for Secretary of State to determine initiative petition results of random sample, issue receipt to sponsor committee, and notify Governor. 72 hours (business days only) after receipt of certification from County Recorders (date may vary for early filings).",
+    "statutes": [
+      "19-121.04"
+    ],
+    "weekendNote": null,
+    "epmPage": 316
+  },
+  {
+    "date": "2026-09-04",
+    "election": "NOV_EV",
+    "daysFromElection": -60,
+    "offices": [
+      "REC"
+    ],
+    "event": "Accept list of nominees for Special Election Boards from the county party chairmen and begin appointing Special Election Boards for November 5, 2024 General Election.",
+    "statutes": [
+      "16-549(A)"
+    ],
+    "weekendNote": null,
+    "epmPage": 316
+  },
+  {
+    "date": "2026-09-04",
+    "election": "NOV_EV",
+    "daysFromElection": -60,
+    "offices": [
+      "SOS",
+      "ELEC"
+    ],
+    "event": "Deadline for Gubernatorial candidates who filed nomination paper to submit the name of the person who will be the joint candidate for lieutenant governor and appear on the general election ballot jointly.",
+    "statutes": [
+      "16-341(L)"
+    ],
+    "weekendNote": null,
+    "epmPage": 316
+  },
+  {
+    "date": "2026-09-04",
+    "election": "NOV_EV",
+    "daysFromElection": -60,
+    "offices": [
+      "SOS",
+      "ELEC"
+    ],
+    "event": "Deadline to accept retention paperwork for judicial officers of Supreme and Appellate courts (SOS) and Superior Court (CLK).",
+    "statutes": [
+      "Const. Art. VI § 38(A)"
+    ],
+    "weekendNote": null,
+    "epmPage": 316
+  },
+  {
+    "date": "2026-09-04",
+    "election": "NOV_EV",
+    "daysFromElection": -60,
+    "offices": [
+      "SOS",
+      "ELEC"
+    ],
+    "event": "Deadline for Write-in Candidate Nomination Papers for General Election at 5:00 p.m.",
+    "statutes": [
+      "16-312(B)"
+    ],
+    "weekendNote": "SB1153",
+    "epmPage": 316
+  },
+  {
+    "date": "2026-09-05",
+    "election": "NOV_EV",
+    "daysFromElection": -59,
+    "offices": [
+      "SOS",
+      "ELEC"
+    ],
+    "event": "Recommended date to deliver notice to counties of Write-in Candidates filing Nomination Papers with Secretary of State.",
+    "statutes": [
+      "16-312(E)"
+    ],
+    "weekendNote": null,
+    "epmPage": 316
+  },
+  {
+    "date": "2026-09-19",
+    "election": "NOV_EV",
+    "daysFromElection": -45,
+    "offices": [
+      "ELEC"
+    ],
+    "event": "Prepare proof of sample ballots and submit to each county party chairman. Mail a copy to each candidate whose name did not appear on the Primary Election ballot.",
+    "statutes": [
+      "16-461(A)"
+    ],
+    "weekendNote": "Saturday. Moves to next business day.",
+    "epmPage": 316
+  },
+  {
+    "date": "2026-09-19",
+    "election": "NOV_EV",
+    "daysFromElection": -45,
+    "offices": [
+      "BOS",
+      "ELEC"
+    ],
+    "event": "Deadline to begin instruction classes for Precinct Election Boards.",
+    "statutes": [
+      "16-532"
+    ],
+    "weekendNote": "Saturday.",
+    "epmPage": 316
+  },
+  {
+    "date": "2026-09-19",
+    "election": "NOV_EV",
+    "daysFromElection": -45,
+    "offices": [
+      "REC"
+    ],
+    "event": "Deadline for active early voters to notify county that an early ballot not be sent for November 3, 2026 election.",
+    "statutes": [
+      "16-544(F)"
+    ],
+    "weekendNote": "Saturday. Moves to next business day.",
+    "epmPage": 316
+  },
+  {
+    "date": "2026-09-19",
+    "election": "NOV_EV",
+    "daysFromElection": -45,
+    "offices": [
+      "REC"
+    ],
+    "event": "UOCAVA deadline for November 3, 2026 election.",
+    "statutes": [
+      "16-543(A)",
+      "MOVE Act"
+    ],
+    "weekendNote": "Saturday.",
+    "epmPage": 316
+  },
+  {
+    "date": "2026-09-21",
+    "election": "NOV_EV",
+    "daysFromElection": -43,
+    "offices": [
+      "BOS",
+      "ELEC"
+    ],
+    "event": "Last day to accept suggestions from county party chairmen on changes to sample ballot due to error or omission.",
+    "statutes": [
+      "16-461(B)"
+    ],
+    "weekendNote": null,
+    "epmPage": 316
+  },
+  {
+    "date": "2026-09-30",
+    "election": "NOV_EV",
+    "daysFromElection": -34,
+    "offices": [
+      "SOS",
+      "BOS"
+    ],
+    "event": "Deadline to begin Logic and Accuracy Tests before early voting for the November 3, 2026 General Election for accessible voting system units (7 days prior to early voting). Notify public 48 hours in advance.",
+    "statutes": [
+      "16-449",
+      "Procedures Manual"
+    ],
+    "weekendNote": null,
+    "epmPage": 317
+  },
+  {
+    "date": "2026-10-01",
+    "election": "NOV_EV",
+    "daysFromElection": -33,
+    "offices": [
+      "BOS"
+    ],
+    "event": "Print early ballots and deliver to County Recorders.",
+    "statutes": [
+      "16-503",
+      "16-545(B)(1)"
+    ],
+    "weekendNote": null,
+    "epmPage": 317
+  },
+  {
+    "date": "2026-10-02",
+    "election": "NOV_EV",
+    "daysFromElection": -32,
+    "offices": [
+      "BOS"
+    ],
+    "event": "Recommended date to begin accepting political party election observer lists submitted by county party chairmen for November 3, 2026 General Election.",
+    "statutes": [
+      "16-590(A)"
+    ],
+    "weekendNote": null,
+    "epmPage": 317
+  },
+  {
+    "date": "2026-10-04",
+    "election": "NOV_EV",
+    "daysFromElection": -30,
+    "offices": [],
+    "event": "Deadline for Issuance of Proclamation of General Election by Governor.",
+    "statutes": [
+      "16-214"
+    ],
+    "weekendNote": "Sunday. Moves to next business day.",
+    "epmPage": 317
+  },
+  {
+    "date": "2026-10-05",
+    "election": "NOV_EV",
+    "daysFromElection": -29,
+    "offices": [
+      "REC"
+    ],
+    "event": "Last day register to vote for November 3, 2026 election (11:59 p.m.).",
+    "statutes": [
+      "16-120(A)"
+    ],
+    "weekendNote": null,
+    "epmPage": 317
+  },
+  {
+    "date": "2026-10-05",
+    "election": "NOV_EV",
+    "daysFromElection": -29,
+    "offices": [
+      "SOS",
+      "REC"
+    ],
+    "event": "Begin compiling county-provided General Election Voter Registration Report.",
+    "statutes": [
+      "16-168(G)(1)(d)"
+    ],
+    "weekendNote": null,
+    "epmPage": 317
+  },
+  {
+    "date": "2026-10-07",
+    "election": "NOV_EV",
+    "daysFromElection": -27,
+    "offices": [
+      "ELEC"
+    ],
+    "event": "Tallying of early ballots for November 3, 2026 Election may begin.",
+    "statutes": [
+      "16-550(B)",
+      "16-552"
+    ],
+    "weekendNote": null,
+    "epmPage": 317
+  },
+  {
+    "date": "2026-10-07",
+    "election": "NOV_EV",
+    "daysFromElection": -27,
+    "offices": [
+      "REC"
+    ],
+    "event": "Mail Early Ballots for November 3, 2026 election to voters on active early voting list and voters who have requested a one-time ballot-by-mail.",
+    "statutes": [
+      "16-544(F)",
+      "16-542(C)"
+    ],
+    "weekendNote": null,
+    "epmPage": 317
+  },
+  {
+    "date": "2026-10-07",
+    "election": "NOV_EV",
+    "daysFromElection": -27,
+    "offices": [
+      "REC"
+    ],
+    "event": "Early Voting begins for November 3, 2026 election.",
+    "statutes": [
+      "16-542(C)"
+    ],
+    "weekendNote": null,
+    "epmPage": 317
+  },
+  {
+    "date": "2026-10-08",
+    "election": "NOV_EV",
+    "daysFromElection": -26,
+    "offices": [
+      "REC",
+      "SOS"
+    ],
+    "event": "Begin providing to recognized political parties, daily,a list of voters whose signatures are missing, or inconsistent thru the end of conditional provisional ballot cure deadline.",
+    "statutes": [
+      "16-550(A)"
+    ],
+    "weekendNote": null,
+    "epmPage": 317
+  },
+  {
+    "date": "2026-10-13",
+    "election": "NOV_EV",
+    "daysFromElection": -21,
+    "offices": [
+      "REC"
+    ],
+    "event": "Deliver complete copies of precinct registers to county and state party chairmen.",
+    "statutes": [
+      "16-168(C)"
+    ],
+    "weekendNote": null,
+    "epmPage": 317
+  },
+  {
+    "date": "2026-10-14",
+    "election": "NOV_EV",
+    "daysFromElection": -20,
+    "offices": [
+      "BOS"
+    ],
+    "event": "Designate polling places including emergency voting and dropbox locations (except for special district and mail ballot elections).",
+    "statutes": [
+      "16-411(B)"
+    ],
+    "weekendNote": null,
+    "epmPage": 317
+  },
+  {
+    "date": "2026-10-14",
+    "election": "NOV_EV",
+    "daysFromElection": -20,
+    "offices": [
+      "BOS"
+    ],
+    "event": "Deadline to appoint all Election Boards.",
+    "statutes": [
+      "16-531",
+      "16-535",
+      "16-551"
+    ],
+    "weekendNote": null,
+    "epmPage": 317
+  },
+  {
+    "date": "2026-10-15",
+    "election": "NOV_EV",
+    "daysFromElection": -19,
+    "offices": [
+      "BOS"
+    ],
+    "event": "Recommended deadline to outline polling place support plan for General Election Day.",
+    "statutes": [
+      "Procedures Manual"
+    ],
+    "weekendNote": null,
+    "epmPage": 317
+  },
+  {
+    "date": "2026-10-17",
+    "election": "NOV_EV",
+    "daysFromElection": -17,
+    "offices": [
+      "ELEC",
+      "SOS"
+    ],
+    "event": "File Computer Program and Voting Equipment Certification for November 3, 2026 election with Secretary of State.",
+    "statutes": [
+      "16-445(A)",
+      "Procedures Manual"
+    ],
+    "weekendNote": "Saturday. Moves to next business day.",
+    "epmPage": 317
+  },
+  {
+    "date": "2026-10-20",
+    "election": "MAY_NEXT",
+    "daysFromElection": -210,
+    "offices": [
+      "BOS",
+      "ELEC"
+    ],
+    "event": "Deadline for 210 day notice by Board of Supervisors for May 18, 2027 Election.",
+    "statutes": [
+      "16-205"
+    ],
+    "weekendNote": null,
+    "epmPage": 317
+  },
+  {
+    "date": "2026-10-20",
+    "election": "NOV_EV",
+    "daysFromElection": -14,
+    "offices": [
+      "BOS",
+      "ELEC"
+    ],
+    "event": "Mail notice to county party chairmen as to time and place when voting devices can be inspected.",
+    "statutes": [
+      "16-447(B)"
+    ],
+    "weekendNote": null,
+    "epmPage": 317
+  },
+  {
+    "date": "2026-10-20",
+    "election": "NOV_EV",
+    "daysFromElection": -21,
+    "offices": [
+      "ELEC"
+    ],
+    "event": "Deadline for political parties to provide names of persons intending to participate in hand count by 5:00 p.m.",
+    "statutes": [
+      "16-602(B)(7)(b)"
+    ],
+    "weekendNote": null,
+    "epmPage": 317
+  },
+  {
+    "date": "2026-10-21",
+    "election": "NOV_EV",
+    "daysFromElection": -20,
+    "offices": [
+      "ELEC"
+    ],
+    "event": "Deadline for officer in charge of elections to notify political parties of shortage in number of persons intending to participate in hand count by 9:00 a.m.",
+    "statutes": [
+      "16-602(B)(7)(c)"
+    ],
+    "weekendNote": null,
+    "epmPage": 318
+  },
+  {
+    "date": "2026-10-22",
+    "election": "NOV_EV",
+    "daysFromElection": -19,
+    "offices": [
+      "ELEC"
+    ],
+    "event": "Deadline for political parties to provide sufficient number of additional persons to cover hand count board shortages by 9:00 a.m.",
+    "statutes": [
+      "16-602(B)(7)(c)"
+    ],
+    "weekendNote": null,
+    "epmPage": 318
+  },
+  {
+    "date": "2026-10-23",
+    "election": "NOV_EV",
+    "daysFromElection": -11,
+    "offices": [
+      "REC"
+    ],
+    "event": "Begin accepting requests for assistance by Special Election Board due to \"unanticipated\" illness or disability.",
+    "statutes": [
+      "16-549(D)"
+    ],
+    "weekendNote": null,
+    "epmPage": 318
+  },
+  {
+    "date": "2026-10-23",
+    "election": "NOV_EV",
+    "daysFromElection": -11,
+    "offices": [
+      "BOS",
+      "ELEC"
+    ],
+    "event": "Deadline to mail sample ballot to every household that contains a registered voter not on the Active Early Voting List.",
+    "statutes": [
+      "16-510(C)"
+    ],
+    "weekendNote": null,
+    "epmPage": 318
+  },
+  {
+    "date": "2026-10-23",
+    "election": "NOV_EV",
+    "daysFromElection": -11,
+    "offices": [
+      "REC"
+    ],
+    "event": "Deadline for accepting requests for assistance by Special Election Board due to \"continuing\" Illness or disability at 5:00 p.m.",
+    "statutes": [
+      "16-549(C)"
+    ],
+    "weekendNote": null,
+    "epmPage": 318
+  },
+  {
+    "date": "2026-10-23",
+    "election": "NOV_EV",
+    "daysFromElection": -11,
+    "offices": [
+      "REC"
+    ],
+    "event": "Deadline to request Ballot by mail for November 3, 2026 election.",
+    "statutes": [
+      "16-542(E)"
+    ],
+    "weekendNote": null,
+    "epmPage": 318
+  },
+  {
+    "date": "2026-10-23",
+    "election": "NOV_EV",
+    "daysFromElection": -11,
+    "offices": [
+      "REC"
+    ],
+    "event": "Begin accepting requests for assistance by Special Election Board due to \"unanticipated\" illness or disability.",
+    "statutes": [
+      "16-549"
+    ],
+    "weekendNote": null,
+    "epmPage": 318
+  },
+  {
+    "date": "2026-10-24",
+    "election": "NOV_EV",
+    "daysFromElection": -10,
+    "offices": [
+      "SOS"
+    ],
+    "event": "Deadline for the Vote Count Verification Committee to meet and consider revision of the designated margins to be used in the hand count audit, which will be simultaneously posted to the Secretary of State’s website.",
+    "statutes": [
+      "16-602(K)(4)"
+    ],
+    "weekendNote": null,
+    "epmPage": 318
+  },
+  {
+    "date": "2026-10-24",
+    "election": "NOV_EV",
+    "daysFromElection": -10,
+    "offices": [
+      "BOS"
+    ],
+    "event": "Deadline to publish Election Proclamation made by Governor.",
+    "statutes": [
+      "16-214(C)"
+    ],
+    "weekendNote": "Saturday.",
+    "epmPage": 318
+  },
+  {
+    "date": "2026-10-24",
+    "election": "NOV_EV",
+    "daysFromElection": -10,
+    "offices": [
+      "REC"
+    ],
+    "event": "Prepare official precinct registers.",
+    "statutes": [
+      "16-168(A)"
+    ],
+    "weekendNote": "Saturday. Moves to next business day.",
+    "epmPage": 318
+  },
+  {
+    "date": "2026-10-24",
+    "election": "NOV_EV",
+    "daysFromElection": -10,
+    "offices": [
+      "REC"
+    ],
+    "event": "Recommended date to provide inactive voter list to each precinct on or before Election Day.",
+    "statutes": [
+      "16-583(A)"
+    ],
+    "weekendNote": "Saturday. Moves to next business day.",
+    "epmPage": 318
+  },
+  {
+    "date": "2026-10-26",
+    "election": "NOV_EV",
+    "daysFromElection": -8,
+    "offices": [
+      "ELEC"
+    ],
+    "event": "Deadline to send list of hand count members to state chairs of recognized political parties and the county party chair.",
+    "statutes": [
+      "16-602(B)(7)"
+    ],
+    "weekendNote": null,
+    "epmPage": 318
+  },
+  {
+    "date": "2026-10-26",
+    "election": "NOV_EV",
+    "daysFromElection": -8,
+    "offices": [
+      "BOS",
+      "ELEC"
+    ],
+    "event": "Deadline to complete tabulation contingency plans.",
+    "statutes": [
+      "Procedures Manual"
+    ],
+    "weekendNote": null,
+    "epmPage": 318
+  },
+  {
+    "date": "2026-10-29",
+    "election": "NOV_EV",
+    "daysFromElection": -5,
+    "offices": [
+      "ELEC"
+    ],
+    "event": "Deadline to cancel hand count if political parties have not provided a sufficient amount of workers by 5:00 p.m.",
+    "statutes": [
+      "16-602(B)(7)"
+    ],
+    "weekendNote": null,
+    "epmPage": 318
+  },
+  {
+    "date": "2026-10-30",
+    "election": "NOV_EV",
+    "daysFromElection": -4,
+    "offices": [
+      "REC"
+    ],
+    "event": "Deadline for \"overseas\" voter as defined in UOCAVA who was recently discharged or separated from employment to register to vote for the General Election at 5:00 p.m.",
+    "statutes": [
+      "16-103(D)"
+    ],
+    "weekendNote": null,
+    "epmPage": 318
+  },
+  {
+    "date": "2026-10-30",
+    "election": "NOV_EV",
+    "daysFromElection": -4,
+    "offices": [
+      "REC"
+    ],
+    "event": "Begin emergency early voting in a manner prescribed by the BOS due to an emergency occurring between 7:00 p.m. on Oct. 30, 2026 and 5:00 p.m. on Nov. 2, 2026 that would prevent the elector from voting at the polls.",
+    "statutes": [
+      "16-542(H)"
+    ],
+    "weekendNote": null,
+    "epmPage": 318
+  },
+  {
+    "date": "2026-10-30",
+    "election": "NOV_EV",
+    "daysFromElection": -4,
+    "offices": [
+      "REC"
+    ],
+    "event": "Deadline to vote early in person for November 3, 2026 election.",
+    "statutes": [
+      "16-542(E)"
+    ],
+    "weekendNote": null,
+    "epmPage": 319
+  },
+  {
+    "date": "2026-11-01",
+    "election": "NOV_EV",
+    "daysFromElection": -2,
+    "offices": [
+      "BOS",
+      "ELEC"
+    ],
+    "event": "If BOS fails to designate polling places, the Justice of the Peace may designate polling places.",
+    "statutes": [
+      "16-411(C)"
+    ],
+    "weekendNote": null,
+    "epmPage": 319
+  },
+  {
+    "date": "2026-11-01",
+    "election": "NOV_EV",
+    "daysFromElection": -2,
+    "offices": [
+      "BOS",
+      "ELEC"
+    ],
+    "event": "Deliver ballots to Inspector.",
+    "statutes": [
+      "16-509"
+    ],
+    "weekendNote": null,
+    "epmPage": 319
+  },
+  {
+    "date": "2026-11-02",
+    "election": "NOV_EV",
+    "daysFromElection": -1,
+    "offices": [
+      "BOS",
+      "ELEC"
+    ],
+    "event": "Complete instruction classes for Precinct Boards, Receiving and Central Counting Place Boards and Data Processing Boards.",
+    "statutes": [
+      "16-532"
+    ],
+    "weekendNote": null,
+    "epmPage": 319
+  },
+  {
+    "date": "2026-11-02",
+    "election": "NOV_EV",
+    "daysFromElection": -1,
+    "offices": [
+      "BOS"
+    ],
+    "event": "Deliver polling place supplies.",
+    "statutes": [
+      "16-404",
+      "16-405",
+      "16-447",
+      "16-511"
+    ],
+    "weekendNote": null,
+    "epmPage": 319
+  },
+  {
+    "date": "2026-11-02",
+    "election": "NOV_EV",
+    "daysFromElection": -1,
+    "offices": [
+      "REC"
+    ],
+    "event": "Deadline for accepting requests for assistance by Special Election Board due to \"unanticipated\" illness or disability.",
+    "statutes": [
+      "16-549(D)"
+    ],
+    "weekendNote": null,
+    "epmPage": 319
+  },
+  {
+    "date": "2026-11-02",
+    "election": "NOV_EV",
+    "daysFromElection": -1,
+    "offices": [
+      "REC"
+    ],
+    "event": "Deliver list of all electors who were issued early ballots to Precinct Inspectors.",
+    "statutes": [
+      "16-542(G)"
+    ],
+    "weekendNote": null,
+    "epmPage": 319
+  },
+  {
+    "date": "2026-11-03",
+    "election": "NOV_EV",
+    "daysFromElection": 0,
+    "offices": [],
+    "event": "November Even Year General Election",
+    "statutes": [
+      "16-204",
+      "16-211"
+    ],
+    "weekendNote": null,
+    "epmPage": 319
+  },
+  {
+    "date": "2026-11-03",
+    "election": "NOV_EV",
+    "daysFromElection": 0,
+    "offices": [
+      "REC"
+    ],
+    "event": "Continue delivery of early ballots to Early Boards for processing until 7:00 p.m.",
+    "statutes": [
+      "16-551(C)"
+    ],
+    "weekendNote": null,
+    "epmPage": 319
+  },
+  {
+    "date": "2026-11-03",
+    "election": "NOV_EV",
+    "daysFromElection": 0,
+    "offices": [
+      "REC"
+    ],
+    "event": "Deadline for UOCAVA voters temporarily absent from the state to register to vote for November 3, 2026 General Election at 7:00 p.m.",
+    "statutes": [
+      "16-103(C)"
+    ],
+    "weekendNote": null,
+    "epmPage": 319
+  },
+  {
+    "date": "2026-11-04",
+    "election": "NOV_EV",
+    "daysFromElection": 1,
+    "offices": [
+      "ELEC"
+    ],
+    "event": "Political Party Hand count audit begins within 24 hours of the closing of the polls for early and polling place ballots. Deliver results to SOS within 48 hours.",
+    "statutes": [
+      "16-602(I)",
+      "Procedures Manual"
+    ],
+    "weekendNote": null,
+    "epmPage": 319
+  },
+  {
+    "date": "2026-11-08",
+    "election": "NOV_EV",
+    "daysFromElection": 5,
+    "offices": [
+      "REC"
+    ],
+    "event": "Last day for identification verification for Conditional Provisional Ballots.",
+    "statutes": [
+      "16-579(A)(2)",
+      "16-550(A)",
+      "Procedures Manual"
+    ],
+    "weekendNote": "Sunday.",
+    "epmPage": 319
+  },
+  {
+    "date": "2026-11-08",
+    "election": "NOV_EV",
+    "daysFromElection": 5,
+    "offices": [
+      "REC"
+    ],
+    "event": "Last day for signature cure of early ballots.",
+    "statutes": [
+      "16-579(A)(2)",
+      "16-550(A)",
+      "Procedures Manual"
+    ],
+    "weekendNote": null,
+    "epmPage": 319
+  },
+  {
+    "date": "2026-11-09",
+    "election": "NOV_EV",
+    "daysFromElection": 6,
+    "offices": [
+      "BOS"
+    ],
+    "event": "Deadline to hear early ballot challenges (by 5:00 p.m.).",
+    "statutes": [
+      "16-552(E)"
+    ],
+    "weekendNote": null,
+    "epmPage": 319
+  },
+  {
+    "date": "2026-11-09",
+    "election": "NOV_EV",
+    "daysFromElection": 6,
+    "offices": [
+      "BOS"
+    ],
+    "event": "First day to canvass returns for November 3, 2026 General Election, and issue Certificates of Election for County and Local offices.",
+    "statutes": [
+      "16-642(A)",
+      "16-645(A)"
+    ],
+    "weekendNote": null,
+    "epmPage": 319
+  },
+  {
+    "date": "2026-11-13",
+    "election": "NOV_EV",
+    "daysFromElection": 10,
+    "offices": [
+      "REC"
+    ],
+    "event": "Deadline to process Provisional Ballots from the November 3, 2026 General Election.",
+    "statutes": [
+      "16-135(D)",
+      "16-584(E)"
+    ],
+    "weekendNote": null,
+    "epmPage": 319
+  },
+  {
+    "date": "2026-11-19",
+    "election": "NOV_EV",
+    "daysFromElection": 16,
+    "offices": [
+      "BOS"
+    ],
+    "event": "Last day for County BOS to canvass returns for November 2026 General Election, and issue Certificates of Election for County and Local Offices.",
+    "statutes": [
+      "16-642(A)",
+      "16-645(A)"
+    ],
+    "weekendNote": null,
+    "epmPage": 319
+  },
+  {
+    "date": "2026-11-23",
+    "election": "NOV_EV",
+    "daysFromElection": 20,
+    "offices": [
+      "SOS"
+    ],
+    "event": "First day to issue Certificates of Election to all prevailing Federal, Statewide, and Legislative Candidates who filed Nomination Papers with the Secretary of State.",
+    "statutes": [
+      "Const. Art V § 10",
+      "16-650"
+    ],
+    "weekendNote": null,
+    "epmPage": 319
+  },
+  {
+    "date": "2026-11-23",
+    "election": "NOV_EV",
+    "daysFromElection": 20,
+    "offices": [
+      "SOS",
+      "GOV"
+    ],
+    "event": "Upon completion of Canvass, Governor shall issue Proclamation on Constitutional Amendments and Measures.",
+    "statutes": [
+      "16-651"
+    ],
+    "weekendNote": null,
+    "epmPage": 319
+  },
+  {
+    "date": "2026-11-23",
+    "election": "NOV_EV",
+    "daysFromElection": 20,
+    "offices": [
+      "SOS"
+    ],
+    "event": "Deadline for the Official Canvass of the November 3, 2026 General Election: Canvass returns for all Federal, Statewide, and Legislative Offices, Supreme and Appellate Judicial Officers, and all Statewide Ballot Measures.",
+    "statutes": [
+      "Const. Art V §10",
+      "16-648(A)"
+    ],
+    "weekendNote": null,
+    "epmPage": 320
+  },
+  {
+    "date": "2026-11-28",
+    "election": "NOV_EV",
+    "daysFromElection": 25,
+    "offices": [
+      "SOS"
+    ],
+    "event": "Deadline to file a state election contest for General Election. 5 days after SOS Canvass.",
+    "statutes": [
+      "16-673(A)"
+    ],
+    "weekendNote": "Saturday.",
+    "epmPage": 320
+  },
+  {
+    "date": "2026-12-06",
+    "election": "MAR_NEXT",
+    "daysFromElection": -93,
+    "offices": [
+      "REC"
+    ],
+    "event": "Begin accepting ballot-by-mail requests for March 9, 2027 election (UOCAVA voters and protected voters under 16-153 can request ballots before this date.)",
+    "statutes": [
+      "16-542(A)(B)",
+      "16-153"
+    ],
+    "weekendNote": "Sunday.",
+    "epmPage": 320
+  },
+  {
+    "date": "2026-12-31",
+    "election": null,
+    "daysFromElection": null,
+    "offices": [
+      "SOS"
+    ],
+    "event": "Deadline for SOS to inform legislature about plan for election officer certification and training.",
+    "statutes": [
+      "16-407(D)"
+    ],
+    "weekendNote": null,
+    "epmPage": 320
+  },
+  {
+    "date": "2027-01-02",
+    "election": null,
+    "daysFromElection": null,
+    "offices": [
+      "SOS",
+      "REC"
+    ],
+    "event": "Begin compiling county-provided January 2, 2027 Voter Registration Report.",
+    "statutes": [
+      "16-168(G)(2)(a)"
+    ],
+    "weekendNote": null,
+    "epmPage": 320
+  },
+  {
+    "date": "2027-01-08",
+    "election": "MAR_NEXT",
+    "daysFromElection": -60,
+    "offices": [
+      "ELEC"
+    ],
+    "event": "Deadline for Write-In Candidates to file Nomination Papers (March Local Elections).",
+    "statutes": [
+      "16-312(B)"
+    ],
+    "weekendNote": "SB1153",
+    "epmPage": 320
+  },
+  {
+    "date": "2027-01-23",
+    "election": "MAR_NEXT",
+    "daysFromElection": -45,
+    "offices": [
+      "REC"
+    ],
+    "event": "Deadline for active early voters to notify county that an early ballot not be sent for March 9, 2027 election.",
+    "statutes": [
+      "16-544(F)"
+    ],
+    "weekendNote": "Saturday. Moves to next business day.",
+    "epmPage": 320
+  },
+  {
+    "date": "2027-01-23",
+    "election": "MAR_NEXT",
+    "daysFromElection": -45,
+    "offices": [
+      "REC"
+    ],
+    "event": "UOCAVA deadline for March 9, 2027 election.",
+    "statutes": [
+      "16-543(A)",
+      "MOVE Act"
+    ],
+    "weekendNote": "Saturday.",
+    "epmPage": 320
+  },
+  {
+    "date": "2027-02-03",
+    "election": "MAR_NEXT",
+    "daysFromElection": -34,
+    "offices": [
+      "BOS",
+      "ELEC"
+    ],
+    "event": "Deadline to begin Logic and Accuracy Tests before early voting for the March Election for accessible voting system units (7 days prior to early voting). Notify public 48 hours in advance.",
+    "statutes": [
+      "16-449",
+      "Procedures Manual"
+    ],
+    "weekendNote": null,
+    "epmPage": 320
+  },
+  {
+    "date": "2027-02-08",
+    "election": "MAR_NEXT",
+    "daysFromElection": -29,
+    "offices": [
+      "REC"
+    ],
+    "event": "Last day register to vote for March 9, 2027 election (11:59 p.m.).",
+    "statutes": [
+      "16-120(A)"
+    ],
+    "weekendNote": null,
+    "epmPage": 320
+  },
+  {
+    "date": "2027-02-10",
+    "election": "MAR_NEXT",
+    "daysFromElection": -27,
+    "offices": [
+      "REC"
+    ],
+    "event": "Mail Early Ballots for March 9, 2027 Election to voters on active early voting list and voters who have requested a one-time ballot-by-mail.",
+    "statutes": [
+      "16-544(F)"
+    ],
+    "weekendNote": null,
+    "epmPage": 320
+  },
+  {
+    "date": "2027-02-10",
+    "election": "MAR_NEXT",
+    "daysFromElection": -27,
+    "offices": [
+      "REC"
+    ],
+    "event": "Early Voting begins for March 9, 2027 election.",
+    "statutes": [
+      "16-542(C)"
+    ],
+    "weekendNote": null,
+    "epmPage": 320
+  },
+  {
+    "date": "2027-02-20",
+    "election": "MAR_NEXT",
+    "daysFromElection": -17,
+    "offices": [
+      "ELEC",
+      "SOS"
+    ],
+    "event": "File Computer Program and Voting Equipment Certification for March 9, 2027 election with Secretary of State.",
+    "statutes": [
+      "16-445(A)",
+      "Procedures Manual"
+    ],
+    "weekendNote": null,
+    "epmPage": 320
+  },
+  {
+    "date": "2027-02-23",
+    "election": "MAR_NEXT",
+    "daysFromElection": -14,
+    "offices": [
+      "BOS"
+    ],
+    "event": "Mail notice to county party chairmen as to time and place when voting devices can be inspected.",
+    "statutes": [
+      "16-447(B)"
+    ],
+    "weekendNote": null,
+    "epmPage": 320
+  },
+  {
+    "date": "2027-02-26",
+    "election": "MAR_NEXT",
+    "daysFromElection": -11,
+    "offices": [
+      "REC"
+    ],
+    "event": "Deadline to request Ballot by mail for March 9, 2027 election.",
+    "statutes": [
+      "16-542(E)"
+    ],
+    "weekendNote": null,
+    "epmPage": 320
+  },
+  {
+    "date": "2027-03-05",
+    "election": "MAR_NEXT",
+    "daysFromElection": -4,
+    "offices": [
+      "REC",
+      "ELEC"
+    ],
+    "event": "Deadline to vote early in person for March 9, 2027 election.",
+    "statutes": [
+      "16-542(E)"
+    ],
+    "weekendNote": null,
+    "epmPage": 320
+  },
+  {
+    "date": "2027-03-09",
+    "election": "MAR_NEXT",
+    "daysFromElection": 0,
+    "offices": [],
+    "event": "March Next Odd Year Election",
+    "statutes": [
+      "16-204"
+    ],
+    "weekendNote": null,
+    "epmPage": 320
+  },
+  {
+    "date": "2027-03-12",
+    "election": "MAR_NEXT",
+    "daysFromElection": 3,
+    "offices": [
+      "REC"
+    ],
+    "event": "Last day for identification verification for Conditional Provisional Ballots and curing of early ballot affidavit signatures.",
+    "statutes": [
+      "16-579(A)(2)",
+      "16-550(A)",
+      "Procedures Manual"
+    ],
+    "weekendNote": null,
+    "epmPage": 320
+  },
+  {
+    "date": "2027-03-15",
+    "election": "MAR_NEXT",
+    "daysFromElection": 6,
+    "offices": [
+      "BOS"
+    ],
+    "event": "First day to canvass returns for March 9, 2027 election.",
+    "statutes": [
+      "16-642(A)",
+      "16-645(A)"
+    ],
+    "weekendNote": null,
+    "epmPage": 320
+  },
+  {
+    "date": "2027-03-29",
+    "election": "MAR_NEXT",
+    "daysFromElection": 20,
+    "offices": [
+      "BOS"
+    ],
+    "event": "Last day to canvass returns for March 9, 2027 election.",
+    "statutes": [
+      "16-642(A)",
+      "16-645(A)"
+    ],
+    "weekendNote": null,
+    "epmPage": 320
   }
 ]

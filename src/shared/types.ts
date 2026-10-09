@@ -8,12 +8,13 @@ export interface Citation {
   statute?: string
 }
 
-/** Office codes from the calendar's CAT 1 / CAT 2 columns. */
-export type Office =
-  | 'REC' // County Recorder
-  | 'BOS' // Board of Supervisors
-  | 'ELEC' // Officer in charge of elections
-  | 'SOS' // Secretary of State
+/**
+ * Office codes from the calendar's CAT 1 / CAT 2 columns, in display order: County Recorder,
+ * Board of Supervisors, officer in charge of elections, Secretary of State, Governor.
+ * (scripts/parse_calendar.py keeps its own copy, since it's Python.)
+ */
+export const OFFICES = ['REC', 'BOS', 'ELEC', 'SOS', 'GOV'] as const
+export type Office = (typeof OFFICES)[number]
 
 /** One row of the Chapter 15 election calendar (printed pages 304–320). */
 export interface CalendarEntry {
