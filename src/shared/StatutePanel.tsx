@@ -1,5 +1,6 @@
 import { lazy, Suspense, type CSSProperties } from 'react'
 import { useStatutePanel } from './useStatutePanel'
+import { PanelCloseButton } from './PanelCloseButton'
 
 // Loaded on first open, like the PDF viewer.
 const StatuteViewer = lazy(() => import('./statutes/StatuteViewer'))
@@ -18,9 +19,7 @@ export function StatutePanel({ style }: { style?: CSSProperties }) {
           <div className="statute-viewer">
             <div className="statute-toolbar">
               <span className="statute-heading">Loading the statute…</span>
-              <button type="button" className="pdf-close" onClick={panel.close} aria-label="Close statute panel">
-                ✕<span className="pdf-close-label"> Close</span>
-              </button>
+              <PanelCloseButton onClose={panel.close} label="Close statute panel" />
             </div>
           </div>
         }

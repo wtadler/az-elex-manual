@@ -7,6 +7,7 @@ import { loadStatute, loadStatuteIndex, StatuteNotFound } from './load'
 import { findSubsection, paragraphLevels } from './paragraphs'
 import { azlegUrl, parseStatuteRef } from './ref'
 import type { StatuteDoc, StatuteIndex } from './types'
+import { PanelCloseButton } from '../PanelCloseButton'
 
 type DocResult = { id: string; doc: StatuteDoc } | { id: string; error: 'missing' | 'failed' }
 
@@ -130,9 +131,7 @@ export default function StatuteViewer({ panel }: { panel: StatutePanelApi }) {
           </button>
         )}
         <h2 className="statute-heading">A.R.S. §&nbsp;{id}</h2>
-        <button type="button" className="pdf-close" onClick={panel.close} aria-label="Close statute panel">
-          ✕<span className="pdf-close-label"> Close</span>
-        </button>
+        <PanelCloseButton onClose={panel.close} label="Close statute panel" />
         {title && <p className="statute-title">{title}</p>}
         <a className="statute-azleg" href={url} target="_blank" rel="noreferrer">
           Open on azleg.gov ↗
