@@ -133,6 +133,8 @@ export function PdfPageView({ doc, pageNumber, scale, onGoToPage }: Props) {
     <>
       <div ref={canvasHost} className="pdf-canvas" />
       <div ref={textHost} className="textLayer" />
+      {/* Links aren't draggable, so a drag that starts on one selects the text beneath it. They're out
+          of the tab order because each covers text already shown on the page, and a page can have dozens. */}
       <div className="pdf-links">
         {links.map((l, i) => {
           const style = { left: `${l.box.left}%`, top: `${l.box.top}%`, width: `${l.box.width}%`, height: `${l.box.height}%` }
@@ -144,6 +146,8 @@ export function PdfPageView({ doc, pageNumber, scale, onGoToPage }: Props) {
                 key={i}
                 href={`${PDF_URL}#page=${n}`}
                 style={style}
+                draggable={false}
+                tabIndex={-1}
                 aria-label={`Go to PDF page ${n}`}
                 onOpen={() => onGoToPage(n)}
               />
@@ -154,6 +158,8 @@ export function PdfPageView({ doc, pageNumber, scale, onGoToPage }: Props) {
               key={i}
               href={t.url}
               style={style}
+              draggable={false}
+              tabIndex={-1}
               aria-label={t.kind === 'statute' ? statuteLabel(t.id) : t.url}
               title={t.kind === 'statute' ? statuteLabel(t.id) : t.url}
               onOpen={t.kind === 'statute' && statutes ? () => statutes.openStatute(t.id) : undefined}
