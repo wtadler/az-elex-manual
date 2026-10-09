@@ -139,6 +139,7 @@ describe('StatuteViewer', () => {
     expect(screen.getByRole('link', { name: /Read it on azleg\.gov/ }).getAttribute('href')).toBe(
       'https://www.azleg.gov/ars/16/00100.htm',
     )
+    expect(screen.queryByText(/Current text from azleg\.gov/)).toBeNull()
   })
 
   it('explains a section azleg.gov did not have', async () => {

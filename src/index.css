@@ -108,7 +108,9 @@ header .header-pdf[aria-pressed='true'] { border-color: var(--accent); color: va
 @media (min-width: 900px) {
   .app.has-side { height: 100vh; height: 100dvh; display: flex; flex-direction: column; }
   .app.has-side .layout { flex: 1; min-height: 0; }
-  .app.has-side .content { overflow: auto; }
+  /* position: relative keeps absolutely positioned bits (like .sr-only) inside the scroller,
+     so they can't make the page itself scroll. */
+  .app.has-side .content { overflow: auto; position: relative; }
 }
 
 /* Mobile: each panel is a full-screen overlay; the statute panel sits above the PDF. */

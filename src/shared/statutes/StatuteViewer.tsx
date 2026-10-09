@@ -147,7 +147,7 @@ export default function StatuteViewer({ panel }: { panel: StatutePanelApi }) {
       <div ref={scroller} className="statute-scroller">
         <div className="statute-body">
           {body}
-          {retrieved && (
+          {doc && retrieved && (
             <p className="statute-source">
               Current text from azleg.gov, retrieved {formatRetrieved(retrieved)}. The law may have changed since the
               2025 manual was written. This is an unofficial copy; azleg.gov has the current version.
